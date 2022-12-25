@@ -128,13 +128,13 @@ export default function NavBar(props) {
     const renderPage = () => {
         switch (page) {
             case 'about':
-                return (<About />)
+                return (<About dark={dark}/>)
             case 'project':
-                return (<Project />)
+                return (<Project dark={dark}/>)
             case 'experience':
-                return (<Experience />)
+                return (<Experience dark={dark}/>)
             default:
-                return (<About />)
+                return (<About dark={dark}/>)
         }
     }
 
@@ -144,8 +144,8 @@ export default function NavBar(props) {
 
     const pages = {
         "about": "About Me",
+        "experience": "Experience",
         "project": "Projects",
-        "experience": "Experience"
     }
 
     return (
