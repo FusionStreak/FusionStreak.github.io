@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, Paper, Divider, List, ListItem, Chip, ListItemText } from "@mui/material";
+import { Container, Typography, Box, Divider, List, ListItem, Chip, ListItemText, Card, CardContent } from "@mui/material";
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from "@mui/lab";
 import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent';
 import Experiences from "./Experiences";
@@ -13,22 +13,24 @@ function Exp(info) {
     return (
         <TimelineItem key={info.role}>
             <TimelineOppositeContent color="textSecondary">
-                {info.start.month} {info.start.year} - {info.end.month} {info.end.year}
+                <Typography variant="overline">{info.start.month} {info.start.year} - {info.end.month} {info.end.year}</Typography>
             </TimelineOppositeContent>
             <TimelineSeparator>
                 <TimelineDot />
                 <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-                <Paper>
-                    <Typography>
+                <Card>
+                    <CardContent>
+                    <Typography variant="h6">
                         {info.role} | {info.company}
                     </Typography>
                     <Divider />
+                    <Box sx={{ my: 2 }}>
                     <List>
                         {info.notes.map((note) => {
                             return (
-                                <ListItem key={note}>
+                                <ListItem key={note} sx={{ py: 0 }}>
                                     <ListItemText>
                                         {note}
                                     </ListItemText>
@@ -36,15 +38,17 @@ function Exp(info) {
                             )
                         })}
                     </List>
+                    </Box>
                     <Divider />
-                    <Box>
+                    <Box sx={{ my: 2 }}>
                         {info.skills.map((skill) => {
                             return (
-                                <Chip key={skill} label={skill} variant="outlined" />
+                                <Chip key={skill} label={skill} variant="outlined" sx={{ mr: 1 }}/>
                             )
                         })}
                     </Box>
-                </Paper>
+                    </CardContent>
+                </Card>
             </TimelineContent>
         </TimelineItem>
     )
@@ -55,13 +59,13 @@ export default function Experience(props) {
     return (
         <Container>
             <Box sx={{ my: 2 }}>
-                <Typography>Exp</Typography>
+                <Typography variant="h4">Experience</Typography>
             </Box>
             <Box>
                 <Timeline
                     sx={{
                         [`& .${timelineOppositeContentClasses.root}`]: {
-                            flex: 0.2,
+                            flex: 0.4,
                         },
                     }}
                 >

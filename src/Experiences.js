@@ -20,7 +20,7 @@ const Experiences = [
         start: { month: "January", year: 2022 },
         end: { month: "December", year: 2022 },
         notes: [
-            "Worked on an up-and-coming risk mitigation and compliance product, <a href='https://veritygrc.com'>Verity</a>, using React/NodeJS",
+            `Worked on an up-and-coming risk mitigation and compliance product, Verity, using React/NodeJS`,
             "Developed backend services, such as user authentication, email notiﬁcations, and internationalisation",
             "The product is currently being used by multiple organisations"
         ],
