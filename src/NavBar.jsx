@@ -4,7 +4,7 @@ import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Container, Fab, Fa
 import { KeyboardArrowUp, Menu as MenuIcon, GitHub, LinkedIn } from '@mui/icons-material';
 import logo from './logo.png'
 import About from "./About";
-import Projects from "./Projects";
+import Project from "./Project";
 import Experience from "./Experience";
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
@@ -130,7 +130,7 @@ export default function NavBar(props) {
             case 'about':
                 return (<About />)
             case 'project':
-                return (<Projects />)
+                return (<Project />)
             case 'experience':
                 return (<Experience />)
             default:
@@ -197,7 +197,8 @@ export default function NavBar(props) {
                                         key={p}
                                         onClick={() => { handleSwitchPage(p) }}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
-                                        variant={page === p ? 'contained' : 'text'}
+                                        variant={page === p ? 'outlined' : 'text'}
+                                        color={page === p ? 'secondary' : 'primary'}
                                     >
                                         {pages[p]}
                                     </Button>
