@@ -3,6 +3,7 @@ import { Container, Typography, Box, Divider, List, ListItem, Chip, Card, CardAc
 import { EmojiEvents } from "@mui/icons-material";
 import Projects from "./Projects";
 import Grid from "@mui/material/Unstable_Grid2";
+import Icons from "./Icons";
 
 const openInNewTab = (url) => {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -26,7 +27,7 @@ function Proj(info) {
                     <Divider />
                     <Box sx={{ my: 2 }}>
                         {info.awards.map((award) => {
-                            return <Chip key={award} icon={<EmojiEvents />} label={award} variant='outlined' sx={{ mr: 1 }} />
+                            return <Chip key={award} icon={<EmojiEvents />} label={award} variant='outlined' sx={{ mr: 1, pl: 1 }} color="warning" />
                         })}
                         <List>
                             {info.notes.map((note) => {
@@ -41,7 +42,7 @@ function Proj(info) {
                     <Box sx={{ my: 1 }}>
                         {info.skills.map((skill) => {
                             return (
-                                <Chip key={skill} label={skill} variant="outlined" sx={{ mr: 1 }} />
+                                <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1 }} color="primary" />
                             )
                         })}
                     </Box>

@@ -3,6 +3,7 @@ import { Container, Typography, Box, Divider, List, ListItem, Chip, ListItemText
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from "@mui/lab";
 import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent';
 import Experiences from "./Experiences";
+import Icons from "./Icons";
 
 /**
  * 
@@ -22,31 +23,31 @@ function Exp(info) {
             <TimelineContent>
                 <Card>
                     <CardContent>
-                    <Typography variant="h6">
-                        {info.role} | {info.company}
-                    </Typography>
-                    <Divider />
-                    <Box sx={{ my: 2 }}>
-                    <List>
-                        {info.notes.map((note) => {
-                            return (
-                                <ListItem key={note} sx={{ py: 0 }}>
-                                    <ListItemText>
-                                        {note}
-                                    </ListItemText>
-                                </ListItem>
-                            )
-                        })}
-                    </List>
-                    </Box>
-                    <Divider />
-                    <Box sx={{ my: 2 }}>
-                        {info.skills.map((skill) => {
-                            return (
-                                <Chip key={skill} label={skill} variant="outlined" sx={{ mr: 1 }}/>
-                            )
-                        })}
-                    </Box>
+                        <Typography variant="h6">
+                            {info.role} | {info.company}
+                        </Typography>
+                        <Divider />
+                        <Box sx={{ my: 2 }}>
+                            <List>
+                                {info.notes.map((note) => {
+                                    return (
+                                        <ListItem key={note} sx={{ py: 0 }}>
+                                            <ListItemText>
+                                                {note}
+                                            </ListItemText>
+                                        </ListItem>
+                                    )
+                                })}
+                            </List>
+                        </Box>
+                        <Divider />
+                        <Box sx={{ my: 2 }}>
+                            {info.skills.map((skill) => {
+                                return (
+                                    <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1 }} color={"primary"} />
+                                )
+                            })}
+                        </Box>
                     </CardContent>
                 </Card>
             </TimelineContent>
