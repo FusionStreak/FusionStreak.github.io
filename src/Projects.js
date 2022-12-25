@@ -65,7 +65,7 @@ const Projects = [
         ],
         url: "https://github.com/ogp-summit-hackathon-sommet-pgo/Orion",
         date: { month: "May", year: 2019 },
-        org: "Ottawa 2019 | Open Government Summit",
+        org: "Ottawa Summit | Open Government Partnetship",
         skills: ["Python", "Pandas"],
         awards: []
     }
