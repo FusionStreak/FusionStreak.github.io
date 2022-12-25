@@ -2,7 +2,7 @@
   "name": "sayfullaheid",
   "version": "2022.12b",
   "private": true,
-  "homepage": "https://FusionStreak.github.io/sayfullaheid",
+  "homepage": "https://FusionStreak.github.io",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
