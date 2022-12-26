@@ -2,10 +2,11 @@ import {
     SiCplusplus, SiNodedotjs, SiJava, SiJavascript, SiReact,
     SiDocker, SiNeo4J, SiCisco, SiPandas, SiPython, SiScratch,
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
-    SiJunipernetworks, SiKubernetes, SiWindows,
+    SiJunipernetworks, SiKubernetes, SiWindows, SiGit
 } from 'react-icons/si'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
+import { Diversity3, Diversity2, PermPhoneMsg, HourglassTop } from '@mui/icons-material'
 
 const Icons = {
     "java": <SiJava />,
@@ -29,7 +30,12 @@ const Icons = {
     "juniper": <SiJunipernetworks />,
     "kubernetes": <SiKubernetes />,
     "windows server": <SiWindows />,
-    "routeros": <TbRouter />
+    "routeros": <TbRouter />,
+    'teamwork': <Diversity3 />,
+    "agile development": <Diversity2 />,
+    "communication": <PermPhoneMsg />,
+    "time management": <HourglassTop />,
+    "git": <SiGit />
 }
 
 export default Icons

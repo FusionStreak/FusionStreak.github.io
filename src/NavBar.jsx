@@ -6,10 +6,8 @@ import logo from './logo.png'
 import About from "./About";
 import Project from "./Project";
 import Experience from "./Experience";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
-const lightTheme = createTheme({ palette: { mode: 'light' } });
+import { ThemeProvider } from "@mui/material/styles";
+import myTheme from "./Theme";
 
 function ScrollTop(props) {
     const { children, window } = props;
@@ -57,16 +55,15 @@ ScrollTop.propTypes = {
 };
 
 export default function NavBar(props) {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElNav, setAnchorElNav] = React.useState(false);
     const [page, setPage] = React.useState('about')
-    const dark = true;
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
+        setAnchorElNav(false);
     };
 
     const handleSwitchPage = (p) => {
@@ -76,13 +73,13 @@ export default function NavBar(props) {
     const renderPage = () => {
         switch (page) {
             case 'about':
-                return (<About dark={dark} />)
+                return (<About />)
             case 'project':
-                return (<Project dark={dark} />)
+                return (<Project />)
             case 'experience':
-                return (<Experience dark={dark} />)
+                return (<Experience />)
             default:
-                return (<About dark={dark} />)
+                return (<About />)
         }
     }
 
@@ -98,9 +95,9 @@ export default function NavBar(props) {
 
     return (
         <React.Fragment>
-            <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+            <ThemeProvider theme={myTheme}>
                 <CssBaseline />
-                <AppBar>
+                <AppBar enableColorOnDark>
                     <Container >
                         <Toolbar disableGutters>
                             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

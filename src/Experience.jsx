@@ -84,7 +84,7 @@ function ExpSmall(info) {
                 <Box sx={{ my: 1 }}>
                     {info.skills.map((skill) => {
                         return (
-                            <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1, mt: 1 }} color="primary" />
+                            <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} color="primary" />
                         )
                     })}
                 </Box>

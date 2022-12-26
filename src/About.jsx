@@ -1,9 +1,7 @@
 import React from "react";
 import { Container, Typography, Box, Card, CardContent, Divider, Chip } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
-import CarletonLight from './CarletonLight.png'
 import ACDark from './ACDark.png'
-import ACLight from './ACLight.png'
 import Grid from '@mui/material/Unstable_Grid2'
 import Icons from "./Icons";
 
@@ -11,10 +9,10 @@ export default function About(props) {
 
     const skills = {
         'Languages': ["Python", "Java", "C/C++", "JavaScript"],
-        'Tools & Frameworks': ["ReactJS", "NodeJS", "GraphQL", "ONgDB"],
+        'Tools & Frameworks': ["ReactJS", "NodeJS", "GraphQL", "ONgDB", "Git"],
         'IT': ["Cisco IOS", "Juniper", "RouterOS", "Windows Server"],
         'DevOps': ["Kubernetes", "Docker"],
-        'Soft Skills': []
+        'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
     }
 
     return (
@@ -31,8 +29,8 @@ export default function About(props) {
                                 <Typography variant="overline">Network Technology</Typography>
                             </Grid>
                             <Grid xs={6} textAlign='right'>
-                                <img src={props.dark ? ACDark : ACLight} alt="Carleton University Logo" height={50} style={{ verticalAlign: 'top' }} />
-                                <img src={props.dark ? CarletonDark : CarletonLight} alt="Carleton University Logo" height={75} />
+                                <img src={ ACDark } alt="Carleton University Logo" height={50} style={{ verticalAlign: 'top' }} />
+                                <img src={ CarletonDark } alt="Carleton University Logo" height={75} />
                             </Grid>
                         </Grid>
                         <Divider sx={{ my: 2 }} />
@@ -48,13 +46,13 @@ export default function About(props) {
                             {Object.keys(skills).map((skill) => {
                                 return (
                                     <React.Fragment key={skill}>
-                                        <Grid xs={3} sm={2}>
+                                        <Grid xs={3} sm={2} mt={1} >
                                             <b>{skill}:</b>
                                         </Grid>
                                         <Grid xs={3} sm={10}>
                                             {skills[skill].map((s) => {
                                                 return (
-                                                    <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} sx={{ mr: 1, pl: 1, mt: 1 }} color="primary" />
+                                                    <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} color="primary" />
                                                 )
                                             })}
                                         </Grid>

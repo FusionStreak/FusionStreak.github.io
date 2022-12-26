@@ -25,9 +25,9 @@ function Proj(info, dark) {
                     </Grid>
                     <Typography variant="overline">{info.org}</Typography>
                     <Divider />
-                    <Box sx={{ my: 2 }}>
+                    <Box>
                         {info.awards.map((award) => {
-                            return <Chip key={award} icon={<EmojiEvents />} label={award} variant='outlined' sx={{ mr: 1, pl: 1, mt: 1 }} color={dark ? "warning" : "success"} />
+                            return <Chip key={award} icon={<EmojiEvents />} label={award} variant='award' />
                         })}
                         <List>
                             {info.notes.map((note) => {
@@ -39,10 +39,10 @@ function Proj(info, dark) {
                         </List>
                     </Box>
                     <Divider />
-                    <Box sx={{ my: 1 }}>
+                    <Box >
                         {info.skills.map((skill) => {
                             return (
-                                <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1, mt: 1 }} color="primary" />
+                                <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} color="primary" />
                             )
                         })}
                     </Box>
@@ -61,7 +61,7 @@ export default function Project(props) {
             </Box>
             <Box sx={{ my: 2 }}>
                 {Projects.map((project) => {
-                    return Proj(project, props.dark)
+                    return Proj(project)
                 })}
             </Box>
         </Container>
