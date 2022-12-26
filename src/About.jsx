@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Typography, Box, Card, CardContent, Divider } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import CarletonLight from './CarletonLight.png'
+import ACDark from './ACDark.png'
+import ACLight from './ACLight.png'
 import Grid from '@mui/material/Unstable_Grid2'
 
 export default function About(props) {
@@ -20,7 +22,8 @@ export default function About(props) {
                                 <Typography variant="overline">Network Technology</Typography>
                             </Grid>
                             <Grid xs={6} textAlign='right'>
-                                <img src={props.dark ? CarletonDark : CarletonLight} alt="Carleton University Logo" height={75} />
+                            <img src={props.dark ? ACDark : ACLight} alt="Carleton University Logo" height={50} style={{verticalAlign: 'top'}}/>
+                                <img src={props.dark ? CarletonDark : CarletonLight} alt="Carleton University Logo" height={75}/>
                             </Grid>
                         </Grid>
                         <Divider sx={{ my: 2 }} />
