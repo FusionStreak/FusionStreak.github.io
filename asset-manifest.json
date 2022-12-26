@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ad3ff8cb.css",
-    "main.js": "/static/js/main.b6988361.js",
+    "main.js": "/static/js/main.2db1a3fa.js",
     "static/js/787.0e686555.chunk.js": "/static/js/787.0e686555.chunk.js",
     "static/media/logo.png": "/static/media/logo.fe955d7f914812219097.png",
     "static/media/roboto-all-500-normal.woff": "/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff",
@@ -9,7 +9,6 @@
     "static/media/roboto-all-400-normal.woff": "/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff",
     "static/media/roboto-all-300-normal.woff": "/static/media/roboto-all-300-normal.168d6383e73339293ac3.woff",
     "static/media/CarletonDark.png": "/static/media/CarletonDark.7ae8b2187c371986e8fb.png",
-    "static/media/CarletonLight.png": "/static/media/CarletonLight.a3f9ab6085c36345fcb8.png",
     "static/media/roboto-latin-500-normal.woff2": "/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
@@ -40,11 +39,11 @@
     "static/media/roboto-greek-ext-700-normal.woff2": "/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2",
     "index.html": "/index.html",
     "main.ad3ff8cb.css.map": "/static/css/main.ad3ff8cb.css.map",
-    "main.b6988361.js.map": "/static/js/main.b6988361.js.map",
+    "main.2db1a3fa.js.map": "/static/js/main.2db1a3fa.js.map",
     "787.0e686555.chunk.js.map": "/static/js/787.0e686555.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ad3ff8cb.css",
-    "static/js/main.b6988361.js"
+    "static/js/main.2db1a3fa.js"
   ]
 }
