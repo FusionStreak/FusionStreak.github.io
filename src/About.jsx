@@ -13,7 +13,8 @@ export default function About(props) {
         'Languages': ["Python", "Java", "C/C++", "JavaScript"],
         'Tools & Frameworks': ["ReactJS", "NodeJS", "GraphQL", "ONgDB"],
         'IT': ["Cisco IOS", "Juniper", "RouterOS", "Windows Server"],
-        'DevOps': ["Kubernetes", "Docker"]
+        'DevOps': ["Kubernetes", "Docker"],
+        'Soft Skills': []
     }
 
     return (
@@ -37,24 +38,23 @@ export default function About(props) {
                         <Divider sx={{ my: 2 }} />
                         <Typography><b>Courses:</b> DevOps, Advanced Network Routing, Network Security, Data Structures, Database Concepts and SQL</Typography>
                         <Typography><b>Expected Graduation:</b> May 2024</Typography>
-                        <Typography><b>GPA:</b> 2.9 / 4.0</Typography>
                     </CardContent>
                 </Card>
                 <Card elevation={5} sx={{ my: 2 }} >
                     <CardContent>
                         <Typography variant="h6">Skills</Typography>
                         <Divider sx={{ my: 2 }} />
-                        <Grid container rowGap={1}>
+                        <Grid container >
                             {Object.keys(skills).map((skill) => {
                                 return (
                                     <React.Fragment key={skill}>
-                                        <Grid xs={2} sx={{my: 1}}>
+                                        <Grid xs={3} sm={2}>
                                             <b>{skill}:</b>
                                         </Grid>
-                                        <Grid xs={10}>
+                                        <Grid xs={3} sm={10}>
                                             {skills[skill].map((s) => {
                                                 return (
-                                                    <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} sx={{mr: 1, pl: 1}} color="primary"/>
+                                                    <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} sx={{ mr: 1, pl: 1, mt: 1 }} color="primary" />
                                                 )
                                             })}
                                         </Grid>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Typography, Box, Divider, List, ListItem, Chip, ListItemText, Card, CardContent } from "@mui/material";
+import Grid from '@mui/material/Unstable_Grid2'
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from "@mui/lab";
 import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent';
 import Experiences from "./Experiences";
@@ -10,7 +11,7 @@ import Icons from "./Icons";
  * @param {Object} info - The experience object
  * @returns TimelineItem
  */
-function Exp(info) {
+function ExpWide(info) {
     return (
         <TimelineItem key={info.role}>
             <TimelineOppositeContent color="textSecondary">
@@ -44,7 +45,7 @@ function Exp(info) {
                         <Box sx={{ my: 2 }}>
                             {info.skills.map((skill) => {
                                 return (
-                                    <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1 }} color={"primary"} />
+                                    <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1, mt: 1 }} color={"primary"} />
                                 )
                             })}
                         </Box>
@@ -55,6 +56,43 @@ function Exp(info) {
     )
 }
 
+function ExpSmall(info) {
+    return (
+        <Card key={info.role} sx={{ my: 2 }} elevation={5}>
+            <CardContent>
+                <Grid container>
+                    <Grid xs={6}>
+                        <Typography variant="h6">{info.role} | {info.company}</Typography>
+                    </Grid>
+                    <Grid xs={6} textAlign={'right'}>
+                        <Typography>{info.start.month} {info.start.year}</Typography>
+                    </Grid>
+                </Grid>
+                <Typography variant="overline">{info.org}</Typography>
+                <Divider />
+                <Box sx={{ my: 2 }}>
+                    <List>
+                        {info.notes.map((note) => {
+                            return (
+                                <ListItem key={note} sx={{ py: 0 }}>
+                                    <ListItemText>{note}</ListItemText>
+                                </ListItem>)
+                        })}
+                    </List>
+                </Box>
+                <Divider />
+                <Box sx={{ my: 1 }}>
+                    {info.skills.map((skill) => {
+                        return (
+                            <Chip icon={Icons[skill.toLowerCase()]} key={skill} label={skill} sx={{ mr: 1, pl: 1, mt: 1 }} color="primary" />
+                        )
+                    })}
+                </Box>
+            </CardContent>
+        </Card>
+    )
+}
+
 export default function Experience(props) {
 
     return (
@@ -62,7 +100,7 @@ export default function Experience(props) {
             <Box sx={{ my: 2 }}>
                 <Typography variant="h4">Experience</Typography>
             </Box>
-            <Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 <Timeline
                     sx={{
                         [`& .${timelineOppositeContentClasses.root}`]: {
@@ -71,9 +109,14 @@ export default function Experience(props) {
                     }}
                 >
                     {Experiences.map((exp) => {
-                        return Exp(exp);
+                        return ExpWide(exp);
                     })}
                 </Timeline>
+            </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'block', md: 'none' } }} my={2}>
+                {Experiences.map((exp) => {
+                    return ExpSmall(exp);
+                })}
             </Box>
         </Container>
     )
