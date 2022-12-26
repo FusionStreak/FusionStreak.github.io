@@ -1,15 +1,22 @@
-import { SiCplusplus, SiNodedotjs, SiJava, SiJavascript, SiReact, SiDocker, SiNeo4J, SiCisco, SiPandas, SiPython,SiScratch, SiLabview, SiSlack, SiFigma, SiGoogledrive} from 'react-icons/si'
-import {VscSymbolStructure} from 'react-icons/vsc'
+import {
+    SiCplusplus, SiNodedotjs, SiJava, SiJavascript, SiReact,
+    SiDocker, SiNeo4J, SiCisco, SiPandas, SiPython, SiScratch,
+    SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
+    SiJunipernetworks, SiKubernetes, SiWindows,
+} from 'react-icons/si'
+import { VscSymbolStructure } from 'react-icons/vsc'
+import { TbRouter } from 'react-icons/tb'
 
 const Icons = {
     "java": <SiJava />,
-    "c++" : <SiCplusplus />,
+    "c++": <SiCplusplus />,
+    "c/c++": <SiCplusplus />,
     "nodejs": <SiNodedotjs />,
     "ongdb": <SiNeo4J />,
     "javascript": <SiJavascript />,
     "reactjs": <SiReact />,
     "docker": <SiDocker />,
-    'cisco': <SiCisco />,
+    'cisco ios': <SiCisco />,
     "pandas": <SiPandas />,
     "python": <SiPython />,
     'scratch': <SiScratch />,
@@ -17,7 +24,12 @@ const Icons = {
     "slack": <SiSlack />,
     "figma": <SiFigma />,
     "data structures": <VscSymbolStructure />,
-    "google docs": <SiGoogledrive />
+    "google docs": <SiGoogledrive />,
+    "graphql": <SiGraphql />,
+    "juniper": <SiJunipernetworks />,
+    "kubernetes": <SiKubernetes />,
+    "windows server": <SiWindows />,
+    "routeros": <TbRouter />
 }
 
 export default Icons

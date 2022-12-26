@@ -9,7 +9,7 @@ const openInNewTab = (url) => {
     window.open(url, '_blank', 'noopener,noreferrer');
 };
 
-function Proj(info) {
+function Proj(info, dark) {
 
     return (
         <Card key={info.name} sx={{ my: 2 }} onClick={() => { openInNewTab(info.url) }} elevation={5}>
@@ -27,7 +27,7 @@ function Proj(info) {
                     <Divider />
                     <Box sx={{ my: 2 }}>
                         {info.awards.map((award) => {
-                            return <Chip key={award} icon={<EmojiEvents />} label={award} variant='outlined' sx={{ mr: 1, pl: 1 }} color="warning" />
+                            return <Chip key={award} icon={<EmojiEvents />} label={award} variant='outlined' sx={{ mr: 1, pl: 1 }} color={dark ? "warning" : "success"} />
                         })}
                         <List>
                             {info.notes.map((note) => {
@@ -61,7 +61,7 @@ export default function Project(props) {
             </Box>
             <Box sx={{ my: 2 }}>
                 {Projects.map((project) => {
-                    return Proj(project)
+                    return Proj(project, props.dark)
                 })}
             </Box>
         </Container>

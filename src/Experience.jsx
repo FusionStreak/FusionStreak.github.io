@@ -66,7 +66,7 @@ export default function Experience(props) {
                 <Timeline
                     sx={{
                         [`& .${timelineOppositeContentClasses.root}`]: {
-                            flex: 0.4,
+                            flex: 0.255,
                         },
                     }}
                 >
