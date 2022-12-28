@@ -4,8 +4,7 @@ import {
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
-    SiTruenas, SiUbuntu, SiNvidia, SiIntel, SiHp
-} from 'react-icons/si'
+    SiTruenas, SiUbuntu, SiHp, SiBootstrap} from 'react-icons/si'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
 import { Diversity3, Diversity2, PermPhoneMsg, HourglassTop } from '@mui/icons-material'
@@ -45,9 +44,8 @@ const Icons = {
     "raspberrypi": <SiRaspberrypi />,
     "truenas": <SiTruenas />,
     "ubuntu": <SiUbuntu />,
-    "gtx 1060": <SiNvidia />,
-    "i5-8600k": <SiIntel />,
-    "aruba": <SiHp />
+    "aruba": <SiHp />,
+    "bootstrap": <SiBootstrap />
 }
 
 export default Icons

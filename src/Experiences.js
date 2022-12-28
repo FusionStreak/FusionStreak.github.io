@@ -24,7 +24,7 @@ const Experiences = [
             "Developed backend services, such as user authentication, email notiﬁcations, and internationalisation",
             "The product is currently being used by multiple organisations"
         ],
-        skills: ["ReactJS", "NodeJS", "ONgDB"]
+        skills: ["ReactJS", "NodeJS", "ONgDB", "Bootstrap"]
     },
     {
         company: "Sphyrna Security Inc.",
