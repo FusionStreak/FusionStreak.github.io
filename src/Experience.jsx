@@ -61,11 +61,14 @@ function ExpSmall(info) {
         <Card key={info.role} sx={{ my: 2 }} elevation={5}>
             <CardContent>
                 <Grid container>
-                    <Grid xs={6}>
-                        <Typography variant="h6">{info.role} | {info.company}</Typography>
+                    <Grid xs={12}>
+                        <Typography variant="h6">{info.role}</Typography>
                     </Grid>
-                    <Grid xs={6} textAlign={'right'}>
-                        <Typography>{info.start.month} {info.start.year}</Typography>
+                    <Grid xs={12} >
+                        <Typography variant='subtitle1'>{info.company}</Typography>
+                    </Grid>
+                    <Grid xs={12}>
+                        <Typography variant="subtitle2">{info.start.month}, {info.start.year} - {info.end.month}, {info.end.year}</Typography>
                     </Grid>
                 </Grid>
                 <Typography variant="overline">{info.org}</Typography>

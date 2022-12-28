@@ -1,11 +1,14 @@
 import { createTheme } from '@mui/material/styles';
-import { deepOrange, amber } from '@mui/material/colors';
+import { deepOrange, amber, grey } from '@mui/material/colors';
 
 const myTheme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
             main: deepOrange[500]
+        },
+        background: {
+            paper: grey[900]
         }
     },
     components: {

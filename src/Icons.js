@@ -2,7 +2,9 @@ import {
     SiCplusplus, SiNodedotjs, SiJava, SiJavascript, SiReact,
     SiDocker, SiNeo4J, SiCisco, SiPandas, SiPython, SiScratch,
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
-    SiJunipernetworks, SiKubernetes, SiWindows, SiGit
+    SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
+    SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
+    SiTruenas, SiUbuntu, SiNvidia, SiIntel, SiHp
 } from 'react-icons/si'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
@@ -35,7 +37,17 @@ const Icons = {
     "agile development": <Diversity2 />,
     "communication": <PermPhoneMsg />,
     "time management": <HourglassTop />,
-    "git": <SiGit />
+    "git": <SiGit />,
+    "linux": <SiLinux />,
+    "popos": <SiPopos />,
+    "kali": <SiKalilinux />,
+    "fedora": <SiFedora />,
+    "raspberrypi": <SiRaspberrypi />,
+    "truenas": <SiTruenas />,
+    "ubuntu": <SiUbuntu />,
+    "gtx 1060": <SiNvidia />,
+    "i5-8600k": <SiIntel />,
+    "aruba": <SiHp />
 }
 
 export default Icons
