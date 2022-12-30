@@ -4,10 +4,10 @@ import {
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
-    SiTruenas, SiUbuntu, SiHp, SiBootstrap} from 'react-icons/si'
-import { VscSymbolStructure } from 'react-icons/vsc'
+    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost} from 'react-icons/si'
+import { VscSymbolStructure, VscCircuitBoard } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
-import { Diversity3, Diversity2, PermPhoneMsg, HourglassTop } from '@mui/icons-material'
+import { Diversity3, Diversity2, PermPhoneMsg, HourglassTop, GitHub } from '@mui/icons-material'
 
 const Icons = {
     "java": <SiJava />,
@@ -45,7 +45,11 @@ const Icons = {
     "truenas": <SiTruenas />,
     "ubuntu": <SiUbuntu />,
     "aruba": <SiHp />,
-    "bootstrap": <SiBootstrap />
+    "bootstrap": <SiBootstrap />,
+    "first": <SiFirst />,
+    "embedded systems": <VscCircuitBoard />,
+    "devpost": <SiDevpost />,
+    "github": <GitHub />
 }
 
 export default Icons

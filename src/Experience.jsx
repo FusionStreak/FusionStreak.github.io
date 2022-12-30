@@ -41,7 +41,6 @@ function ExpWide(info) {
                                 })}
                             </List>
                         </Box>
-                        <Divider />
                         <Box sx={{ my: 2 }}>
                             {info.skills.map((skill) => {
                                 return (
@@ -83,7 +82,6 @@ function ExpSmall(info) {
                         })}
                     </List>
                 </Box>
-                <Divider />
                 <Box sx={{ my: 1 }}>
                     {info.skills.map((skill) => {
                         return (

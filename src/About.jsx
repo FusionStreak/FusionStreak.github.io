@@ -1,13 +1,11 @@
 import React from "react";
-import { Container, Typography, Box, Card, CardContent, Divider, Chip, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Container, Typography, Box, Card, CardContent, Divider, Chip } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
 import Grid from '@mui/material/Unstable_Grid2'
 import Icons from "./Icons";
 import { TreeItem, TreeView } from "@mui/lab";
 import { ChevronRight, ExpandMore } from "@mui/icons-material";
-import { GiHand, GiTreeGrowth, GiLightBulb } from "react-icons/gi"
-
 export default function About(props) {
 
     const skills = {
@@ -19,6 +17,8 @@ export default function About(props) {
         "Security": ["Kali"],
         'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
     }
+
+    const [expanded, setExpanded] = React.useState([])
 
     return (
         <Container >
@@ -64,13 +64,13 @@ export default function About(props) {
                             {Object.keys(skills).map((skill) => {
                                 return (
                                     <React.Fragment key={skill}>
-                                        <Grid xs={3} sm={2} mt={2} >
+                                        <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
                                             <b>{skill}:</b>
                                         </Grid>
-                                        <Grid xs={3} sm={10}>
+                                        <Grid xs={3} sm={10} display="flex" alignItems="center">
                                             {skills[skill].map((s) => {
                                                 return (
-                                                    <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} color="primary" />
+                                                    <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
                                                 )
                                             })}
                                         </Grid>
@@ -84,10 +84,12 @@ export default function About(props) {
                             sx={{
                                 height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto',
                                 display: { xs: 'block', md: 'none' }
-                            }}>
+                            }}
+                            disableSelection
+                            expanded={expanded}>
                             {Object.keys(skills).map((skill) => {
                                 return (
-                                    <TreeItem aria-label={skill} key={skill} nodeId={skill} label={skill} >
+                                    <TreeItem aria-label={skill} key={skill} nodeId={skill} label={skill} onClick={(e) => { setExpanded([skill]) }}>
                                         {skills[skill].map((s) => {
                                             return (
                                                 <TreeItem aria-label={s} key={s} nodeId={s} label={s} icon={Icons[s.toLowerCase()]} />
@@ -97,32 +99,6 @@ export default function About(props) {
                                 )
                             })}
                         </TreeView>
-                    </CardContent>
-                </Card>
-                <Card elevation={5} sx={{ my: 2 }}>
-                    <CardContent>
-                        <Typography variant="h6">About Me</Typography>
-                        <Divider sx={{ my: 2 }} />
-                        <List dense={true}>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <GiHand />
-                                </ListItemIcon>
-                                <ListItemText primary="Hi, I'm Sayfullah Eid" />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <GiLightBulb />
-                                </ListItemIcon>
-                                <ListItemText primary="I'm interested in open source and sustainable tech" />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <GiTreeGrowth />
-                                </ListItemIcon>
-                                <ListItemText primary="I'm currently learning JS" />
-                            </ListItem>
-                        </List>
                     </CardContent>
                 </Card>
             </Box>

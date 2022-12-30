@@ -7,23 +7,28 @@ const myTheme = createTheme({
         primary: {
             main: deepOrange[500]
         },
+        secondary: {
+            main: '#22cbff'
+        },
+        error: {
+            main: '#ff225d'
+        },
+        warning: {
+            main: '#ffc422'
+        },
+        info: {
+            main: '#cbff22'
+        },
+        success: {
+            main: '#22ff56'
+        },
         background: {
-            paper: grey[900]
+            paper: grey[900],
+            default: '#122023'
         }
     },
     components: {
         MuiChip: {
-            variants: [
-                {
-                    props: { variant: 'award' },
-                    style: {
-                        textTransform: 'none',
-                        border: `2px solid ${amber[600]}`,
-                        backgroundColor: 'transparent',
-                        color: `${amber[600]}`
-                    }
-                },
-            ],
             styleOverrides: {
                 root: {
                     marginRight: '0.75rem', 
