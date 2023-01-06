@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Container, Fab, Fade, Typography, Menu, MenuItem, IconButton, Button } from '@mui/material'
+import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Container, Fab, Fade, Typography, Menu, MenuItem, IconButton, Button, Divider } from '@mui/material'
 import { KeyboardArrowUp, Menu as MenuIcon, GitHub, LinkedIn, Email, Download } from '@mui/icons-material';
 import logo from './logo.png'
 import About from "./About";
@@ -68,6 +68,7 @@ export default function NavBar(props) {
 
     const handleSwitchPage = (p) => {
         setPage(p);
+        handleCloseNavMenu();
     }
 
     const renderPage = () => {
@@ -130,6 +131,50 @@ export default function NavBar(props) {
                                             <Typography textAlign="center">{pages[page]}</Typography>
                                         </MenuItem>
                                     ))}
+                                    <Divider />
+                                    <IconButton
+                                    size="small"
+                                    aria-label="GitHub"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak"
+                                    target={'_blank'}
+                                    color="inherit"
+                                >
+                                    <GitHub />
+                                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    aria-label="LinkedIn"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://www.linkedin.com/in/sayfullah-eid/"
+                                    target='_blank'
+                                    color="inherit"
+                                >
+                                    <LinkedIn />
+                                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    aria-label="E-mail"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="mailto://sayfullaheid@gmail.com"
+                                    color="inherit"
+                                >
+                                    <Email />
+                                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    aria-label="Download resume"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
+                                    download={'SayfullahEid.pdf'}
+                                    color="inherit"
+                                >
+                                    <Download />
+                                </IconButton>
                                 </Menu>
                             </Box>
                             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -173,7 +218,6 @@ export default function NavBar(props) {
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
                                     href="mailto://sayfullaheid@gmail.com"
-                                    target='_blank'
                                     color="inherit"
                                 >
                                     <Email />
