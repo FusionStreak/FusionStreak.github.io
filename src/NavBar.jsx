@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Container, Fab, Fade, Typography, Menu, MenuItem, IconButton, Button } from '@mui/material'
-import { KeyboardArrowUp, Menu as MenuIcon, GitHub, LinkedIn, Email } from '@mui/icons-material';
+import { KeyboardArrowUp, Menu as MenuIcon, GitHub, LinkedIn, Email, Download } from '@mui/icons-material';
 import logo from './logo.png'
 import About from "./About";
 import Project from "./Project";
@@ -83,10 +83,6 @@ export default function NavBar(props) {
         }
     }
 
-    const openInNewTab = (url) => {
-        window.open(url, '_blank', 'noopener,noreferrer');
-    };
-
     const pages = {
         "about": "About Me",
         "experience": "Experience",
@@ -148,13 +144,14 @@ export default function NavBar(props) {
                                     </Button>
                                 ))}
                             </Box>
-                            <Box>
+                            <Box sx={{display: {xs: 'none', md: 'flex'}}}>
                                 <IconButton
                                     size="large"
                                     aria-label="GitHub"
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
-                                    onClick={() => { openInNewTab("https://github.com/FusionStreak") }}
+                                    href="https://github.com/FusionStreak"
+                                    target={'_blank'}
                                     color="inherit"
                                 >
                                     <GitHub />
@@ -164,20 +161,33 @@ export default function NavBar(props) {
                                     aria-label="LinkedIn"
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
-                                    onClick={() => { openInNewTab("https://www.linkedin.com/in/sayfullah-eid/") }}
+                                    href="https://www.linkedin.com/in/sayfullah-eid/"
+                                    target='_blank'
                                     color="inherit"
                                 >
                                     <LinkedIn />
                                 </IconButton>
                                 <IconButton
                                     size="large"
-                                    aria-label="LinkedIn"
+                                    aria-label="E-mail"
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
-                                    onClick={() => { openInNewTab("mailto://sayfullaheid@gmail.com") }}
+                                    href="mailto://sayfullaheid@gmail.com"
+                                    target='_blank'
                                     color="inherit"
                                 >
                                     <Email />
+                                </IconButton>
+                                <IconButton
+                                    size="large"
+                                    aria-label="Download resume"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
+                                    download={'SayfullahEid.pdf'}
+                                    color="inherit"
+                                >
+                                    <Download />
                                 </IconButton>
                             </Box>
                             <img src={logo} style={{ padding: "0.3rem" }} alt="logo" width={32} height={32} />

@@ -5,10 +5,6 @@ import Projects from "./Projects";
 import Grid from "@mui/material/Unstable_Grid2";
 import Icons from "./Icons";
 
-const openInNewTab = (url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-};
-
 function Proj(info, dark) {
 
     return (
@@ -26,7 +22,7 @@ function Proj(info, dark) {
                 <Divider />
                 <Box>
                     {Object.keys(info.awards).map((award) => {
-                        return <Tooltip title={info.awards[award]} placement={"top-start"}><Chip key={award} icon={<EmojiEvents />} label={award} color="warning" variant="outlined" /></Tooltip>
+                        return <Tooltip key={award} title={info.awards[award]} placement={"top-start"}><Chip key={award} icon={<EmojiEvents />} label={award} color="warning" variant="outlined" /></Tooltip>
                     })}
                     <List>
                         {info.notes.map((note) => {
@@ -51,7 +47,15 @@ function Proj(info, dark) {
                 <CardActions sx={{ ml: 2 }}>
                     {Object.keys(info.urls).map((url) => {
                         return (
-                            <Button key={url} size="small" startIcon={Icons[url.toLowerCase()]} endIcon={<ChevronRight />} color="secondary" variant="text" onClick={() => { openInNewTab(info.urls[url]) }}>
+                            <Button
+                                key={url}
+                                size="small"
+                                startIcon={Icons[url.toLowerCase()]}
+                                endIcon={<ChevronRight />}
+                                color="secondary"
+                                variant="text"
+                                target={'_blank'}
+                                href={info.urls[url]}>
                                 {url}
                             </Button>
                         )
