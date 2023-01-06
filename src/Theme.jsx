@@ -33,20 +33,27 @@ const myTheme = createTheme({
                 root: {
                     marginRight: '0.75rem', 
                     paddingLeft: '0.75rem', 
-                    marginTop: '0.75rem'
+                    marginTop: '0.75rem',
                 }
                 ,
                 iconMedium: {
                     width: '1.5rem',
                     height: '1.5rem',
                     color: 'inherit'
+                },
+                label: {
+                    fontWeight: 'bold'
+                },
+                colorPrimary: {
+                    backgroundColor: deepOrange['A400']
                 }
             }
         },
         MuiTypography: {
             styleOverrides: {
                 overline: {
-                    color: deepOrange[500]
+                    color: deepOrange['A200'],
+                    fontWeight: 600
                 }
             }
         }
