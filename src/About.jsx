@@ -12,9 +12,7 @@ export default function About(props) {
         'Languages': ["Python", "Java", "C/C++", "JavaScript"],
         'Tools & Frameworks': ["ReactJS", "NodeJS", "GraphQL", "ONgDB", "Git"],
         'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba"],
-        'DevOps': ["Kubernetes", "Docker"],
-        "Server": ["TrueNAS", "RaspberryPi", "Ubuntu", "Windows Server", "Linux"],
-        "Security": ["Kali"],
+        "Server/DevOps": ["TrueNAS", "Ubuntu", "Windows Server", "Kubernetes", "Docker"],
         'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
     }
 
