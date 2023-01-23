@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, Card, CardContent, Divider, Chip } from "@mui/material";
+import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
 import Grid from '@mui/material/Unstable_Grid2'
@@ -97,6 +97,29 @@ export default function About(props) {
                                 )
                             })}
                         </TreeView>
+                    </CardContent>
+                </Card>
+                <Card elevation={5} sx={{ my: 2 }}>
+                    <CardContent>
+                        <Typography variant='h6' sx={{ mb: 2 }}>About Me</Typography>
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                            Hello world!
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                            My name is Sayfullah Eid, I am a 3rd year B.IT Networking student at Carleton University and Algonquin College. I chose this program as it gives me both the theoretical knowldge and practical skills in many different IT subjects, such as; cybersecurity, DevOps, network management, web development, etc.
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                            My tech journey began when I started a <Button variant='text' sx={{ px: 0, height: '22px' }} color="secondary" href="https://wro-association.org/">World Robotics Olympiad</Button> team at my middle school. From there I took a series of online crash courses in programming and database concepts.
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                            I took those skills and joined a <Button variant="text" sx={{ px: 0, height: '22px' }} color="secondary" href="https://www.firstroboticscanada.org/frc/">FIRST Robotics Competition</Button> (FRC) team in high school. Working in these teams also sparked my interest in STEM(Science, Technology, Engineering & Math) education. I started mentoring robotics teams after I graduated.
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                            My experience in FRC drove me towards community driven development, and I began my journey with <Button variant="text" sx={{ px: 0, height: '22px' }} color="secondary" href="https://en.wikipedia.org/wiki/Free_and_open-source_software">Free and Open Source Software</Button> (FOSS). I am now a strong advocate for open source projects, be it hardware or software. Especially in education.
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                            In my off time, you will find me taking road trips, going on hikes, researching sustainable technologies, woodworking, and playing PC games.
+                        </Typography>
                     </CardContent>
                 </Card>
             </Box>
