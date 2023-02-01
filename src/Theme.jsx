@@ -56,6 +56,13 @@ const myTheme = createTheme({
                     fontWeight: 600
                 }
             }
+        },
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    padding: '4px',
+                }
+            }
         }
     }
 });

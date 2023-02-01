@@ -1,18 +1,18 @@
 import React from "react";
-import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip } from "@mui/material";
+import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
 import Grid from '@mui/material/Unstable_Grid2'
 import Icons from "./Icons";
 import { TreeItem, TreeView } from "@mui/lab";
-import { ChevronRight, ExpandMore } from "@mui/icons-material";
+import { ChevronRight, ExpandMore, HorizontalRule } from "@mui/icons-material";
 export default function About(props) {
 
     const skills = {
         'Languages': ["Python", "Java", "C/C++", "JavaScript"],
-        'Tools & Frameworks': ["ReactJS", "NodeJS", "GraphQL", "ONgDB", "Git"],
-        'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba"],
-        "Server/DevOps": ["TrueNAS", "Ubuntu", "Windows Server", "Kubernetes", "Docker"],
+        'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas"],
+        'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba", "Nokia"],
+        "Server/DevOps": ["TrueNAS", "Ubuntu", "Windows Server", "Kubernetes", "Docker", "Git"],
         'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
     }
 
@@ -50,7 +50,21 @@ export default function About(props) {
                             </Grid>
                         </Grid>
                         <Divider sx={{ my: 2 }} />
-                        <Typography><b>Courses:</b> DevOps, Advanced Network Routing, Network Security, Data Structures, Database Concepts and SQL</Typography>
+                        <Typography><b>Courses:</b></Typography>
+                        <List>
+                            <ListItem disableGutters>
+                                <ListItemIcon sx={{ 'min-width': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
+                                <ListItemText>Network routing, switching, and architecture</ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon sx={{ 'min-width': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
+                                <ListItemText>Embedded and real time systems</ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon sx={{ 'min-width': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
+                                <ListItemText>DevOps, data structures, database concepts, and web programming</ListItemText>
+                            </ListItem>
+                        </List>
                         <Typography><b>Expected Graduation:</b> May 2024</Typography>
                     </CardContent>
                 </Card>

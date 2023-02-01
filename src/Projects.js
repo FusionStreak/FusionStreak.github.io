@@ -20,7 +20,7 @@ const Projects = [
         name: "foodpad",
         role: "Frontend Developer",
         notes: [
-            "A prototype application to help track groceries and food waste",
+            "Implemented a prototype application to help track groceries and food waste, using React",
             "Developed the front-end of the demo site, based on the designs from my colleagues."
         ],
         urls: {
@@ -36,9 +36,8 @@ const Projects = [
         name: "PlagueSim",
         role: "Lead Developer",
         notes: [
-            "A CLI based application that simulates network attacks on nodes in a map",
-            "Designed the general structure of the application",
-            "Implemented core data structures and functionality"
+            "Designed the general structure of the application through the use of UML diagrams",
+            "Implemented core data structures and functionality in Java"
         ],
         urls: {
             "GitHub": "https://github.com/FusionStreak/MST_TermProject"
@@ -52,8 +51,7 @@ const Projects = [
         name: "harmonia",
         role: "Frontend Developer",
         notes: [
-            "A Slack integrated app that performs daily check-ins on employee mental health",
-            "Developed a cognitive memory game in JavaScript"
+            "Developed a cognitive memory game using JavaScript that integrated with a Slack app, to perform daily check-ins on employee mental health"
         ],
         urls: {
             "Devpost": "https://devpost.com/software/harmonia",
@@ -68,8 +66,8 @@ const Projects = [
         name: "Orion",
         role: "Developer",
         notes: [
-            "A Python web-app, that processed building footprint data to show where solar rooﬁng was possible",
-            "Performed data cleansing and manipulation to prepare it for the algorithm"
+            "Developed Python web-app, that processed building footprint data to show where solar roofing was possible",
+            "Used Pandas to clean the incoming data"
         ],
         urls: {
             "GitHub": "https://github.com/ogp-summit-hackathon-sommet-pgo/Orion"},

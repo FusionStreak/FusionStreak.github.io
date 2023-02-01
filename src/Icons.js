@@ -4,7 +4,7 @@ import {
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
-    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost
+    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMaterialui, SiNokia
 } from 'react-icons/si'
 import { VscSymbolStructure, VscCircuitBoard } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
@@ -50,7 +50,9 @@ const Icons = {
     "first": <SiFirst />,
     "embedded systems": <VscCircuitBoard />,
     "devpost": <SiDevpost />,
-    "github": <GitHub />
+    "github": <GitHub />,
+    "material ui": <SiMaterialui />,
+    "nokia": <SiNokia />
 }
 
 export default Icons

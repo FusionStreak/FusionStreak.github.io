@@ -20,9 +20,9 @@ const Experiences = [
         start: { month: "January", year: 2022 },
         end: { month: "December", year: 2022 },
         notes: [
-            `Worked on an up-and-coming risk mitigation and compliance product, Verity, using React/NodeJS`,
-            "Developed backend services, such as user authentication, email notiﬁcations, and internationalisation",
-            "The product is currently being used by multiple organisations"
+            "Developed a full stack React/NodeJS solution to load the front-end web application in the user's preferred language, which increased our customer adoption rate as we could deploy to more regions",
+            "Implemented a secure authentication system using JWT, web cookies, and multi-factor authentication",
+            "Followed up on customer reported issues through GitLab"
         ],
         skills: ["ReactJS", "NodeJS", "ONgDB", "Bootstrap"]
     },
@@ -32,10 +32,10 @@ const Experiences = [
         start: { month: "May", year: 2021 },
         end: { month: "August", year: 2021 },
         notes: [
-            "Implemented a visualization tool to display a graph database, ONgDB",
-            "Developed a prototype of a secure encrypted ﬁle transfer device in C/C++",
+            "Collaborated with colleagues to develop prototype software in C/C++, to determine viability as products",
+            "Conducted research on Python attribute-based encryption implementations for use with our secure network products",
         ],
-        skills: ["C++", "ReactJS", "NodeJS", "ONgDB"]
+        skills: ["C++", "Python"]
     },
     {
         company: "Wize Computing Academy",
