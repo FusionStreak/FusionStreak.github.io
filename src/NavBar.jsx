@@ -8,6 +8,7 @@ import Project from "./Project";
 import Experience from "./Experience";
 import { ThemeProvider } from "@mui/material/styles";
 import myTheme from "./Theme";
+import { SiMastodon } from "react-icons/si";
 
 function ScrollTop(props) {
     const { children, window } = props;
@@ -134,6 +135,18 @@ export default function NavBar(props) {
                                     <Divider />
                                     <IconButton
                                         size="small"
+                                        aria-label="Mastodon"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        rel="me"
+                                        href="https://fosstodon.org/@FusionStreak"
+                                        target={'_blank'}
+                                        color="inherit"
+                                    >
+                                        <SiMastodon />
+                                    </IconButton>
+                                    <IconButton
+                                        size="small"
                                         aria-label="GitHub"
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
@@ -190,6 +203,20 @@ export default function NavBar(props) {
                                 ))}
                             </Box>
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                                <Tooltip title="Mastodon">
+                                    <IconButton
+                                        size="small"
+                                        aria-label="Mastodon"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        rel="me"
+                                        href="https://fosstodon.org/@FusionStreak"
+                                        target={'_blank'}
+                                        color="inherit"
+                                    >
+                                        <SiMastodon />
+                                    </IconButton>
+                                </Tooltip>
                                 <Tooltip title="GitHub">
                                     <IconButton
                                         size="large"

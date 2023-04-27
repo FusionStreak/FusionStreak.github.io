@@ -9,7 +9,7 @@ import { ChevronRight, ExpandMore, HorizontalRule } from "@mui/icons-material";
 export default function About(props) {
 
     const skills = {
-        'Languages': ["Python", "Java", "C/C++", "JavaScript"],
+        'Languages': ["Python", "Java", "C/C++", "JavaScript", "PHP"],
         'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas"],
         'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba", "Nokia"],
         "Server/DevOps": ["TrueNAS", "Ubuntu", "Windows Server", "Kubernetes", "Docker", "Git"],

@@ -17,6 +17,22 @@
  */
 const Projects = [
     {
+        name: "GoodStreams",
+        role: "Team Lead",
+        notes: [
+            "Designed general structure of the website",
+            "Implemented backend functionality to communicate with MoviesDatabase API",
+            "Designed the database to store user information"
+        ],
+        urls: {
+            "GitHub": "https://github.com/FusionStreak/GoodStreams"
+        },
+        date: { month: "April", year: 2023 },
+        org: "Web Programming Project | Algonquin College",
+        skills: ["php", "javascript"],
+        awards: {}
+    },
+    {
         name: "foodpad",
         role: "Frontend Developer",
         notes: [
@@ -30,7 +46,7 @@ const Projects = [
         date: { month: "January", year: 2022 },
         org: "McHacks 9 | MLH",
         skills: ["ReactJS", "Figma"],
-        awards: {"Top 5 Hacks": "One of the top 5 hacks at McHacks 9", "Tree Hugger": "Award for the hack that best promoted sustainability"}
+        awards: { "Top 5 Hacks": "One of the top 5 hacks at McHacks 9", "Tree Hugger": "Award for the hack that best promoted sustainability" }
     },
     {
         name: "PlagueSim",
@@ -60,7 +76,7 @@ const Projects = [
         date: { month: "January", year: 2020 },
         org: "ConUHacks V | MLH",
         skills: ["Javascript", "Slack"],
-        awards: {"Sun Life Financial": "Award for the app that best helped support mental health in the workplace"}
+        awards: { "Sun Life Financial": "Award for the app that best helped support mental health in the workplace" }
     },
     {
         name: "Orion",
@@ -70,7 +86,8 @@ const Projects = [
             "Used Pandas to clean the incoming data"
         ],
         urls: {
-            "GitHub": "https://github.com/ogp-summit-hackathon-sommet-pgo/Orion"},
+            "GitHub": "https://github.com/ogp-summit-hackathon-sommet-pgo/Orion"
+        },
         date: { month: "May", year: 2019 },
         org: "Ottawa Summit | Open Government Partnetship",
         skills: ["Python", "Pandas"],
