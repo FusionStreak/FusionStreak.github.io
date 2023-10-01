@@ -1,17 +1,17 @@
 import {
-    SiCplusplus, SiNodedotjs, SiJava, SiJavascript, SiReact,
+    SiCplusplus, SiNodedotjs, SiOpenjdk, SiJavascript, SiReact,
     SiDocker, SiNeo4J, SiCisco, SiPandas, SiPython, SiScratch,
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
-    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMaterialui, SiNokia, SiPhp
+    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMui, SiNokia, SiPhp
 } from 'react-icons/si'
 import { VscSymbolStructure, VscCircuitBoard } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
 import { Diversity3, Diversity2, PermPhoneMsg, HourglassTop, GitHub } from '@mui/icons-material'
 
 const Icons = {
-    "java": <SiJava />,
+    "java": <SiOpenjdk />,
     "c++": <SiCplusplus />,
     "c/c++": <SiCplusplus />,
     "nodejs": <SiNodedotjs />,
@@ -51,7 +51,7 @@ const Icons = {
     "embedded systems": <VscCircuitBoard />,
     "devpost": <SiDevpost />,
     "github": <GitHub />,
-    "material ui": <SiMaterialui />,
+    "material ui": <SiMui />,
     "nokia": <SiNokia />,
     "php": <SiPhp />
 }
