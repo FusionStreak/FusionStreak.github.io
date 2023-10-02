@@ -4,7 +4,8 @@ import {
     SiLabview, SiSlack, SiFigma, SiGoogledrive, SiGraphql,
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
-    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMui, SiNokia, SiPhp
+    SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMui, SiNokia, SiPhp,
+    SiWireguard
 } from 'react-icons/si'
 import { VscSymbolStructure, VscCircuitBoard } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
@@ -53,7 +54,8 @@ const Icons = {
     "github": <GitHub />,
     "material ui": <SiMui />,
     "nokia": <SiNokia />,
-    "php": <SiPhp />
+    "php": <SiPhp />,
+    "wireguard": <SiWireguard />
 }
 
 export default Icons

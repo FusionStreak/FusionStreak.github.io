@@ -15,11 +15,15 @@ function Proj(info, dark) {
                         <Typography variant="h6">{info.name} | {info.role}</Typography>
                     </Grid>
                     <Grid xs={6} textAlign={'right'}>
-                        <Typography>{info.date.month} {info.date.year}</Typography>
+                        {
+                            info.date ? <Typography>{info.date.month} {info.date.year}</Typography> : <Typography>{info.start.month} {info.start.year} - {info.end.month} {info.end.year}</Typography>
+                        }
                     </Grid>
                 </Grid>
                 <Typography variant="overline">{info.org}</Typography>
+
                 <Divider />
+
                 <Box>
                     {Object.keys(info.awards).map((award) => {
                         return <Tooltip key={award} title={info.awards[award]} placement={"top-start"}><Chip key={award} icon={<EmojiEvents />} label={award} color="warning" variant="outlined" /></Tooltip>

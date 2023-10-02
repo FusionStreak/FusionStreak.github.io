@@ -16,7 +16,19 @@
 const Experiences = [
     {
         company: "Sphyrna Security Inc.",
-        role: "Web Developer Intern",
+        role: "Research & Development",
+        start: { month: "May", year: 2023 },
+        end: { month: "August", year: 2023 },
+        notes: [
+            "Explored secure communications methods, such as Wireguard, SSH, and SFTP",
+            "Developed software for a prototype secure communication device",
+            "Researched device and Linux Kernel hardening best practices",
+        ],
+        skills: ["C++", "Linux", "WireGuard"]
+    },
+    {
+        company: "Sphyrna Security Inc.",
+        role: "Web Developer",
         start: { month: "January", year: 2022 },
         end: { month: "December", year: 2022 },
         notes: [
@@ -28,7 +40,7 @@ const Experiences = [
     },
     {
         company: "Sphyrna Security Inc.",
-        role: "Developer Intern",
+        role: "Research & Development",
         start: { month: "May", year: 2021 },
         end: { month: "August", year: 2021 },
         notes: [

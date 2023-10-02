@@ -17,6 +17,21 @@
  */
 const Projects = [
     {
+        name: "LEO Satelite Routing and Load Balancing",
+        role: "Team Lead",
+        notes: [
+            "Designing new load-balancing mechanisms for use in Low Eart Orbit networks",
+            "Extending the functionality of LEOSIM",
+            "Implementing load-balancing designs in LEOSIM"
+        ],
+        urls: {},
+        start: { month: "September", year: 2023 },
+        end: { month: "April", year: 2024 },
+        org: "Capstone Project | Carleton University",
+        skills: ["Python"],
+        awards: {}
+    },
+    {
         name: "GoodStreams",
         role: "Team Lead",
         notes: [
