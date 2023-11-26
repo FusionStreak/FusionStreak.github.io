@@ -1,11 +1,9 @@
 'use client'
 
 import React from "react";
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box, Button, Tooltip, Divider, Container, CssBaseline } from "@mui/material";
-import { ThemeProvider } from '@mui/material/styles';
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box, Button, Tooltip, Divider, Container } from "@mui/material";
 import { SiMastodon } from 'react-icons/si'
 import { GitHub, LinkedIn, Email, Download, Menu as MenuIcon } from '@mui/icons-material'
-import myTheme from "./theme";
 import Link from "next/link";
 import logo from './logo.png'
 import Image from "next/image";
@@ -30,190 +28,187 @@ export default function NavBar(props) {
 
     return (
         <React.Fragment>
-            <ThemeProvider theme={myTheme}>
-                <CssBaseline />
-                <AppBar enableColorOnDark>
-                    <Container >
-                        <Toolbar disableGutters>
-                            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <AppBar enableColorOnDark>
+                <Container >
+                    <Toolbar disableGutters>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: { xs: 'block', md: 'none' },
+                                }}
+                            >
+                                {pages.map((page) => (
+                                    <MenuItem key={page}>
+                                        <Link href={page.route} passHref>
+                                            <Typography textAlign="center">{page.name}</Typography>
+                                        </Link>
+                                    </MenuItem>
+                                ))}
+                                <Divider />
                                 <IconButton
-                                    size="large"
-                                    aria-label="account of current user"
+                                    size="small"
+                                    aria-label="Mastodon"
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
-                                    onClick={handleOpenNavMenu}
+                                    rel="me"
+                                    href="https://fosstodon.org/@FusionStreak"
+                                    target={'_blank'}
                                     color="inherit"
                                 >
-                                    <MenuIcon />
+                                    <SiMastodon />
                                 </IconButton>
-                                <Menu
-                                    id="menu-appbar"
-                                    anchorEl={anchorElNav}
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'left',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                                    open={Boolean(anchorElNav)}
-                                    onClose={handleCloseNavMenu}
-                                    sx={{
-                                        display: { xs: 'block', md: 'none' },
-                                    }}
+                                <IconButton
+                                    size="small"
+                                    aria-label="GitHub"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak"
+                                    target={'_blank'}
+                                    color="inherit"
                                 >
-                                    {pages.map((page) => (
-                                        <MenuItem key={page}>
-                                            <Link href={page.route} passHref>
-                                                <Typography textAlign="center">{page.name}</Typography>
-                                            </Link>
-                                        </MenuItem>
-                                    ))}
-                                    <Divider />
-                                    <IconButton
-                                        size="small"
-                                        aria-label="Mastodon"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        rel="me"
-                                        href="https://fosstodon.org/@FusionStreak"
-                                        target={'_blank'}
-                                        color="inherit"
-                                    >
-                                        <SiMastodon />
-                                    </IconButton>
-                                    <IconButton
-                                        size="small"
-                                        aria-label="GitHub"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="https://github.com/FusionStreak"
-                                        target={'_blank'}
-                                        color="inherit"
-                                    >
-                                        <GitHub />
-                                    </IconButton>
-                                    <IconButton
-                                        size="small"
-                                        aria-label="LinkedIn"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="https://www.linkedin.com/in/sayfullah-eid/"
-                                        target='_blank'
-                                        color="inherit"
-                                    >
-                                        <LinkedIn />
-                                    </IconButton>
-                                    <IconButton
-                                        size="small"
-                                        aria-label="E-mail"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="mailto://sayfullaheid@gmail.com"
-                                        color="inherit"
-                                    >
-                                        <Email />
-                                    </IconButton>
-                                    <IconButton
-                                        size="small"
-                                        aria-label="Download resume"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
-                                        download={'SayfullahEid.pdf'}
-                                        color="inherit"
-                                    >
-                                        <Download />
-                                    </IconButton>
-                                </Menu>
-                            </Box>
-                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                                {pages.map((page) => (
-                                    <Button
-                                        key={page.name}
-                                        href={page.route}
-                                        variant={'text'}
-                                        sx={{ color: 'white' }}
-                                    >
-                                        {page.name}
-                                    </Button>
-                                ))}
-                            </Box>
-                            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                <Tooltip title="Mastodon">
-                                    <IconButton
-                                        size="small"
-                                        aria-label="Mastodon"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        rel="me"
-                                        href="https://fosstodon.org/@FusionStreak"
-                                        target={'_blank'}
-                                        color="inherit"
-                                    >
-                                        <SiMastodon />
-                                    </IconButton>
-                                </Tooltip>
-                                <Tooltip title="GitHub">
-                                    <IconButton
-                                        size="large"
-                                        aria-label="GitHub"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="https://github.com/FusionStreak"
-                                        target={'_blank'}
-                                        color="inherit"
-                                    >
-                                        <GitHub />
-                                    </IconButton>
-                                </Tooltip>
-                                <Tooltip title="LinkedIn">
-                                    <IconButton
-                                        size="large"
-                                        aria-label="LinkedIn"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="https://www.linkedin.com/in/sayfullah-eid/"
-                                        target='_blank'
-                                        color="inherit"
-                                    >
-                                        <LinkedIn />
-                                    </IconButton>
-                                </Tooltip>
-                                <Tooltip title="sayfullaheid@gmail.com">
-                                    <IconButton
-                                        size="large"
-                                        aria-label="E-mail"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="mailto://sayfullaheid@gmail.com"
-                                        color="inherit"
-                                    >
-                                        <Email />
-                                    </IconButton>
-                                </Tooltip>
-                                <Tooltip title="Download My Resume">
-                                    <IconButton
-                                        size="large"
-                                        aria-label="Download resume"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
-                                        download={'SayfullahEid.pdf'}
-                                        color="inherit"
-                                    >
-                                        <Download />
-                                    </IconButton>
-                                </Tooltip>
-                            </Box>
-                            <Image src={logo} style={{ padding: "0.3rem" }} alt="logo" width={32} height={32} />
-                            <Typography>Sayfullah Eid</Typography>
-                        </Toolbar>
-                    </Container>
-                </AppBar>
-            </ThemeProvider>
+                                    <GitHub />
+                                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    aria-label="LinkedIn"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://www.linkedin.com/in/sayfullah-eid/"
+                                    target='_blank'
+                                    color="inherit"
+                                >
+                                    <LinkedIn />
+                                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    aria-label="E-mail"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="mailto://sayfullaheid@gmail.com"
+                                    color="inherit"
+                                >
+                                    <Email />
+                                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    aria-label="Download resume"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
+                                    download={'SayfullahEid.pdf'}
+                                    color="inherit"
+                                >
+                                    <Download />
+                                </IconButton>
+                            </Menu>
+                        </Box>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            {pages.map((page) => (
+                                <Button
+                                    key={page.name}
+                                    href={page.route}
+                                    variant={'text'}
+                                    sx={{ color: 'white' }}
+                                >
+                                    {page.name}
+                                </Button>
+                            ))}
+                        </Box>
+                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                            <Tooltip title="Mastodon">
+                                <IconButton
+                                    size="small"
+                                    aria-label="Mastodon"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    rel="me"
+                                    href="https://fosstodon.org/@FusionStreak"
+                                    target={'_blank'}
+                                    color="inherit"
+                                >
+                                    <SiMastodon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="GitHub">
+                                <IconButton
+                                    size="large"
+                                    aria-label="GitHub"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak"
+                                    target={'_blank'}
+                                    color="inherit"
+                                >
+                                    <GitHub />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="LinkedIn">
+                                <IconButton
+                                    size="large"
+                                    aria-label="LinkedIn"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://www.linkedin.com/in/sayfullah-eid/"
+                                    target='_blank'
+                                    color="inherit"
+                                >
+                                    <LinkedIn />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="sayfullaheid@gmail.com">
+                                <IconButton
+                                    size="large"
+                                    aria-label="E-mail"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="mailto://sayfullaheid@gmail.com"
+                                    color="inherit"
+                                >
+                                    <Email />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Download My Resume">
+                                <IconButton
+                                    size="large"
+                                    aria-label="Download resume"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
+                                    download={'SayfullahEid.pdf'}
+                                    color="inherit"
+                                >
+                                    <Download />
+                                </IconButton>
+                            </Tooltip>
+                        </Box>
+                        <Image src={logo} style={{ padding: "0.3rem" }} alt="logo" width={32} height={32} />
+                        <Typography>Sayfullah Eid</Typography>
+                    </Toolbar>
+                </Container>
+            </AppBar>
         </React.Fragment>
     )
 }
