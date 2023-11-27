@@ -48,7 +48,9 @@ export default function RootLayout({ children }) {
         <ThemeProvider theme={myTheme}>
           <CssBaseline />
           <NavBar />
-          {children}
+          <main style={{ 'padding-top': 60 }}>
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
