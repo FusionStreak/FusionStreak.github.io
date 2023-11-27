@@ -20,7 +20,6 @@ import { useEffect, useState } from "react";
 import Experience from "./Experience";
 import ExperienceMobile from "./ExperienceMobile";
 import { Container, Box, Typography } from "@mui/material";
-const exp = require("constants");
 
 const experiences = [
     {

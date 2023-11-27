@@ -23,7 +23,7 @@ export default function NavBar(props) {
     const pages = [
         { "route": "/", name: "About Me" },
         { "route": "/experience", "name": "Experience" },
-        { "route": "/project", "name": "Projects" },
+        { "route": "/projects", "name": "Projects" },
     ]
 
     return (

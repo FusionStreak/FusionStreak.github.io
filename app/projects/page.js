@@ -18,6 +18,10 @@
 
 'use client'
 
+import { useEffect, useState } from "react";
+import Projects from "./Projects";
+import { Container, Box, Typography } from "@mui/material";
+
 const projects = [
     {
         name: "LEO Satelite Routing and Load Balancing",
@@ -127,4 +131,13 @@ const projects = [
 
 export default function Page() {
 
+    return (
+        <Container>
+
+            <Box sx={{ my: 2 }}>
+                <Typography variant="h4">Projects</Typography>
+            </Box>
+            <Projects projects={projects} />
+        </Container>
+    )
 }
