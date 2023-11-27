@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box, Button, T
 import { SiMastodon } from 'react-icons/si'
 import { GitHub, LinkedIn, Email, Download, Menu as MenuIcon } from '@mui/icons-material'
 import Link from "next/link";
-import logo from './logo.png'
+import logo from './icon.png'
 import Image from "next/image";
 
 export default function NavBar(props) {
@@ -60,8 +60,8 @@ export default function NavBar(props) {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <MenuItem key={page}>
+                                {pages.map((page, idx) => (
+                                    <MenuItem key={idx}>
                                         <Link href={page.route} passHref>
                                             <Typography textAlign="center">{page.name}</Typography>
                                         </Link>

@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google'
-import Head from 'next/head'
 import { ThemeProvider } from '@mui/material'
 import { CssBaseline } from '@mui/material'
 import myTheme from './theme'
@@ -35,20 +34,22 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  url: "https://fosstodon.org/@FusionStreak"
+  verification: {
+    other: {
+      me: ['https://fosstodon.org/@FusionStreak'],
+    },
+  },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Head>
-          <link rel="me" href="https://fosstodon.org/@FusionStreak" />
-        </Head>
+        <link rel="me" href="https://fosstodon.org/@FusionStreak" />
         <ThemeProvider theme={myTheme}>
           <CssBaseline />
           <NavBar />
-          <main style={{ 'padding-top': 60 }}>
+          <main style={{ 'paddingTop': 60 }}>
             {children}
           </main>
         </ThemeProvider>

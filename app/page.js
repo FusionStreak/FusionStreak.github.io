@@ -57,15 +57,15 @@ export default function Home() {
             <Typography><b>Courses:</b></Typography>
             <List>
               <ListItem disableGutters>
-                <ListItemIcon sx={{ 'min-width': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
+                <ListItemIcon sx={{ 'minWidth': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
                 <ListItemText>Network routing, switching, and architecture</ListItemText>
               </ListItem>
               <ListItem>
-                <ListItemIcon sx={{ 'min-width': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
+                <ListItemIcon sx={{ 'minWidth': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
                 <ListItemText>Embedded and real time systems</ListItemText>
               </ListItem>
               <ListItem>
-                <ListItemIcon sx={{ 'min-width': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
+                <ListItemIcon sx={{ 'minWidth': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
                 <ListItemText>DevOps, data structures, database concepts, and web programming</ListItemText>
               </ListItem>
             </List>
