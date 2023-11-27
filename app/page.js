@@ -6,6 +6,10 @@ import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip, L
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
 import ReactBasicCertificate from './certifications/ReactBasicCertificate.svg'
+import FrontendDeveloperReactCertificate from './certifications/FrontendDeveloperReactCertificate.svg'
+import JavaBasicCertificate from './certifications/JavaBasicCertificate.svg'
+import PythonBasicCertificate from './certifications/PythonBasicCertificate.svg'
+import ProblemSolvingBasicCertificate from './certifications/ProblemSolvingBasicCertificate.svg'
 import Grid from '@mui/material/Unstable_Grid2'
 import Icons from "./icons";
 import { TreeItem, TreeView } from '@mui/x-tree-view';
@@ -122,6 +126,10 @@ export default function Home() {
             <Typography variant="h6">Certifications</Typography>
             <Divider sx={{ my: 2 }} />
             <Image src={ReactBasicCertificate} height={250} alt='React (Basic) Certificate' />
+            <Image src={FrontendDeveloperReactCertificate} height={250} alt='Frontend Developer React Certificate' />
+            <Image src={JavaBasicCertificate} height={250} alt='Java (Basic) Certificate' />
+            <Image src={PythonBasicCertificate} height={250} alt='Python (Basic) Certificate' />
+            <Image src={ProblemSolvingBasicCertificate} height={250} alt='Problem Solving (Basic) Certificate' />
           </CardContent>
         </Card>
         <Card elevation={5} sx={{ my: 2 }}>
