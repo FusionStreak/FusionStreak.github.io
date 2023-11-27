@@ -19,7 +19,7 @@
 import { useEffect, useState } from "react";
 import Experience from "./Experience";
 import ExperienceMobile from "./ExperienceMobile";
-
+import { Container, Box, Typography } from "@mui/material";
 const exp = require("constants");
 
 const experiences = [
@@ -74,14 +74,14 @@ export default function Page() {
     const [isDesktop, setIsDesktop] = useState(true);
 
     useEffect(() => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 900) {
             setIsDesktop(true);
         } else {
             setIsDesktop(false);
         }
 
         const updateMedia = () => {
-            if (window.innerWidth > 768) {
+            if (window.innerWidth > 900) {
                 setIsDesktop(true);
             } else {
                 setIsDesktop(false);
@@ -93,8 +93,12 @@ export default function Page() {
     }, [])
 
     return (
-        <div>
+        <Container>
+
+            <Box sx={{ my: 2 }}>
+                <Typography variant="h4">Experience</Typography>
+            </Box>
             {isDesktop ? (<Experience experiences={experiences} />) : (<ExperienceMobile experiences={experiences} />)}
-        </div>
+        </Container>
     )
 }
