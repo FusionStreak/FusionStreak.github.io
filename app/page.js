@@ -5,6 +5,7 @@ import React from "react";
 import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
+import ReactBasicCertificate from './certifications/ReactBasicCertificate.svg'
 import Grid from '@mui/material/Unstable_Grid2'
 import Icons from "./icons";
 import { TreeItem, TreeView } from '@mui/x-tree-view';
@@ -35,8 +36,8 @@ export default function Home() {
                 <Typography variant="overline">Network Technology</Typography>
               </Grid>
               <Grid xs={6} textAlign='right'>
-                <Image src={ACDark} alt="Carleton University Logo" height={'40rem'} style={{ verticalAlign: 'top' }} />
-                <Image src={CarletonDark} alt="Carleton University Logo" height={'50rem'} />
+                <Image src={ACDark} alt="Carleton University Logo" height={50} style={{ verticalAlign: 'top' }} />
+                <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
               </Grid>
 
             </Grid>
@@ -48,8 +49,8 @@ export default function Home() {
                 <Typography variant="overline" >Network Technology</Typography>
               </Grid>
               <Grid xs={12} >
-                <Image src={ACDark} alt="Carleton University Logo" height={'40rem'} style={{ verticalAlign: 'top' }} />
-                <Image src={CarletonDark} alt="Carleton University Logo" height={'50rem'} />
+                <Image src={ACDark} alt="Carleton University Logo" height={50} style={{ verticalAlign: 'top' }} />
+                <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
               </Grid>
             </Grid>
             <Divider sx={{ my: 2 }} />
@@ -76,16 +77,16 @@ export default function Home() {
             <Typography variant="h6">Skills</Typography>
             <Divider sx={{ my: 2 }} />
             <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
-              {Object.keys(skills).map((skill) => {
+              {Object.keys(skills).map((skill, idx) => {
                 return (
-                  <React.Fragment key={skill}>
+                  <React.Fragment key={idx}>
                     <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
                       <b>{skill}:</b>
                     </Grid>
                     <Grid xs={3} sm={10} display="flex" alignItems="center">
-                      {skills[skill].map((s) => {
+                      {skills[skill].map((s, idx) => {
                         return (
-                          <Chip label={s} key={s} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
+                          <Chip label={s} key={idx} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
                         )
                       })}
                     </Grid>
@@ -102,12 +103,12 @@ export default function Home() {
               }}
               disableSelection
               expanded={expanded}>
-              {Object.keys(skills).map((skill) => {
+              {Object.keys(skills).map((skill, idx) => {
                 return (
-                  <TreeItem aria-label={skill} key={skill} nodeId={skill} label={skill} onClick={(e) => { setExpanded([skill]) }}>
-                    {skills[skill].map((s) => {
+                  <TreeItem aria-label={skill} key={idx} nodeId={skill} label={skill} onClick={(e) => { setExpanded([skill]) }}>
+                    {skills[skill].map((s, idx) => {
                       return (
-                        <TreeItem aria-label={s} key={s} nodeId={s} label={s} icon={Icons[s.toLowerCase()]} />
+                        <TreeItem aria-label={s} key={idx} nodeId={s} label={s} icon={Icons[s.toLowerCase()]} />
                       )
                     })}
                   </TreeItem>
@@ -118,12 +119,20 @@ export default function Home() {
         </Card>
         <Card elevation={5} sx={{ my: 2 }}>
           <CardContent>
+            <Typography variant="h6">Certifications</Typography>
+            <Divider sx={{ my: 2 }} />
+            <Image src={ReactBasicCertificate} height={250} alt='React (Basic) Certificate' />
+          </CardContent>
+        </Card>
+        <Card elevation={5} sx={{ my: 2 }}>
+          <CardContent>
             <Typography variant='h6' sx={{ mb: 2 }}>About Me</Typography>
+            <Divider sx={{ my: 2 }} />
             <Typography variant="body1" sx={{ mb: 2 }}>
               Hello world!
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              My name is Sayfullah Eid, I am a 3rd year B.IT Networking student at Carleton University and Algonquin College. I chose this program as it gives me both the theoretical knowldge and practical skills in many different IT subjects, such as; cybersecurity, DevOps, network management, web development, etc.
+              My name is Sayfullah Eid, I am a 5th year B.IT Networking student at Carleton University and Algonquin College. I chose this program as it gives me both the theoretical knowldge and practical skills in many different IT subjects, such as; cybersecurity, DevOps, network management, web development, etc.
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
               My tech journey began when I started a <Button variant='text' sx={{ px: 0, height: '22px' }} color="secondary" href="https://wro-association.org/">World Robotics Olympiad</Button> team at my middle school. From there I took a series of online crash courses in programming and database concepts.
