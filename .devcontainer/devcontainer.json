@@ -1,0 +1,31 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "forwardPorts": [
+        3000
+    ],
+    "portsAttributes": {
+        "3000": {
+            "label": "Application",
+            "onAutoForward": "notify"
+        }
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"dbaeumer.vscode-eslint",
+				"donjayamanne.git-extension-pack",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"GitHub.copilot-labs",
+				"GitHub.vscode-pull-request-github",
+				"codezombiech.gitignore",
+				"DavidAnson.vscode-markdownlint",
+				"christian-kohler.npm-intellisense"
+			]
+		}
+	}
+}
