@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React from "react";
-import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
+import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip, Avatar } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
 import ReactBasicCertificate from './certifications/ReactBasicCertificate.svg'
@@ -11,11 +11,10 @@ import JavaBasicCertificate from './certifications/JavaBasicCertificate.svg'
 import PythonBasicCertificate from './certifications/PythonBasicCertificate.svg'
 import ProblemSolvingBasicCertificate from './certifications/ProblemSolvingBasicCertificate.svg'
 import Grid from '@mui/material/Unstable_Grid2'
-import Icons from "./icons";
-import { TreeItem, TreeView } from '@mui/x-tree-view';
-import { ChevronRight, ExpandMore, HorizontalRule } from "@mui/icons-material";
+import { Icons, IconsLarge } from "./icons";
+import { Masonry } from '@mui/lab';
 
-function Education() {
+function Carleton() {
   return (
     <Card elevation={5} sx={{ my: 2 }} >
       <CardContent>
@@ -39,10 +38,16 @@ function Education() {
             <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
           </Grid>
         </Grid>
-        <Typography><b>Expected Graduation:</b> May 2024</Typography>
+        <Typography><b>Expected Graduation:</b> April 2024</Typography>
+      </CardContent>
+    </Card>
+  )
+}
 
-        <Divider sx={{ my: 2 }} />
-
+function Algonquin() {
+  return (
+    <Card elevation={5} sx={{ my: 2 }} >
+      <CardContent>
         <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
           <Grid xs={6}>
             <Typography variant="h6">Advanced Diploma in Computer Engineering Technology</Typography>
@@ -63,90 +68,25 @@ function Education() {
             <Image src={ACDark} alt="Algonquin College Logo" height={50} />
           </Grid>
         </Grid>
+        <Typography><b>Expected graduation:</b> April 2024</Typography>
       </CardContent>
     </Card>
   )
 }
 
-function Skills() {
-  const skills = {
-    'Languages': ["Python", "Java", "C/C++", "JavaScript", "PHP"],
-    'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas"],
-    'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba", "Nokia"],
-    "Server/DevOps": ["TrueNAS", "Ubuntu", "Windows Server", "Kubernetes", "Docker", "Git"],
-    'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
-  }
-
-  return (
-    <Card elevation={5} sx={{ my: 2 }} >
-      <CardContent>
-        <Typography variant="h6">Skills</Typography>
-        <Divider sx={{ my: 2 }} />
-        <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
-          {Object.keys(skills).map((skill, idx) => {
-            return (
-              <React.Fragment key={idx}>
-                <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
-                  <b>{skill}:</b>
-                </Grid>
-                <Grid xs={3} sm={10} display="flex" alignItems="center">
-                  {skills[skill].map((s, idx) => {
-                    return (
-                      <Chip label={s} key={idx} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
-                    )
-                  })}
-                </Grid>
-              </React.Fragment>
-            )
-          })}
-        </Grid>
-        <TreeView
-          defaultCollapseIcon={<ExpandMore />}
-          defaultExpandIcon={<ChevronRight />}
-          sx={{
-            height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto',
-            display: { xs: 'block', md: 'none' }
-          }}
-          disableSelection
-        >
-          {Object.keys(skills).map((skill, idx) => {
-            return (
-              <TreeItem aria-label={skill} key={idx} nodeId={skill} label={skill}>
-                {skills[skill].map((s, idx) => {
-                  return (
-                    <TreeItem aria-label={s} key={idx} nodeId={s} label={s} icon={Icons[s.toLowerCase()]} />
-                  )
-                })}
-              </TreeItem>
-            )
-          })}
-        </TreeView>
-      </CardContent>
-    </Card>
-  )
-}
-
-function Certifications() {
-
-  const certifications = {
-    "React (Basic) Certificate from HackerRank": ReactBasicCertificate,
-    "Frontend Developer (React) Certificate from HackerRank": FrontendDeveloperReactCertificate,
-    "Java (Basic) Certificate from HackerRank": JavaBasicCertificate,
-    "Python (Basic) Certificate from HackerRank": PythonBasicCertificate,
-    "Problem Solving (Basic) from HackerRank": ProblemSolvingBasicCertificate
-  }
-
+function Language({ language, libraries }) {
+  const AvatarSX = { mx: 1, my: 1, height: 75, width: 75 }
   return (
     <Card elevation={5} sx={{ my: 2 }}>
       <CardContent>
-        <Typography variant="h6">Certifications</Typography>
+        {IconsLarge[language.toLowerCase()]}
         <Divider sx={{ my: 2 }} />
         <Grid container spacing={2} justifyContent={"center"}>
-          {Object.keys(certifications).map((cert, idx) => {
+          {libraries.map((lib, idx) => {
             return (
-              <Grid item xs={12} sm={6} md={4} key={idx}>
-                <Image src={certifications[cert]} height={250} alt={cert} />
-              </Grid>
+              <Avatar key={idx} sx={AvatarSX} alt={lib} variant='rounded'>
+                {IconsLarge[lib.toLowerCase()]}
+              </Avatar>
             )
           })}
         </Grid>
@@ -157,7 +97,20 @@ function Certifications() {
 
 export default function Home() {
 
-  const [expanded, setExpanded] = React.useState([])
+  const skills = {
+    'Languages': ["Python", "Java", "C/C++", "JavaScript", "PHP"],
+    'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas"],
+    'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba", "Nokia"],
+    "Server/DevOps": ["Ubuntu", "Windows Server", "Kubernetes", "Docker", "Git"],
+    'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
+  }
+
+  const Languages = {
+    "Python": ["Pandas", "Flask", "NumPy"],
+    "C/C++": ["Arduino", "Embedded Systems"],
+    "JavaScript": ["ReactJS", "NodeJS", "Bootstrap", "Material UI"],
+    "Other": ["Java", "PHP", "SQL"]
+  }
 
   return (
     <Container maxWidth="xl">
@@ -165,9 +118,14 @@ export default function Home() {
         <Typography variant="h4">Sayfullah Eid</Typography>
       </Box>
       <Box sx={{ my: 2 }}>
-        <Education />
-        <Skills />
-        <Certifications />
+        <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing={2}>
+          <Carleton />
+          <Algonquin />
+          <Language language="Python" libraries={Languages["Python"]} />
+          <Language language="C/C++" libraries={Languages["C/C++"]} />
+          <Language language="JavaScript" libraries={Languages["JavaScript"]} />
+          <Language language="Other" libraries={Languages["Other"]} />
+        </Masonry>
         <Card elevation={5} sx={{ my: 2 }}>
           <CardContent>
             <Typography variant='h6' sx={{ mb: 2 }}>About Me</Typography>
