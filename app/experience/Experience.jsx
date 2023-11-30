@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Box, Divider, List, ListItem, Chip, ListItemText, Card, CardContent } from "@mui/material";
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from "@mui/lab";
 import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent';
-import Icons from '../icons'
+import { Icons } from '../icons'
 
 export default function Experience({ experiences }) {
     return (

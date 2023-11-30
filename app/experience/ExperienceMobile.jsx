@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Box, Divider, List, ListItem, Chip, ListItemText, Card, CardContent } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2'
-import Icons from '../icons'
+import { Icons } from '../icons'
 
 export default function ExperienceMobile({ experiences }) {
     return (

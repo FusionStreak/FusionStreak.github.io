@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Typography, Box, Divider, List, ListItem, Chip, Card, CardContent, ListItemText, CardActions, Button, Tooltip } from "@mui/material";
 import { EmojiEvents, ChevronRight } from "@mui/icons-material";
 import Grid from "@mui/material/Unstable_Grid2";
-import Icons from "../icons";
+import { Icons } from "../icons";
 
 export default function Projects({ projects }) {
 
