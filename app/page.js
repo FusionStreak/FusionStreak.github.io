@@ -128,13 +128,13 @@ function Skills() {
 
 function Certifications() {
 
-  const certifications = [
-    ReactBasicCertificate,
-    FrontendDeveloperReactCertificate,
-    JavaBasicCertificate,
-    PythonBasicCertificate,
-    ProblemSolvingBasicCertificate
-  ]
+  const certifications = {
+    "React (Basic) Certificate from HackerRank": ReactBasicCertificate,
+    "Frontend Developer (React) Certificate from HackerRank": FrontendDeveloperReactCertificate,
+    "Java (Basic) Certificate from HackerRank": JavaBasicCertificate,
+    "Python (Basic) Certificate from HackerRank": PythonBasicCertificate,
+    "Problem Solving (Basic) from HackerRank": ProblemSolvingBasicCertificate
+  }
 
   return (
     <Card elevation={5} sx={{ my: 2 }}>
@@ -142,10 +142,10 @@ function Certifications() {
         <Typography variant="h6">Certifications</Typography>
         <Divider sx={{ my: 2 }} />
         <Grid container spacing={2} justifyContent={"center"}>
-          {certifications.map((cert, idx) => {
+          {Object.keys(certifications).map((cert, idx) => {
             return (
               <Grid item xs={12} sm={6} md={4} key={idx}>
-                <Image src={cert} height={250} alt='React (Basic) Certificate' />
+                <Image src={certifications[cert]} height={250} alt={cert} />
               </Grid>
             )
           })}
