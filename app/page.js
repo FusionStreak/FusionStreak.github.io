@@ -15,7 +15,60 @@ import Icons from "./icons";
 import { TreeItem, TreeView } from '@mui/x-tree-view';
 import { ChevronRight, ExpandMore, HorizontalRule } from "@mui/icons-material";
 
-export default function Home() {
+function Education() {
+  return (
+    <Card elevation={5} sx={{ my: 2 }} >
+      <CardContent>
+        <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Grid xs={6}>
+            <Typography variant="h6">Bachelor of Information Technology</Typography>
+            <Typography variant="overline">Network Technology</Typography>
+          </Grid>
+          <Grid xs={6} textAlign='right'>
+            <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
+          </Grid>
+        </Grid>
+        <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
+          <Grid xs={12}>
+            <Typography variant="h6">Bachelor of Information Technology</Typography>
+          </Grid>
+          <Grid xs={12}>
+            <Typography variant="overline" >Network Technology</Typography>
+          </Grid>
+          <Grid xs={12} >
+            <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
+          </Grid>
+        </Grid>
+        <Typography><b>Expected Graduation:</b> May 2024</Typography>
+
+        <Divider sx={{ my: 2 }} />
+
+        <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Grid xs={6}>
+            <Typography variant="h6">Advanced Diploma in Computer Engineering Technology</Typography>
+            <Typography variant="overline">Network Technology</Typography>
+          </Grid>
+          <Grid xs={6} textAlign='right'>
+            <Image src={ACDark} alt="Algonquin College Logo" height={50} />
+          </Grid>
+        </Grid>
+        <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
+          <Grid xs={12}>
+            <Typography variant="h6">Advanced Diploma in Computer Engineering Technology</Typography>
+          </Grid>
+          <Grid xs={12}>
+            <Typography variant="overline">Network Technology</Typography>
+          </Grid>
+          <Grid xs={12} >
+            <Image src={ACDark} alt="Algonquin College Logo" height={50} />
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
+  )
+}
+
+function Skills() {
   const skills = {
     'Languages': ["Python", "Java", "C/C++", "JavaScript", "PHP"],
     'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas"],
@@ -24,114 +77,97 @@ export default function Home() {
     'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
   }
 
+  return (
+    <Card elevation={5} sx={{ my: 2 }} >
+      <CardContent>
+        <Typography variant="h6">Skills</Typography>
+        <Divider sx={{ my: 2 }} />
+        <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {Object.keys(skills).map((skill, idx) => {
+            return (
+              <React.Fragment key={idx}>
+                <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
+                  <b>{skill}:</b>
+                </Grid>
+                <Grid xs={3} sm={10} display="flex" alignItems="center">
+                  {skills[skill].map((s, idx) => {
+                    return (
+                      <Chip label={s} key={idx} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
+                    )
+                  })}
+                </Grid>
+              </React.Fragment>
+            )
+          })}
+        </Grid>
+        <TreeView
+          defaultCollapseIcon={<ExpandMore />}
+          defaultExpandIcon={<ChevronRight />}
+          sx={{
+            height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto',
+            display: { xs: 'block', md: 'none' }
+          }}
+          disableSelection
+        >
+          {Object.keys(skills).map((skill, idx) => {
+            return (
+              <TreeItem aria-label={skill} key={idx} nodeId={skill} label={skill}>
+                {skills[skill].map((s, idx) => {
+                  return (
+                    <TreeItem aria-label={s} key={idx} nodeId={s} label={s} icon={Icons[s.toLowerCase()]} />
+                  )
+                })}
+              </TreeItem>
+            )
+          })}
+        </TreeView>
+      </CardContent>
+    </Card>
+  )
+}
+
+function Certifications() {
+
+  const certifications = [
+    ReactBasicCertificate,
+    FrontendDeveloperReactCertificate,
+    JavaBasicCertificate,
+    PythonBasicCertificate,
+    ProblemSolvingBasicCertificate
+  ]
+
+  return (
+    <Card elevation={5} sx={{ my: 2 }}>
+      <CardContent>
+        <Typography variant="h6">Certifications</Typography>
+        <Divider sx={{ my: 2 }} />
+        <Grid container spacing={2} justifyContent={"center"}>
+          {certifications.map((cert, idx) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} key={idx}>
+                <Image src={cert} height={250} alt='React (Basic) Certificate' />
+              </Grid>
+            )
+          })}
+        </Grid>
+      </CardContent>
+    </Card>
+  )
+}
+
+export default function Home() {
+
   const [expanded, setExpanded] = React.useState([])
 
   return (
-    <Container >
+    <Container maxWidth="xl">
       <Box sx={{ my: 2 }}>
         <Typography variant="h4">Sayfullah Eid</Typography>
       </Box>
       <Box sx={{ my: 2 }}>
-        <Card elevation={5} sx={{ my: 2 }} >
-          <CardContent>
-            <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Grid xs={6}>
-                <Typography variant="h6">Bachelor of Information Technology</Typography>
-                <Typography variant="overline">Network Technology</Typography>
-              </Grid>
-              <Grid xs={6} textAlign='right'>
-                <Image src={ACDark} alt="Carleton University Logo" height={50} style={{ verticalAlign: 'top' }} />
-                <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
-              </Grid>
-
-            </Grid>
-            <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
-              <Grid xs={12}>
-                <Typography variant="h6">Bachelor of Information Technology</Typography>
-              </Grid>
-              <Grid xs={12}>
-                <Typography variant="overline" >Network Technology</Typography>
-              </Grid>
-              <Grid xs={12} >
-                <Image src={ACDark} alt="Carleton University Logo" height={50} style={{ verticalAlign: 'top' }} />
-                <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
-              </Grid>
-            </Grid>
-            <Divider sx={{ my: 2 }} />
-            <Typography><b>Courses:</b></Typography>
-            <List>
-              <ListItem disableGutters>
-                <ListItemIcon sx={{ 'minWidth': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
-                <ListItemText>Network routing, switching, and architecture</ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon sx={{ 'minWidth': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
-                <ListItemText>Embedded and real time systems</ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon sx={{ 'minWidth': '12px' }}><HorizontalRule sx={{ 'maxWidth': '10px' }} /></ListItemIcon>
-                <ListItemText>DevOps, data structures, database concepts, and web programming</ListItemText>
-              </ListItem>
-            </List>
-            <Typography><b>Expected Graduation:</b> May 2024</Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={5} sx={{ my: 2 }} >
-          <CardContent>
-            <Typography variant="h6">Skills</Typography>
-            <Divider sx={{ my: 2 }} />
-            <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
-              {Object.keys(skills).map((skill, idx) => {
-                return (
-                  <React.Fragment key={idx}>
-                    <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
-                      <b>{skill}:</b>
-                    </Grid>
-                    <Grid xs={3} sm={10} display="flex" alignItems="center">
-                      {skills[skill].map((s, idx) => {
-                        return (
-                          <Chip label={s} key={idx} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
-                        )
-                      })}
-                    </Grid>
-                  </React.Fragment>
-                )
-              })}
-            </Grid>
-            <TreeView
-              defaultCollapseIcon={<ExpandMore />}
-              defaultExpandIcon={<ChevronRight />}
-              sx={{
-                height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto',
-                display: { xs: 'block', md: 'none' }
-              }}
-              disableSelection
-              expanded={expanded}>
-              {Object.keys(skills).map((skill, idx) => {
-                return (
-                  <TreeItem aria-label={skill} key={idx} nodeId={skill} label={skill} onClick={(e) => { setExpanded([skill]) }}>
-                    {skills[skill].map((s, idx) => {
-                      return (
-                        <TreeItem aria-label={s} key={idx} nodeId={s} label={s} icon={Icons[s.toLowerCase()]} />
-                      )
-                    })}
-                  </TreeItem>
-                )
-              })}
-            </TreeView>
-          </CardContent>
-        </Card>
-        <Card elevation={5} sx={{ my: 2 }}>
-          <CardContent>
-            <Typography variant="h6">Certifications</Typography>
-            <Divider sx={{ my: 2 }} />
-            <Image src={ReactBasicCertificate} height={250} alt='React (Basic) Certificate' />
-            <Image src={FrontendDeveloperReactCertificate} height={250} alt='Frontend Developer React Certificate' />
-            <Image src={JavaBasicCertificate} height={250} alt='Java (Basic) Certificate' />
-            <Image src={PythonBasicCertificate} height={250} alt='Python (Basic) Certificate' />
-            <Image src={ProblemSolvingBasicCertificate} height={250} alt='Problem Solving (Basic) Certificate' />
-          </CardContent>
-        </Card>
+        <Education />
+        <Skills />
+        <Certifications />
         <Card elevation={5} sx={{ my: 2 }}>
           <CardContent>
             <Typography variant='h6' sx={{ mb: 2 }}>About Me</Typography>
