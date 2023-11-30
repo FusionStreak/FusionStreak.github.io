@@ -26,6 +26,6 @@
 			]
 		}
 	},
-	"postCreateCommand": "npm install && npm run dev",
+	"postCreateCommand": "npm install",
 	"remoteUser": "root"
 }
