@@ -5,13 +5,13 @@ import {
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
     SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMui, SiNokia, SiPhp,
-    SiWireguard
+    SiWireguard, SiFlask, SiNumpy, SiArduino
 } from 'react-icons/si'
-import { VscSymbolStructure, VscCircuitBoard } from 'react-icons/vsc'
+import { VscSymbolStructure, VscCircuitBoard, VscDatabase } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
 import { Diversity3, Diversity2, PermPhoneMsg, HourglassTop, GitHub } from '@mui/icons-material'
 
-const Icons = {
+export const Icons = {
     "java": <SiOpenjdk />,
     "c++": <SiCplusplus />,
     "c/c++": <SiCplusplus />,
@@ -55,7 +55,60 @@ const Icons = {
     "material ui": <SiMui />,
     "nokia": <SiNokia />,
     "php": <SiPhp />,
-    "wireguard": <SiWireguard />
+    "wireguard": <SiWireguard />,
+    "flask": <SiFlask />,
+    "numpy": <SiNumpy />,
+    "arduino": <SiArduino />,
+    "sql": <VscDatabase />
 }
 
-export default Icons
+export const IconsLarge = {
+    "java": <SiOpenjdk size={50} />,
+    "c++": <SiCplusplus size={50} />,
+    "c/c++": <SiCplusplus size={50} />,
+    "nodejs": <SiNodedotjs size={50} />,
+    "ongdb": <SiNeo4J size={50} />,
+    "javascript": <SiJavascript size={50} />,
+    "reactjs": <SiReact size={50} />,
+    "docker": <SiDocker size={50} />,
+    'cisco ios': <SiCisco size={50} />,
+    "pandas": <SiPandas size={50} />,
+    "python": <SiPython size={50} />,
+    'scratch': <SiScratch size={50} />,
+    "labview": <SiLabview size={50} />,
+    "slack": <SiSlack size={50} />,
+    "figma": <SiFigma size={50} />,
+    "data structures": <VscSymbolStructure size={50} />,
+    "google docs": <SiGoogledrive size={50} />,
+    "graphql": <SiGraphql size={50} />,
+    "juniper": <SiJunipernetworks size={50} />,
+    "kubernetes": <SiKubernetes size={50} />,
+    "windows server": <SiWindows size={50} />,
+    "routeros": <TbRouter size={50} />,
+    'teamwork': <Diversity3 size={50} />,
+    "agile development": <Diversity2 size={50} />,
+    "communication": <PermPhoneMsg size={50} />,
+    "time management": <HourglassTop size={50} />,
+    "git": <SiGit size={50} />,
+    "linux": <SiLinux size={50} />,
+    "popos": <SiPopos size={50} />,
+    "kali": <SiKalilinux size={50} />,
+    "fedora": <SiFedora size={50} />,
+    "raspberrypi": <SiRaspberrypi size={50} />,
+    "truenas": <SiTruenas size={50} />,
+    "ubuntu": <SiUbuntu size={50} />,
+    "aruba": <SiHp size={50} />,
+    "bootstrap": <SiBootstrap size={50} />,
+    "first": <SiFirst size={50} />,
+    "embedded systems": <VscCircuitBoard size={50} />,
+    "devpost": <SiDevpost size={50} />,
+    "github": <GitHub size={50} />,
+    "material ui": <SiMui size={50} />,
+    "nokia": <SiNokia size={50} />,
+    "php": <SiPhp size={50} />,
+    "wireguard": <SiWireguard size={50} />,
+    "flask": <SiFlask size={50} />,
+    "numpy": <SiNumpy size={50} />,
+    "arduino": <SiArduino size={50} />,
+    "sql": <VscDatabase size={50} />
+}
