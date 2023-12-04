@@ -24,7 +24,7 @@ function Carleton() {
             <Typography variant="overline">Network Technology</Typography>
           </Grid>
           <Grid xs={6} textAlign='right'>
-            <Image src={CarletonDark} alt="Carleton University Logo" height={50} />
+            <Image src={CarletonDark} alt="Carleton University Logo" height={100} />
           </Grid>
         </Grid>
         <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -54,7 +54,7 @@ function Algonquin() {
             <Typography variant="overline">Network Technology</Typography>
           </Grid>
           <Grid xs={6} textAlign='right'>
-            <Image src={ACDark} alt="Algonquin College Logo" height={50} />
+            <Image src={ACDark} alt="Algonquin College Logo" height={100} />
           </Grid>
         </Grid>
         <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -74,19 +74,33 @@ function Algonquin() {
   )
 }
 
-function Language({ language, libraries }) {
-  const AvatarSX = { mx: 1, my: 1, height: 75, width: 75 }
+function Skills() {
+  const skills = {
+    'Languages': ["Python", "Java", "C/C++", "JavaScript", "PHP"],
+    'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas", "NumPy", "Arduino", "Flask"],
+    'Networking': ["Cisco IOS", "Juniper", "Aruba", "RouterOS"]
+  }
+
   return (
-    <Card elevation={5} sx={{ my: 2 }}>
+    <Card elevation={5} sx={{ my: 2 }} >
       <CardContent>
-        {IconsLarge[language.toLowerCase()]}
+        <Typography variant="h6">Skills</Typography>
         <Divider sx={{ my: 2 }} />
-        <Grid container spacing={2} justifyContent={"center"}>
-          {libraries.map((lib, idx) => {
+        <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {Object.keys(skills).map((skill, idx) => {
             return (
-              <Avatar key={idx} sx={AvatarSX} alt={lib} variant='rounded'>
-                {IconsLarge[lib.toLowerCase()]}
-              </Avatar>
+              <React.Fragment key={idx}>
+                <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
+                  <b>{skill}:</b>
+                </Grid>
+                <Grid xs={3} sm={10} display="flex" alignItems="center">
+                  {skills[skill].map((s, idx) => {
+                    return (
+                      <Chip label={s} key={idx} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
+                    )
+                  })}
+                </Grid>
+              </React.Fragment>
             )
           })}
         </Grid>
@@ -97,35 +111,17 @@ function Language({ language, libraries }) {
 
 export default function Home() {
 
-  const skills = {
-    'Languages': ["Python", "Java", "C/C++", "JavaScript", "PHP"],
-    'Libraries': ["ReactJS", "NodeJS", "GraphQL", "Bootstrap", "Material UI", "Pandas"],
-    'IT': ["Cisco IOS", "Juniper", "RouterOS", "Aruba", "Nokia"],
-    "Server/DevOps": ["Ubuntu", "Windows Server", "Kubernetes", "Docker", "Git"],
-    'Soft Skills': ["Agile Development", "Teamwork", "Communication", "Time Management"]
-  }
-
-  const Languages = {
-    "Python": ["Pandas", "Flask", "NumPy"],
-    "C/C++": ["Arduino", "Embedded Systems"],
-    "JavaScript": ["ReactJS", "NodeJS", "Bootstrap", "Material UI"],
-    "Other": ["Java", "PHP", "SQL"]
-  }
-
   return (
     <Container maxWidth="xl">
       <Box sx={{ my: 2 }}>
         <Typography variant="h4">Sayfullah Eid</Typography>
       </Box>
       <Box sx={{ my: 2 }}>
-        <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing={2}>
-          <Carleton />
-          <Algonquin />
-          <Language language="Python" libraries={Languages["Python"]} />
-          <Language language="C/C++" libraries={Languages["C/C++"]} />
-          <Language language="JavaScript" libraries={Languages["JavaScript"]} />
-          <Language language="Other" libraries={Languages["Other"]} />
-        </Masonry>
+        <Grid container spacing={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Grid xs={6}><Carleton /></Grid>
+          <Grid xs={6}><Algonquin /></Grid>
+        </Grid>
+        <Skills />
         <Card elevation={5} sx={{ my: 2 }}>
           <CardContent>
             <Typography variant='h6' sx={{ mb: 2 }}>About Me</Typography>
