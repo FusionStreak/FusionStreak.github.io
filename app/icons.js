@@ -5,7 +5,7 @@ import {
     SiJunipernetworks, SiKubernetes, SiWindows, SiGit,
     SiLinux, SiFedora, SiPopos, SiKalilinux, SiRaspberrypi,
     SiTruenas, SiUbuntu, SiHp, SiBootstrap, SiFirst, SiDevpost, SiMui, SiNokia, SiPhp,
-    SiWireguard, SiFlask, SiNumpy, SiArduino
+    SiWireguard, SiFlask, SiNumpy, SiArduino, SiHtml5, SiCss3
 } from 'react-icons/si'
 import { VscSymbolStructure, VscCircuitBoard, VscDatabase } from 'react-icons/vsc'
 import { TbRouter } from 'react-icons/tb'
@@ -59,7 +59,9 @@ export const Icons = {
     "flask": <SiFlask />,
     "numpy": <SiNumpy />,
     "arduino": <SiArduino />,
-    "sql": <VscDatabase />
+    "sql": <VscDatabase />,
+    "html": <SiHtml5 />,
+    "css": <SiCss3 />
 }
 
 export const IconsLarge = {
@@ -110,5 +112,7 @@ export const IconsLarge = {
     "flask": <SiFlask size={50} />,
     "numpy": <SiNumpy size={50} />,
     "arduino": <SiArduino size={50} />,
-    "sql": <VscDatabase size={50} />
+    "sql": <VscDatabase size={50} />,
+    "html": <SiHtml5 size={50} />,
+    "css": <SiCss3 size={50} />
 }
