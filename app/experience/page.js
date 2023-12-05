@@ -32,7 +32,7 @@ const experiences = [
             "Developed software for a prototype secure communication device",
             "Researched device and Linux Kernel hardening best practices",
         ],
-        skills: ["C++", "Linux", "WireGuard"]
+        skills: ["C++", "Linux", "WireGuard", "Git"]
     },
     {
         company: "Sphyrna Security Inc.",
@@ -44,7 +44,7 @@ const experiences = [
             "Implemented a secure authentication system using JWT, web cookies, and multi-factor authentication",
             "Followed up on customer reported issues through GitLab"
         ],
-        skills: ["ReactJS", "NodeJS", "ONgDB", "Bootstrap"]
+        skills: ["ReactJS", "NodeJS", "ONgDB", "Bootstrap", "Git"]
     },
     {
         company: "Sphyrna Security Inc.",
@@ -55,7 +55,7 @@ const experiences = [
             "Collaborated with colleagues to develop prototype software in C/C++, to determine viability as products",
             "Conducted research on Python attribute-based encryption implementations for use with our secure network products",
         ],
-        skills: ["C++", "Python"]
+        skills: ["C++", "Python", "Git"]
     },
     {
         company: "Wize Computing Academy",

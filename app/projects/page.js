@@ -28,14 +28,14 @@ const projects = [
         role: "Team Lead",
         notes: [
             "Designing new load-balancing mechanisms for use in Low Eart Orbit networks",
-            "Extending the functionality of LEOSIM",
+            "Extending the functionality of LEOSIM, a Python platform for simulating LEO networks",
             "Implementing load-balancing designs in LEOSIM"
         ],
         urls: {},
         start: { month: "September", year: 2023 },
         end: { month: "April", year: 2024 },
         org: "Capstone Project | Carleton University",
-        skills: ["Python"],
+        skills: ["Python", "NumPy", "Docker", "Git"],
         awards: {}
     },
     {
@@ -51,7 +51,7 @@ const projects = [
         },
         date: { month: "April", year: 2023 },
         org: "Web Programming Project | Algonquin College",
-        skills: ["php", "javascript"],
+        skills: ["php", "javascript", "Git", "HTML", "CSS"],
         awards: {}
     },
     {
@@ -112,7 +112,7 @@ const projects = [
         },
         date: { month: "May", year: 2019 },
         org: "Ottawa Summit | Open Government Partnetship",
-        skills: ["Python", "Pandas"],
+        skills: ["Python", "Pandas", "Flask", "NumPy"],
         awards: []
     },
     {
