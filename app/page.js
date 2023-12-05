@@ -2,17 +2,11 @@
 
 import Image from 'next/image'
 import React from "react";
-import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip, Avatar } from "@mui/material";
+import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip } from "@mui/material";
 import CarletonDark from './CarletonDark.png'
 import ACDark from './ACDark.png'
-import ReactBasicCertificate from './certifications/ReactBasicCertificate.svg'
-import FrontendDeveloperReactCertificate from './certifications/FrontendDeveloperReactCertificate.svg'
-import JavaBasicCertificate from './certifications/JavaBasicCertificate.svg'
-import PythonBasicCertificate from './certifications/PythonBasicCertificate.svg'
-import ProblemSolvingBasicCertificate from './certifications/ProblemSolvingBasicCertificate.svg'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Icons, IconsLarge } from "./icons";
-import { Masonry } from '@mui/lab';
+import { Icons } from "./icons";
 
 function Carleton() {
   return (
@@ -54,7 +48,7 @@ function Algonquin() {
             <Typography variant="overline">Network Technology</Typography>
           </Grid>
           <Grid xs={6} textAlign='right'>
-            <Image src={ACDark} alt="Algonquin College Logo" height={100} />
+            <Image src={ACDark} alt="Algonquin College Logo" height={100} width={300} />
           </Grid>
         </Grid>
         <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
