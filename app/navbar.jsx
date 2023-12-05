@@ -7,6 +7,7 @@ import { GitHub, LinkedIn, Email, Download, Menu as MenuIcon } from '@mui/icons-
 import Link from "next/link";
 import logo from './icon.png'
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function NavBar(props) {
 
@@ -25,6 +26,8 @@ export default function NavBar(props) {
         { "route": "/experience", "name": "Experience" },
         { "route": "/projects", "name": "Projects" },
     ]
+
+    const pathname = usePathname()
 
     return (
         <React.Fragment>
@@ -130,7 +133,7 @@ export default function NavBar(props) {
                                 <Button
                                     key={page.name}
                                     href={page.route}
-                                    variant={'text'}
+                                    variant={page.route === pathname ? 'contained' : 'text'}
                                     sx={{ color: 'white' }}
                                 >
                                     {page.name}
