@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "echo 'sayfullaheid.me' > ./build/CNAME && gh-pages -d build"
+    "deploy": "echo 'sayfullaheid.me' > ./out/CNAME && gh-pages -d out"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
