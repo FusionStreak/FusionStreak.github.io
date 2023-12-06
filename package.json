@@ -1,6 +1,6 @@
 {
   "name": "fusionstreak.github.io",
-  "version": "2023.12.05",
+  "version": "2023.12.06",
   "private": true,
   "scripts": {
     "dev": "next dev",
