@@ -81,14 +81,14 @@ function Skills() {
       <CardContent>
         <Typography variant="h6">Skills</Typography>
         <Divider sx={{ my: 2 }} />
-        <Grid container sx={{ display: { xs: 'none', md: 'flex' } }}>
+        <Grid container columns={{ xs: 6, lg: 12 }} sx={{ display: { xs: 'block', lg: 'flex' } }}>
           {Object.keys(skills).map((skill, idx) => {
             return (
               <React.Fragment key={idx}>
-                <Grid xs={3} sm={2} mt={2} display="flex" alignItems="center">
+                <Grid xs={6} lg={2} mt={2} display="block" alignItems="center">
                   <b>{skill}:</b>
                 </Grid>
-                <Grid xs={3} sm={10} display="flex" alignItems="center">
+                <Grid xs={6} lg={10} display="block" alignItems="center">
                   {skills[skill].map((s, idx) => {
                     return (
                       <Chip label={s} key={idx} icon={Icons[s.toLowerCase()]} aria-label={s} color="primary" />
@@ -112,7 +112,7 @@ export default function Home() {
         <Typography variant="h4">Sayfullah Eid</Typography>
       </Box>
       <Box sx={{ my: 2 }}>
-        <Grid container spacing={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
+        <Grid container spacing={2} columns={{ xs: 6, lg: 12 }}>
           <Grid xs={6}><Carleton /></Grid>
           <Grid xs={6}><Algonquin /></Grid>
         </Grid>
