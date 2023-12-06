@@ -33,7 +33,7 @@ export default function NavBar(props) {
     return (
         <React.Fragment>
             <AppBar enableColorOnDark>
-                <Container >
+                <Container maxWidth='xl' >
                     <Toolbar disableGutters>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
