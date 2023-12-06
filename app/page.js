@@ -18,7 +18,7 @@ function Carleton() {
             <Typography variant="overline">Network Technology</Typography>
           </Grid>
           <Grid xs={6} textAlign='right'>
-            <Image src={CarletonDark} alt="Carleton University Logo" height={100} />
+            <Image src={CarletonDark} alt="Carleton University Logo" height={100} style={{ marginTop: '19px', marginBottom: '20px' }} />
           </Grid>
         </Grid>
         <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -48,7 +48,7 @@ function Algonquin() {
             <Typography variant="overline">Network Technology</Typography>
           </Grid>
           <Grid xs={6} textAlign='right'>
-            <Image src={ACDark} alt="Algonquin College Logo" height={100} width={300} />
+            <Image src={ACDark} alt="Algonquin College Logo" width={300} />
           </Grid>
         </Grid>
         <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
