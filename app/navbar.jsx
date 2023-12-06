@@ -5,9 +5,10 @@ import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box, Button, T
 import { SiMastodon } from 'react-icons/si'
 import { GitHub, LinkedIn, Email, Download, Menu as MenuIcon } from '@mui/icons-material'
 import Link from "next/link";
-import logo from './icon.png'
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+
+const logo = '/icon.png'
 
 export default function NavBar(props) {
 
