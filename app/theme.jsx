@@ -7,7 +7,7 @@ const myTheme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: deepOrange['A400']
+            main: deepOrange['900']
         },
         secondary: {
             main: '#22cbff'
@@ -47,7 +47,7 @@ const myTheme = createTheme({
                     fontWeight: 'bold'
                 },
                 colorPrimary: {
-                    backgroundColor: deepOrange['A400']
+                    backgroundColor: deepOrange['900']
                 }
             }
         },
