@@ -1,11 +1,23 @@
 import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@mui/material'
-import { CssBaseline } from '@mui/material'
+import { ThemeProvider, CssBaseline, Typography, Link, Box, Container } from '@mui/material'
 import myTheme from './theme'
 import './globals.css'
 import NavBar from './navbar'
 
 const inter = Inter({ subsets: ['latin'] })
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary">
+      {'Copyright © '}
+      <Link color="inherit" href="https://sayfullaheid.me/">
+        Sayfullah Eid
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 export const metadata = {
   title: {
@@ -52,6 +64,11 @@ export default function RootLayout({ children }) {
           <main style={{ 'paddingTop': 60 }}>
             {children}
           </main>
+          <Box sx={{ bgcolor: 'background.paper', p: 3, mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }} component="footer">
+            <Container maxWidth="sm">
+              <Copyright />
+            </Container>
+          </Box>
         </ThemeProvider>
       </body>
     </html>
