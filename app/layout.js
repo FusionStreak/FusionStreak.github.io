@@ -1,23 +1,11 @@
 import { Inter } from 'next/font/google'
 import { ThemeProvider, CssBaseline, Typography, Link, Box, Container } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
 import myTheme from './theme'
 import './globals.css'
 import NavBar from './navbar'
 
 const inter = Inter({ subsets: ['latin'] })
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://sayfullaheid.me/">
-        Sayfullah Eid
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 export const metadata = {
   title: {
@@ -64,9 +52,30 @@ export default function RootLayout({ children }) {
           <main style={{ 'paddingTop': 60 }}>
             {children}
           </main>
-          <Box sx={{ bgcolor: 'background.paper', p: 3, mt: 'auto', position: 'fixed', bottom: 0, width: '100%' }} component="footer">
-            <Container maxWidth="sm">
-              <Copyright />
+          <Box sx={{ p: 3, mt: 'auto' }} component="footer">
+            <Container maxWidth="xl">
+              <Grid container spacing={2} columns={{ xs: 6, lg: 12 }}>
+                <Grid xs={4} textAlign={'left'}>
+                  <Typography variant="body2" color="text.secondary">
+                    Bulit with <Link color="inherit" href="https://nextjs.org/">Next.js</Link> and <Link color="inherit" href="https://mui.com/">Material UI</Link>
+                  </Typography>
+                </Grid>
+                <Grid xs={4} textAlign={'center'}>
+                  <Typography variant="body2" color="text.secondary">
+                    {'Copyright © '}
+                    <Link color="inherit" href="https://sayfullaheid.me/">
+                      Sayfullah Eid
+                    </Link>{' '}
+                    {new Date().getFullYear()}
+                    {'.'}
+                  </Typography>
+                </Grid>
+                <Grid xs={4} textAlign={'right'}>
+                  <Typography variant="body2" color="text.secondary">
+                    Icons from <Link color="inherit" href="https://react-icons.github.io/react-icons/">React Icons</Link>
+                  </Typography>
+                </Grid>
+              </Grid>
             </Container>
           </Box>
         </ThemeProvider>
