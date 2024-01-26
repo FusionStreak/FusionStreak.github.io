@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import React from "react";
-import { Container, Typography, Box, Button, Card, CardContent, Divider, Chip } from "@mui/material";
+import { Container, Typography, Box, Card, CardContent, Divider, Chip, CardActionArea } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2'
 import { Icons } from "./icons";
+import { ArrowForward } from '@mui/icons-material';
 
 const ACDark = '/ACDark.png'
 const CarletonDark = '/CarletonDark.png'
@@ -19,7 +20,7 @@ function Carleton() {
             <Typography variant="overline">Network Technology</Typography>
           </Grid>
           <Grid xs={6} textAlign='right'>
-            <Image src={CarletonDark} alt="Carleton University Logo" height={100} width={300} style={{ marginTop: '19px', marginBottom: '20px' }} />
+            <Image src={CarletonDark} alt="Carleton University Logo" height={111} width={288} style={{ marginTop: '14px', marginBottom: '14px' }} priority />
           </Grid>
         </Grid>
         <Grid container sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -107,40 +108,43 @@ function Skills() {
 export default function Home() {
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ my: 2 }}>
         <Typography variant="h4">Sayfullah Eid</Typography>
       </Box>
       <Box sx={{ my: 2 }}>
         <Grid container spacing={2} columns={{ xs: 6, lg: 12 }}>
-          <Grid xs={6}><Carleton /></Grid>
-          <Grid xs={6}><Algonquin /></Grid>
+          <Grid xs={6}>
+            <Card>
+              <CardActionArea href='/experience'>
+                <CardContent>
+                  <Typography variant='h3'>Experience</Typography>
+                  <Divider sx={{ my: 2 }} />
+                  <Typography variant='h6'>Internships & Professional Experience</Typography>
+                  <ArrowForward />
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid xs={6}>
+            <Card>
+              <CardActionArea href='/projects'>
+                <CardContent>
+                  <Typography variant='h3'>Projects</Typography>
+                  <Divider sx={{ my: 2 }} />
+                  <Typography variant='h6'>Hackathons, Personal & Course Projects</Typography>
+                  <ArrowForward />
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid xs={6}>
+            <Carleton />
+          </Grid>
+          <Grid xs={6}>
+            <Algonquin />
+          </Grid>
         </Grid>
-        <Skills />
-        <Card elevation={5} sx={{ my: 2 }}>
-          <CardContent>
-            <Typography variant='h6' sx={{ mb: 2 }}>About Me</Typography>
-            <Divider sx={{ my: 2 }} />
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Hello world!
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              My name is Sayfullah Eid, I am a 5th year B.IT Networking student at Carleton University and Algonquin College. I chose this program as it gives me both the theoretical knowldge and practical skills in many different IT subjects, such as; cybersecurity, DevOps, network management, web development, etc.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              My tech journey began when I started a <Button variant='text' sx={{ px: 0, height: '22px' }} color="secondary" href="https://wro-association.org/">World Robotics Olympiad</Button> team at my middle school. From there I took a series of online crash courses in programming and database concepts.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              I took those skills and joined a <Button variant="text" sx={{ px: 0, height: '22px' }} color="secondary" href="https://www.firstroboticscanada.org/frc/">FIRST Robotics Competition</Button> (FRC) team in high school. Working in these teams also sparked my interest in STEM(Science, Technology, Engineering & Math) education. I started mentoring robotics teams after I graduated.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              My experience in FRC drove me towards community driven development, and I began my journey with <Button variant="text" sx={{ px: 0, height: '22px' }} color="secondary" href="https://en.wikipedia.org/wiki/Free_and_open-source_software">Free and Open Source Software</Button> (FOSS). I am now a strong advocate for open source projects, be it hardware or software. Especially in education.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              In my off time, you will find me taking road trips, going on hikes, researching sustainable technologies, woodworking, and playing PC games.
-            </Typography>
-          </CardContent>
-        </Card>
       </Box>
     </Container>
   )
