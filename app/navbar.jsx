@@ -126,7 +126,7 @@ export default function NavBar(props) {
                                         aria-label="Download resume"
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
-                                        href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
+                                        href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/Sayfullah_Eid.pdf"
                                         download={'SayfullahEid.pdf'}
                                         color="inherit"
                                     >
