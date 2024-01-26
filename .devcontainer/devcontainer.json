@@ -18,11 +18,14 @@
 				"donjayamanne.git-extension-pack",
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
-				"GitHub.copilot-labs",
 				"GitHub.vscode-pull-request-github",
 				"codezombiech.gitignore",
 				"DavidAnson.vscode-markdownlint",
-				"christian-kohler.npm-intellisense"
+				"christian-kohler.npm-intellisense",
+				"ms-vscode-remote.remote-containers",
+				"eamodio.gitlens",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples"
 			]
 		}
 	},
