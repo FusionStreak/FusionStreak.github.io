@@ -23,7 +23,7 @@ export default function NavBar(props) {
     };
 
     const pages = [
-        { "route": "/", name: "About Me" },
+        { "route": "/", name: "Home" },
         { "route": "/experience", "name": "Experience" },
         { "route": "/projects", "name": "Projects" },
     ]
@@ -64,69 +64,75 @@ export default function NavBar(props) {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {pages.map((page, idx) => (
-                                    <MenuItem key={idx}>
-                                        <Link href={page.route} passHref>
-                                            <Typography textAlign="center">{page.name}</Typography>
-                                        </Link>
-                                    </MenuItem>
-                                ))}
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    {pages.map((page, idx) => (
+                                        <Button key={idx}
+                                            href={page.route}
+                                            variant={page.route === pathname ? 'contained' : 'text'}
+                                            sx={{ color: 'white' }}
+                                        >
+                                            {page.name}
+                                        </Button>
+                                    ))}
+                                </MenuItem>
                                 <Divider />
-                                <IconButton
-                                    size="small"
-                                    aria-label="Mastodon"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    rel="me"
-                                    href="https://fosstodon.org/@FusionStreak"
-                                    target={'_blank'}
-                                    color="inherit"
-                                >
-                                    <SiMastodon />
-                                </IconButton>
-                                <IconButton
-                                    size="small"
-                                    aria-label="GitHub"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    href="https://github.com/FusionStreak"
-                                    target={'_blank'}
-                                    color="inherit"
-                                >
-                                    <GitHub />
-                                </IconButton>
-                                <IconButton
-                                    size="small"
-                                    aria-label="LinkedIn"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    href="https://www.linkedin.com/in/sayfullah-eid/"
-                                    target='_blank'
-                                    color="inherit"
-                                >
-                                    <LinkedIn />
-                                </IconButton>
-                                <IconButton
-                                    size="small"
-                                    aria-label="E-mail"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    href="mailto://sayfullaheid@gmail.com"
-                                    color="inherit"
-                                >
-                                    <Email />
-                                </IconButton>
-                                <IconButton
-                                    size="small"
-                                    aria-label="Download resume"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
-                                    download={'SayfullahEid.pdf'}
-                                    color="inherit"
-                                >
-                                    <Download />
-                                </IconButton>
+                                <MenuItem onClick={handleCloseNavMenu}>
+                                    <IconButton
+                                        size="small"
+                                        aria-label="Mastodon"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        rel="me"
+                                        href="https://fosstodon.org/@FusionStreak"
+                                        target={'_blank'}
+                                        color="inherit"
+                                    >
+                                        <SiMastodon />
+                                    </IconButton>
+                                    <IconButton
+                                        size="small"
+                                        aria-label="GitHub"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        href="https://github.com/FusionStreak"
+                                        target={'_blank'}
+                                        color="inherit"
+                                    >
+                                        <GitHub />
+                                    </IconButton>
+                                    <IconButton
+                                        size="small"
+                                        aria-label="LinkedIn"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        href="https://www.linkedin.com/in/sayfullah-eid/"
+                                        target='_blank'
+                                        color="inherit"
+                                    >
+                                        <LinkedIn />
+                                    </IconButton>
+                                    <IconButton
+                                        size="small"
+                                        aria-label="E-mail"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        href="mailto://sayfullaheid@gmail.com"
+                                        color="inherit"
+                                    >
+                                        <Email />
+                                    </IconButton>
+                                    <IconButton
+                                        size="small"
+                                        aria-label="Download resume"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        href="https://github.com/FusionStreak/FusionStreak.github.io/raw/main/public/SayfullahEid.pdf"
+                                        download={'SayfullahEid.pdf'}
+                                        color="inherit"
+                                    >
+                                        <Download />
+                                    </IconButton>
+                                </MenuItem>
                             </Menu>
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
