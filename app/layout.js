@@ -4,6 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import myTheme from './theme'
 import './globals.css'
 import NavBar from './navbar'
+import { Icons } from './icons'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -57,7 +58,7 @@ export default function RootLayout({ children }) {
               <Grid container spacing={2} columns={{ xs: 6, lg: 12 }}>
                 <Grid xs={4} textAlign={'left'}>
                   <Typography variant="body2" color="text.secondary">
-                    Bulit with <Link color="inherit" href="https://nextjs.org/">Next.js</Link> and <Link color="inherit" href="https://mui.com/">Material UI</Link>
+                    Bulit with <Link color="inherit" href="https://nextjs.org/">{Icons["nextjs"]} Next.js</Link> and <Link color="inherit" href="https://mui.com/">{Icons["material ui"]} Material UI</Link>
                   </Typography>
                 </Grid>
                 <Grid xs={4} textAlign={'center'}>
