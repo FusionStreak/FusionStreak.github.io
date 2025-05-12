@@ -1,34 +1,33 @@
 {
-	"name": "Node.js",
-	"image": "mcr.microsoft.com/devcontainers/javascript-node",
-	"forwardPorts": [
-		3000
-	],
-	"portsAttributes": {
-		"3000": {
-			"label": "Application",
-			"onAutoForward": "notify"
-		}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-azuretools.vscode-docker",
-				"dbaeumer.vscode-eslint",
-				"donjayamanne.git-extension-pack",
-				"GitHub.copilot",
-				"GitHub.copilot-chat",
-				"GitHub.vscode-pull-request-github",
-				"codezombiech.gitignore",
-				"DavidAnson.vscode-markdownlint",
-				"christian-kohler.npm-intellisense",
-				"ms-vscode-remote.remote-containers",
-				"eamodio.gitlens",
-				"VisualStudioExptTeam.vscodeintellicode",
-				"VisualStudioExptTeam.intellicode-api-usage-examples"
-			]
-		}
-	},
-	"postCreateCommand": "npm install",
-	"remoteUser": "root"
+  "name": "Node.js",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "donjayamanne.git-extension-pack",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "codezombiech.gitignore",
+        "DavidAnson.vscode-markdownlint",
+        "christian-kohler.npm-intellisense",
+        "ms-vscode-remote.remote-containers",
+        "eamodio.gitlens",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "VisualStudioExptTeam.intellicode-api-usage-examples",
+        "fill-labs.dependi"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install",
+  "remoteUser": "root"
 }

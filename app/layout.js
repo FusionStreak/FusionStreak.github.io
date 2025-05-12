@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import { ThemeProvider, CssBaseline, Typography, Link, Box, Container } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import myTheme from './theme'
 import './globals.css'
 import NavBar from './navbar'
@@ -56,12 +56,12 @@ export default function RootLayout({ children }) {
           <Box sx={{ p: 3, mt: 'auto' }} component="footer">
             <Container maxWidth="xl">
               <Grid container spacing={2} columns={{ xs: 6, lg: 12 }}>
-                <Grid xs={4} textAlign={'left'}>
+                <Grid size={{ xs: 4 }} textAlign={'left'}>
                   <Typography variant="body2" color="text.secondary">
                     Bulit with <Link color="inherit" href="https://nextjs.org/">{Icons["nextjs"]} Next.js</Link> and <Link color="inherit" href="https://mui.com/">{Icons["material ui"]} Material UI</Link>
                   </Typography>
                 </Grid>
-                <Grid xs={4} textAlign={'center'}>
+                <Grid size={{ xs: 4 }} textAlign={'center'}>
                   <Typography variant="body2" color="text.secondary">
                     {'Copyright © '}
                     <Link color="inherit" href="https://sayfullaheid.me/">
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
                     {'.'}
                   </Typography>
                 </Grid>
-                <Grid xs={4} textAlign={'right'}>
+                <Grid size={{ xs: 4 }} textAlign={'right'}>
                   <Typography variant="body2" color="text.secondary">
                     Icons from <Link color="inherit" href="https://react-icons.github.io/react-icons/">React Icons</Link>
                   </Typography>

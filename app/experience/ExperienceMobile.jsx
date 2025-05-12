@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Box, Divider, List, ListItem, Chip, ListItemText, Card, CardContent } from "@mui/material";
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import { Icons } from '../icons'
 
 export default function ExperienceMobile({ experiences }) {
@@ -11,13 +11,13 @@ export default function ExperienceMobile({ experiences }) {
                     <Card key={idx} sx={{ my: 2 }} elevation={5}>
                         <CardContent>
                             <Grid container>
-                                <Grid xs={12}>
+                                <Grid size={{ xs: 12 }}>
                                     <Typography variant="h6">{info.role}</Typography>
                                 </Grid>
-                                <Grid xs={12} >
+                                <Grid size={{ xs: 12 }} >
                                     <Typography variant='subtitle1'>{info.company}</Typography>
                                 </Grid>
-                                <Grid xs={12}>
+                                <Grid size={{ xs: 12 }}>
                                     <Typography variant="subtitle2">{info.start.month}, {info.start.year} - {info.end.month}, {info.end.year}</Typography>
                                 </Grid>
                             </Grid>

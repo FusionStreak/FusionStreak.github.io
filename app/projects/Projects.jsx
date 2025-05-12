@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Typography, Box, Divider, List, ListItem, Chip, Card, CardContent, ListItemText, CardActions, Button, Tooltip } from "@mui/material";
 import { EmojiEvents, ChevronRight } from "@mui/icons-material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid";
 import { Icons } from "../icons";
 
 export default function Projects({ projects }) {
@@ -13,10 +13,10 @@ export default function Projects({ projects }) {
                     <Card key={info.name} sx={{ my: 2 }} elevation={5}>
                         <CardContent sx={{ pb: 0 }}>
                             <Grid container>
-                                <Grid xs={6}>
+                                <Grid size={{ xs: 6 }}>
                                     <Typography variant="h6">{info.name} | {info.role}</Typography>
                                 </Grid>
-                                <Grid xs={6} textAlign={'right'}>
+                                <Grid size={{ xs: 6 }} textAlign={'right'}>
                                     {
                                         info.date ? <Typography>{info.date.month} {info.date.year}</Typography> : <Typography>{info.start.month} {info.start.year} - {info.end.month} {info.end.year}</Typography>
                                     }
