@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FusionStreak Blog
 
-## Getting Started
+My personal blog, where I share my thoughts and ideas on various topics. The blog is built using Node/ReactJS and hosted on GitHub Pages.
 
-First, run the development server:
+## Frontend
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [ReactJS](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [MDX](https://mdxjs.com/)
+- [Velite](https://velite.js.org)
+- [ShadcnUI](https://ui.shadcn.com/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛡️ Licensing
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This repository uses a dual-license model:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Code** (in `/src`, `/components`, etc.): Licensed under the [MIT License](./LICENSE)
+- **Content** (in `/posts`, `/public`, etc.): Licensed under [CC BY-NC 4.0](./CONTENT_LICENSE)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you want to reuse or republish parts of the content commercially, please contact me for permission.
