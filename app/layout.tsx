@@ -53,18 +53,49 @@ export default function RootLayout({
             <main className="container flex-1 flex-col items-center justify-center gap-6 px-2 pt-6 md:pt-10 lg:py-32 mx-auto max-w-screen-7xl">
               {children}
             </main>
-            <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-              <p className="text-xs text-muted-foreground">
-                &copy; {new Date().getFullYear()} Created by{" "}
-                <Link
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://github.com/FusionStreak/FusionStreak.github.io"
-                  className="text-primary"
-                >
-                  Sayfullah Eid
-                </Link>{" "}
-              </p>
+            <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center px-4 py-6">
+              <div className="flex flex-col items-center gap-2 text-xs text-muted-foreground">
+                <p>
+                  &copy; {new Date().getFullYear()} Created by{" "}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://github.com/FusionStreak/FusionStreak.github.io"
+                    className="text-primary hover:underline"
+                  >
+                    Sayfullah Eid
+                  </Link>
+                </p>
+                <p className="flex items-center gap-1">
+                  Built with{" "}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://nextjs.org"
+                    className="text-primary hover:underline"
+                  >
+                    Next.js
+                  </Link>
+                  {", "}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://ui.shadcn.com"
+                    className="text-primary hover:underline"
+                  >
+                    ShadCN UI
+                  </Link>
+                  {", and "}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://lucide.dev"
+                    className="text-primary hover:underline"
+                  >
+                    Lucide Icons
+                  </Link>
+                </p>
+              </div>
             </footer>
           </div>
         </ThemeProvider>
