@@ -39,7 +39,6 @@ export function MDXRenderer({ source }: MDXRendererProps) {
                 // Run the compiled MDX to get the component
                 const { default: Component } = await run(compiled, {
                     ...runtime,
-                    baseUrl: import.meta.url,
                 });
 
                 setMDXContent(() => Component);
