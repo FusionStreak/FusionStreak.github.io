@@ -1,0 +1,260 @@
+---
+title: "TypeScript Best Practices for React Development"
+date: "2024-01-05"
+excerpt: "Discover essential TypeScript patterns and best practices that will make your React applications more robust and maintainable."
+author: "Sayfullah Eid"
+tags: ["TypeScript", "React", "Best Practices", "Development"]
+featured: false
+readTime: "8 min read"
+---
+
+# TypeScript Best Practices for React Development
+
+TypeScript has become an essential tool for building scalable React applications. Here are the best practices that will help you write better, more maintainable code.
+
+## Component Props Types
+
+### Defining Props Interfaces
+Always define explicit interfaces for your component props:
+
+```typescript
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  variant = 'primary', 
+  size = 'md',
+  ...props 
+}) => {
+  return (
+    <button 
+      className={`btn btn-${variant} btn-${size}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### Using Generic Components
+Create reusable components with generics:
+
+```typescript
+interface SelectProps<T> {
+  options: T[];
+  value: T;
+  onChange: (value: T) => void;
+  getLabel: (option: T) => string;
+  getValue: (option: T) => string;
+}
+
+function Select<T>({ options, value, onChange, getLabel, getValue }: SelectProps<T>) {
+  return (
+    <select 
+      value={getValue(value)}
+      onChange={(e) => {
+        const selectedOption = options.find(option => getValue(option) === e.target.value);
+        if (selectedOption) onChange(selectedOption);
+      }}
+    >
+      {options.map(option => (
+        <option key={getValue(option)} value={getValue(option)}>
+          {getLabel(option)}
+        </option>
+      ))}
+    </select>
+  );
+}
+```
+
+## State Management
+
+### Typing useState
+Be explicit with useState when TypeScript can't infer the type:
+
+```typescript
+// Good: Explicit typing when needed
+const [user, setUser] = useState<User | null>(null);
+const [items, setItems] = useState<Item[]>([]);
+
+// Good: Let TypeScript infer when obvious
+const [count, setCount] = useState(0);
+const [isLoading, setIsLoading] = useState(false);
+```
+
+### useReducer with TypeScript
+Define action types and state interfaces:
+
+```typescript
+interface State {
+  count: number;
+  loading: boolean;
+}
+
+type Action = 
+  | { type: 'increment' }
+  | { type: 'decrement' }
+  | { type: 'setLoading'; payload: boolean };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + 1 };
+    case 'decrement':
+      return { ...state, count: state.count - 1 };
+    case 'setLoading':
+      return { ...state, loading: action.payload };
+    default:
+      return state;
+  }
+}
+```
+
+## Event Handling
+
+### Typing Event Handlers
+Use proper event types for better IntelliSense:
+
+```typescript
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setValue(e.target.value);
+};
+
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  // Handle form submission
+};
+
+const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  console.log('Button clicked');
+};
+```
+
+## API Integration
+
+### Typing API Responses
+Define interfaces for your API data:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
+interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+  message?: string;
+}
+
+// Usage in a hook
+const useUsers = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/users');
+      const result: ApiResponse<User[]> = await response.json();
+      setUsers(result.data);
+    } catch (error) {
+      console.error('Failed to fetch users:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { users, loading, fetchUsers };
+};
+```
+
+## Advanced Patterns
+
+### Conditional Props
+Use discriminated unions for conditional props:
+
+```typescript
+type ButtonProps = {
+  children: React.ReactNode;
+} & (
+  | { variant: 'link'; href: string }
+  | { variant: 'button'; onClick: () => void }
+);
+
+const Button: React.FC<ButtonProps> = (props) => {
+  if (props.variant === 'link') {
+    return <a href={props.href}>{props.children}</a>;
+  }
+  
+  return <button onClick={props.onClick}>{props.children}</button>;
+};
+```
+
+### Utility Types
+Leverage TypeScript utility types:
+
+```typescript
+// Pick specific properties
+type UserPreview = Pick<User, 'id' | 'name' | 'avatar'>;
+
+// Make all properties optional
+type PartialUser = Partial<User>;
+
+// Omit specific properties
+type CreateUserRequest = Omit<User, 'id'>;
+
+// Extract union type values
+type Theme = 'light' | 'dark';
+type ThemeConfig = Record<Theme, { primary: string; secondary: string; }>;
+```
+
+## Common Mistakes to Avoid
+
+### 1. Using `any`
+Avoid using `any` - it defeats the purpose of TypeScript:
+
+```typescript
+// Bad
+const handleData = (data: any) => {
+  // No type safety
+};
+
+// Good
+interface DataType {
+  id: number;
+  value: string;
+}
+
+const handleData = (data: DataType) => {
+  // Full type safety
+};
+```
+
+### 2. Not Using Strict Mode
+Always enable strict mode in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  }
+}
+```
+
+## Conclusion
+
+TypeScript significantly improves the development experience in React applications by providing better IntelliSense, catching errors early, and making code more maintainable.
+
+Start with basic typing and gradually adopt more advanced patterns as your application grows. The investment in proper TypeScript setup pays dividends in the long run.
