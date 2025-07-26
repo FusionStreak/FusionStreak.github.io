@@ -1,90 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink, Calendar } from "lucide-react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faGithubSquare as GitHub} from '@fortawesome/free-brands-svg-icons';
 import Link from "next/link";
-
-interface Project {
-    id: string;
-    title: string;
-    description: string;
-    longDescription: string;
-    technologies: string[];
-    githubUrl?: string;
-    liveUrl?: string;
-    imageUrl?: string;
-    featured: boolean;
-    createdAt: string;
-    status: "completed" | "in-progress" | "planning";
-}
-
-// You can easily extend this array to add more projects
-const projects: Project[] = [
-    {
-        id: "1",
-        title: "E-Commerce Platform",
-        description: "A full-stack e-commerce solution with admin dashboard and payment integration.",
-        longDescription: "Built a comprehensive e-commerce platform featuring user authentication, product catalog, shopping cart, order management, and Stripe payment integration. Includes an admin dashboard for inventory management and order tracking.",
-        technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe", "Tailwind CSS"],
-        githubUrl: "https://github.com/yourusername/ecommerce-platform",
-        liveUrl: "https://your-ecommerce-demo.vercel.app",
-        imageUrl: "/placeholder-project-1.jpg",
-        featured: true,
-        createdAt: "2024-01-15",
-        status: "completed"
-    },
-    {
-        id: "2",
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates.",
-        longDescription: "Developed a collaborative task management application with features like drag-and-drop kanban boards, real-time collaboration, team management, and deadline tracking. Built with modern React patterns and real-time WebSocket communication.",
-        technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express", "Material-UI"],
-        githubUrl: "https://github.com/yourusername/task-manager",
-        liveUrl: "https://task-manager-demo.netlify.app",
-        imageUrl: "/placeholder-project-2.jpg",
-        featured: true,
-        createdAt: "2023-11-20",
-        status: "completed"
-    },
-    {
-        id: "3",
-        title: "Weather Dashboard",
-        description: "A responsive weather dashboard with location-based forecasts and data visualization.",
-        longDescription: "Created a weather dashboard that provides current weather conditions, 5-day forecasts, and interactive charts. Features geolocation support, search functionality, and responsive design with dark/light theme support.",
-        technologies: ["React", "Chart.js", "OpenWeather API", "CSS Modules", "Axios"],
-        githubUrl: "https://github.com/yourusername/weather-dashboard",
-        liveUrl: "https://weather-dashboard-demo.vercel.app",
-        imageUrl: "/placeholder-project-3.jpg",
-        featured: false,
-        createdAt: "2023-09-10",
-        status: "completed"
-    },
-    {
-        id: "4",
-        title: "AI Chat Application",
-        description: "An AI-powered chat application with multiple conversation models.",
-        longDescription: "Building an intelligent chat application that integrates with various AI models. Features include conversation history, multiple AI personalities, message export, and customizable chat interfaces.",
-        technologies: ["Next.js", "OpenAI API", "Vercel AI SDK", "Prisma", "SQLite", "Shadcn/ui"],
-        githubUrl: "https://github.com/yourusername/ai-chat-app",
-        imageUrl: "/placeholder-project-4.jpg",
-        featured: true,
-        createdAt: "2024-02-01",
-        status: "in-progress"
-    },
-    {
-        id: "5",
-        title: "Portfolio Website",
-        description: "This very website - a modern portfolio built with Next.js and MDX.",
-        longDescription: "Designed and developed this portfolio website using Next.js, TypeScript, and MDX for the blog. Features include dark/light theme, responsive design, blog functionality, and optimized performance.",
-        technologies: ["Next.js", "TypeScript", "MDX", "Tailwind CSS", "Shadcn/ui"],
-        githubUrl: "https://github.com/FusionStreak/FusionStreak.github.io",
-        liveUrl: "https://fusionstreak.github.io",
-        imageUrl: "/placeholder-project-5.jpg",
-        featured: false,
-        createdAt: "2024-01-01",
-        status: "completed"
-    }
-];
+import { projects } from "./projects";
 
 const statusColors = {
     completed: "bg-green-500",
@@ -159,7 +80,7 @@ export default function ProjectsPage() {
                                         {project.githubUrl && (
                                             <Button variant="outline" size="sm" asChild>
                                                 <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                                    <Github className="h-4 w-4 mr-2" />
+                                                    <FontAwesomeIcon icon={GitHub} className="h-4 w-4 mr-2" />
                                                     Code
                                                 </Link>
                                             </Button>
@@ -220,7 +141,7 @@ export default function ProjectsPage() {
                                         {project.githubUrl && (
                                             <Button variant="outline" size="sm" asChild className="flex-1">
                                                 <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                                    <Github className="h-3 w-3 mr-1" />
+                                                    <FontAwesomeIcon icon={GitHub} className="h-3 w-3 mr-1" />
                                                     Code
                                                 </Link>
                                             </Button>
@@ -251,7 +172,7 @@ export default function ProjectsPage() {
                 </CardHeader>
                 <CardContent className="text-center">
                     <Button asChild>
-                        <Link href="mailto:contact@example.com">Get In Touch</Link>
+                        <Link href="mailto:mail@sayfullaheid.me">Get In Touch</Link>
                     </Button>
                 </CardContent>
             </Card>
