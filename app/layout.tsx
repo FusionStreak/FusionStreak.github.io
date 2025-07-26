@@ -85,6 +85,15 @@ export default function RootLayout({
                   >
                     ShadCN UI
                   </Link>
+                  {", "}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://fontawesome.com/"
+                    className="text-primary hover:underline"
+                  >
+                    Font Awesome Icons
+                  </Link>
                   {", and "}
                   <Link
                     target="_blank"
