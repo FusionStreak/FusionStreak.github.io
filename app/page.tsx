@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSquareLinkedin as LinkedIn, faGithubSquare as GitHub} from '@fortawesome/free-brands-svg-icons';
 
 export default function HomePage() {
   return (
@@ -23,10 +25,9 @@ export default function HomePage() {
           <Button asChild>
             <Link href="/projects">
               View My Work
-              <ExternalLink className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-          <Button variant="outline" asChild>
+          <Button variant="secondary" asChild>
             <Link href="/blog">Read My Blog</Link>
           </Button>
         </div>
@@ -35,17 +36,17 @@ export default function HomePage() {
         <div className="flex justify-center space-x-4">
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://github.com/FusionStreak" target="_blank" rel="noopener noreferrer">
-              <Github className="h-5 w-5" />
+              <FontAwesomeIcon icon={GitHub} className="h-7 w-7" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://linkedin.com/in/sayfullah-eid" target="_blank" rel="noopener noreferrer">
-              <Linkedin className="h-5 w-5" />
+              <FontAwesomeIcon icon={LinkedIn} className="h-7 w-7" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link href="mailto:contact@example.com">
-              <Mail className="h-5 w-5" />
+            <Link href="mailto:mail@sayfullaheid.me" rel="noopener noreferrer">
+              <Mail className="h-7 w-7" />
             </Link>
           </Button>
         </div>
@@ -64,28 +65,27 @@ export default function HomePage() {
             <div className="space-y-3">
               <h4 className="font-semibold">Frontend</h4>
               <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary">React</Badge>
-                <Badge variant="secondary">Next.js</Badge>
-                <Badge variant="secondary">TypeScript</Badge>
-                <Badge variant="secondary">Tailwind CSS</Badge>
+                <Badge className="font-mono">React</Badge>
+                <Badge className="font-mono">Next.js</Badge>
+                <Badge className="font-mono">TypeScript</Badge>
+                <Badge className="font-mono">Tailwind CSS</Badge>
               </div>
             </div>
             <div className="space-y-3">
               <h4 className="font-semibold">Backend</h4>
               <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary">Node.js</Badge>
-                <Badge variant="secondary">Python</Badge>
-                <Badge variant="secondary">PostgreSQL</Badge>
-                <Badge variant="secondary">MongoDB</Badge>
+                <Badge className="font-mono">Node.js</Badge>
+                <Badge className="font-mono">Axum</Badge>
+                <Badge className="font-mono">Tokio</Badge>
+                <Badge className="font-mono">Rust</Badge>
+                <Badge className="font-mono">PostgreSQL</Badge>
               </div>
             </div>
             <div className="space-y-3">
               <h4 className="font-semibold">Tools & DevOps</h4>
               <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary">Git</Badge>
-                <Badge variant="secondary">Docker</Badge>
-                <Badge variant="secondary">AWS</Badge>
-                <Badge variant="secondary">Vercel</Badge>
+                <Badge className="font-mono">Git</Badge>
+                <Badge className="font-mono">Docker</Badge>
               </div>
             </div>
           </div>
