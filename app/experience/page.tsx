@@ -67,6 +67,7 @@ export default function ExperiencePage() {
 
                             {   experience.achievements.length > 0 &&
                                 <div className="space-y-3">
+                                    <Separator className="my-4" />
                                     <h4 className="font-semibold">Key Achievements:</h4>
                                     <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                                         {experience.achievements.map((achievement, idx) => (
@@ -75,23 +76,19 @@ export default function ExperiencePage() {
                                     </ul>
                                 </div>
                             }
+                            <Separator className="my-4" />
 
                             <div className="space-y-3">
                                 <h4 className="font-semibold">Technologies Used:</h4>
                                 <div className="flex flex-wrap gap-2">
                                     {experience.technologies.map((tech, idx) => (
-                                        <Badge key={idx} variant="secondary">
+                                        <Badge key={idx} variant="default" className="font-mono">
                                             {tech}
                                         </Badge>
                                     ))}
                                 </div>
                             </div>
                         </CardContent>
-                        {index < experiences.length - 1 && (
-                            <div className="px-6 pb-6">
-                                <Separator />
-                            </div>
-                        )}
                     </Card>
                 ))}
             </div>
@@ -106,7 +103,6 @@ export default function ExperiencePage() {
                 <CardContent>
                     <p className="text-muted-foreground">
                         Feel free to reach out if you&apos;d like to discuss potential opportunities or just want to connect.
-                        You can find my contact information in the footer or reach out through my social media profiles.
                     </p>
                 </CardContent>
             </Card>

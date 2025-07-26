@@ -18,7 +18,6 @@ export const experiences: Experience[] = [
         company: 'Sphyrna Security Inc.',
         location: 'Ottawa, ON',
         startDate: '2024-05',
-        endDate: 'Present',
         description: 'Developing various internal tools and applications. As well as rewriting existing products in Rust to improve performance and security.',
         achievements: [
             "Developed a robust Rust-based testing tool stress testing of network security appliance products, measuring bandwidth and reliability under various loads.",
