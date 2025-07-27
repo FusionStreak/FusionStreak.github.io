@@ -50,6 +50,48 @@ export const projects: Project[] = [
         role: 'Frontend Developer'
     },
     {
+        title: 'GoodStreams',
+        description: 'NET3010 Course project. A web app to keep track of watched movies and reviews. A parody of GoodReads.',
+        longDescription: [
+            'Designed general structure of the website',
+            'Implemented backend functionality to communicate with MoviesDatabase API',
+            'Designed the database to store user information',
+        ],
+        technologies: ['PHP', 'XAMPP/LAMPP', 'MySQL'],
+        githubUrl: 'https://github.com/FusionStreak/GoodStreams',
+        featured: false,
+        createdAt: '2023-04-01',
+        status: 'completed',
+        role: 'Lead & Backend Developer'
+    },
+    {
+        title: 'Vehichle Sensor Simulator',
+        description: 'NET 3001 Course project. An arduino project that simulates a vehicle sensor system.',
+        longDescription: [],
+        technologies: ['Arduino', 'C/C++'],
+        githubUrl: 'https://github.com/FusionStreak/NET3001-Project',
+        featured: false,
+        createdAt: '2023-04-01',
+        status: 'completed',
+        role: 'Developer'
+    },
+    {
+        title: 'Orion',
+        description: 'This is a visualization tool to help cities identify the roofs that are the best candidates for having solar panels.',
+        longDescription: [
+            'Part of OGP Summit Hackathon 2019',
+            'Developed Python web-app, that processed building footprint data to show where solar roofing was possible',
+            ' Developed a Python script, utilising Pandas, to process building footprint data and identify suitable roofs for solar panels',
+            'Created a web application using Flask to visualize the processed data, allowing users to interactively explore potential solar panel installations',
+        ],
+        technologies: ['Python', 'Flask', 'Pandas'],
+        githubUrl: 'https://github.com/ogp-summit-hackathon-sommet-pgo/Orion',
+        liveUrl: 'https://ogp-summit-hackathon-sommet-pgo.github.io/Orion/index.html',
+        featured: false,
+        createdAt: "2019-05-01",
+        status: "completed"
+    },
+    {
         title: 'PlagueSim',
         description: 'A simulation tool for modeling the spread of computer viruses',
         longDescription: [
@@ -74,9 +116,22 @@ export const projects: Project[] = [
         ],
         technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
         githubUrl: 'https://github.com/FusionStreak.github.io',
-        liveUrl: 'https://sayfullaheid.me',
         featured: false,
         createdAt: '2022-12-25',
+        status: 'completed'
+    },
+    {
+        title: 'harmonia',
+        description: 'Harmonia is a non-intrusive solution for managers to monitors teams\' performance in real time.',
+        longDescription: [
+            'Developed a cognitive memory game using JavaScript that integrated with a Slack app, to perform daily check-ins on employee mental health',
+        ],
+        technologies: ['JavaScript'],
+        githubUrl: 'https://github.com/banaru4/Harmonia',
+        devpostUrl: 'https://devpost.com/software/harmonia',
+        imageUrl: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/000/919/431/datas/medium.png',
+        featured: false,
+        createdAt: '2023-05-01',
         status: 'completed'
     }
     
