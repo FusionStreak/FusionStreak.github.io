@@ -1,18 +1,83 @@
 export interface Project {
-    id: string;
     title: string;
     description: string;
-    longDescription: string;
+    longDescription: string[];
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
+    devpostUrl?: string;
     imageUrl?: string;
     featured: boolean;
     createdAt: string;
     status: "completed" | "in-progress" | "planning";
+    role?: string;
 }
 
 // You can easily extend this array to add more projects
 export const projects: Project[] = [
+    {
+        title: 'Capstone: LEO Satelite Routing and Load Balancing',
+        description: 'A capstone project focused on developing a conceptual routing and load balancing system for LEO satellites, and simulating its performance.',
+        longDescription: [
+            'Developed a routing and load balancing system for Low Earth Orbit (LEO) satellites',
+            'Enhanced LEOSIM, a Python Low Earth Orbit (LEO) network simulation tool, by implementing key features to address LEO Satellite network challenges',
+            'Integrated traffic generation and simulation capabilities from multiple ground stations, improving the tool\'s representation of real-world scenarios.',
+            'Led and organized regular team meetings, ensuring effective communication and collaboration among team members.',
+            'Maintained clear and concise communication with the supervising professor, providing project updates, addressing concerns, and seeking guidance.'
+        ],
+        technologies: ['Python', 'Pandas', 'h3', 'Panda3D', 'NetworkX', 'Network Simulation', 'Routing Algorithms'],
+        imageUrl: 'https://capstone.bitdegree.ca/NET/images/2024/GRP9_Simulation.jpg',
+        featured: true,
+        createdAt: '2023-09-01',
+        status: 'completed',
+        role: 'Team Lead & Developer'
+    },
+    {
+        title: 'foodpad',
+        description: 'An app that allows user to keep track of their pantries, using React Native',
+        longDescription: [
+            'Implemented dynamic features that enable users to add groceries, select storage methods (fridge, pantry, freezer), and receive automated expiry date suggestions.',
+            'Awarded Top 5 Hacks at McHacks, showcasing the project\'s innovation and technical merit within the hackathon environment.',
+            'Received the Tree Hugger award, recognizing the project as the most environmentally conscious hack, highlighting its positive impact.'
+        ],
+        technologies: ['React Native', 'Expo', 'JavaScript'],
+        githubUrl: 'https://github.com/ke-noel/foodpad',
+        imageUrl: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/802/858/datas/medium.png',
+        devpostUrl: 'https://devpost.com/software/foodpad',
+        featured: true,
+        createdAt: '2022-01-01',
+        status: 'completed',
+        role: 'Frontend Developer'
+    },
+    {
+        title: 'PlagueSim',
+        description: 'A simulation tool for modeling the spread of computer viruses',
+        longDescription: [
+            'Designed the general structure of the application through the use of UML diagrams',
+            'Implemented core data structures and functionality in Java'
+        ],
+        technologies: ['Java', 'UML', 'Data Structures'],
+        githubUrl: 'https://github.com/FusionStreak/MST_TermProject',
+        featured: false,
+        createdAt: '2021-10-26',
+        status: 'completed',
+        role: 'Lead Developer'
+    },
+    {
+        title: 'FusionStreak',
+        description: 'A personal portfolio website showcasing my projects, experiences, and blog posts.',
+        longDescription: [
+            'Developed a modern, responsive portfolio website to showcase software development skills',
+            'Implemented dynamic project and experience displays with filtering capabilities',
+            'Created an integrated blog system for sharing technical insights and tutorials',
+            'Designed with accessibility and performance optimization in mind'
+        ],
+        technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+        githubUrl: 'https://github.com/FusionStreak.github.io',
+        liveUrl: 'https://sayfullaheid.me',
+        featured: false,
+        createdAt: '2022-12-25',
+        status: 'completed'
+    }
     
 ];

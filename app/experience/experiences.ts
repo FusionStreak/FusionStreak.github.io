@@ -1,5 +1,4 @@
 export interface Experience {
-    id: number;
     title: string;
     company: string;
     location: string;
@@ -13,7 +12,6 @@ export interface Experience {
 
 export const experiences: Experience[] = [
     {
-        id: 3,
         title: 'Rust Developer',
         company: 'Sphyrna Security Inc.',
         location: 'Ottawa, ON',
@@ -39,7 +37,6 @@ export const experiences: Experience[] = [
         website: 'https://sphyrnasecurity.com'
     },
     {
-        id: 2,
         title: 'Software Developer Intern',
         company: 'Sphyrna Security Inc.',
         location: 'Ottawa, ON',
@@ -53,7 +50,6 @@ export const experiences: Experience[] = [
         website: 'https://sphyrnasecurity.com'
     },
     {
-        id: 1,
         title: 'Web Developer Intern',
         company: 'Sphyrna Security Inc.',
         location: 'Ottawa, ON',
@@ -74,7 +70,6 @@ export const experiences: Experience[] = [
         website: 'https://sphyrnasecurity.com'
     },
     {
-        id: 0,
         title: 'Software Developer Intern',
         company: 'Sphyrna Security Inc.',
         location: 'Ottawa, ON',

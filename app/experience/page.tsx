@@ -18,8 +18,8 @@ export default function ExperiencePage() {
             </div>
 
             <div className="space-y-6">
-                {experiences.map((experience) => (
-                    <Card key={experience.id} className="w-full">
+                {experiences.map((experience, index) => (
+                    <Card key={index} className="w-full">
                         <CardHeader>
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                 <div className="space-y-1">
