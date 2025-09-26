@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, statSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 
@@ -18,6 +18,10 @@ export interface BlogPost {
 
 export function getAllPosts(): BlogPost[] {
     try {
+        if (!existsSync(postsDirectory)) {
+            return [];
+        }
+
         const fileNames = readdirSync(postsDirectory);
         const allPosts = fileNames
             .filter((fileName) => fileName.endsWith('.mdx'))
@@ -51,6 +55,10 @@ export function getAllPosts(): BlogPost[] {
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     try {
         const fullPath = join(postsDirectory, `${slug}.mdx`);
+        if (!existsSync(fullPath)) {
+            return null;
+        }
+
         const fileContents = readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
         const stats = statSync(fullPath);
@@ -74,6 +82,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 export function getAllSlugs(): string[] {
     try {
+        if (!existsSync(postsDirectory)) {
+            return [];
+        }
+
         const fileNames = readdirSync(postsDirectory);
         return fileNames
             .filter((fileName) => fileName.endsWith('.mdx'))

@@ -9,20 +9,31 @@ import { getPostBySlug, getAllSlugs } from "@/lib/blog";
 import { MDXContent } from "@/components/mdx-content";
 
 interface BlogPostPageProps {
-    params: Promise<{
+    params: {
         slug: string;
-    }>;
+    };
 }
 
 export async function generateStaticParams() {
     const slugs = getAllSlugs();
+    if (slugs.length === 0) {
+        return [
+            {
+                slug: "__no-posts__",
+            },
+        ];
+    }
+
     return slugs.map((slug) => ({
         slug,
     }));
 }
 
+export const dynamicParams = false;
+export const dynamic = "error";
+
 export async function generateMetadata({ params }: BlogPostPageProps) {
-    const { slug } = await params;
+    const { slug } = params;
     const post = await getPostBySlug(slug);
 
     if (!post) {
@@ -38,8 +49,12 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const { slug } = await params;
+    const { slug } = params;
     const post = await getPostBySlug(slug);
+
+    if (slug === "__no-posts__") {
+        notFound();
+    }
 
     if (!post) {
         notFound();
