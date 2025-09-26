@@ -89,6 +89,15 @@ export default function RootLayout({
                   <Link
                     target="_blank"
                     rel="noreferrer"
+                    href="https://reactbits.dev/"
+                    className="text-primary hover:underline"
+                  >
+                    React Bits
+                  </Link>
+                  {", "}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
                     href="https://fontawesome.com/"
                     className="text-primary hover:underline"
                   >
