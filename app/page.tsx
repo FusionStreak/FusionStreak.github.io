@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +7,7 @@ import Link from "next/link";
 import { Mail } from "lucide-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSquareLinkedin as LinkedIn, faGithubSquare as GitHub} from '@fortawesome/free-brands-svg-icons';
+import SplitText from "@/components/SplitText";
 
 export default function HomePage() {
   return (
@@ -12,10 +15,16 @@ export default function HomePage() {
       {/* Hero Section */}
       <div className="text-center space-y-6">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            Hello, I&apos;m{" "}
-            <span className="text-primary">Sayfullah Eid</span>
-          </h1>
+          <SplitText 
+            text="Hello, I'm <primary>Sayfullah Eid</primary>"
+            tag="h1" 
+            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+            splitType="chars"
+            delay={50}
+            duration={0.8}
+            from={{ opacity: 0, y: 50 }}
+            to={{ opacity: 1, y: 0 }}
+          />
           <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
             A passionate full-stack developer who loves building innovative solutions and sharing knowledge through code.
           </p>
@@ -36,17 +45,17 @@ export default function HomePage() {
         <div className="flex justify-center space-x-4">
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://github.com/FusionStreak" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={GitHub} className="h-7 w-7" />
+              <FontAwesomeIcon icon={GitHub} className="h-20 w-20" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://linkedin.com/in/sayfullah-eid" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={LinkedIn} className="h-7 w-7" />
+              <FontAwesomeIcon icon={LinkedIn} className="h-12 w-12" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link href="mailto:mail@sayfullaheid.me" rel="noopener noreferrer">
-              <Mail className="h-7 w-7" />
+              <Mail className="h-12 w-12" />
             </Link>
           </Button>
         </div>
