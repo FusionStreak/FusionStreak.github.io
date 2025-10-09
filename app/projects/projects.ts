@@ -16,6 +16,31 @@ export interface Project {
 // You can easily extend this array to add more projects
 export const projects: Project[] = [
     {
+        title: 'SumacSIS',
+        description: 'A full-featured Student Information System (SIS) designed to streamline academic management for educational institutions.',
+        longDescription: [
+            'Developing a free and open source Student Information System (SIS) for educational institutions, with the goal of providing a secure and accessible student management service.',
+            'Working with a non-profit weekend language education program to learn their requirements and workflows for handling student records',
+        ],
+        technologies: ['ReactJS', 'TypeScript', 'Next.js', 'Rust', 'Actix-web', 'SeaORM', 'PostgreSQL'],
+        status: 'planning',
+        createdAt: '2025-08-01',
+        featured: true,
+    },
+    {
+        title: 'Paneo',
+        description: 'Paneo is an open-source, self-hosted monitoring and visualization tool built for homelab enthusiasts.',
+        longDescription: [
+            'Building an open-source solution that enables homelab enthusiasts to track and manage servers, containers, and self-hosted applications.',
+            'Integrating with Docker security tools to notify users of potential security faults in their services',
+            'Implementing a service-agent design to allow for tracking of multiple nodes/servers from a single dashboard',
+        ],
+        technologies: ['ReactJS', 'TypeScript', 'Next.js', 'Rust', 'Axum', 'tonic', 'sqlx', 'gRPC', 'PostgreSQL'],
+        status: 'planning',
+        createdAt: '2025-09-01',
+        featured: true,
+    },
+    {
         title: 'Capstone: LEO Satelite Routing and Load Balancing',
         description: 'A capstone project focused on developing a conceptual routing and load balancing system for LEO satellites, and simulating its performance.',
         longDescription: [
@@ -27,7 +52,7 @@ export const projects: Project[] = [
         ],
         technologies: ['Python', 'Pandas', 'h3', 'Panda3D', 'NetworkX', 'Network Simulation', 'Routing Algorithms'],
         imageUrl: 'https://capstone.bitdegree.ca/NET/images/2024/GRP9_Simulation.jpg',
-        featured: true,
+        featured: false,
         createdAt: '2023-09-01',
         status: 'completed',
         role: 'Team Lead & Developer'
@@ -44,7 +69,7 @@ export const projects: Project[] = [
         githubUrl: 'https://github.com/ke-noel/foodpad',
         imageUrl: 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/802/858/datas/medium.png',
         devpostUrl: 'https://devpost.com/software/foodpad',
-        featured: true,
+        featured: false,
         createdAt: '2022-01-01',
         status: 'completed',
         role: 'Frontend Developer'
