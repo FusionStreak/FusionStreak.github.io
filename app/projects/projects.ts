@@ -131,7 +131,7 @@ export const projects: Project[] = [
         role: 'Lead Developer'
     },
     {
-        title: 'FusionStreak',
+        title: 'Personal Portfolio Website',
         description: 'A personal portfolio website showcasing my projects, experiences, and blog posts.',
         longDescription: [
             'Developed a modern, responsive portfolio website to showcase software development skills',
@@ -141,9 +141,9 @@ export const projects: Project[] = [
         ],
         technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
         githubUrl: 'https://github.com/FusionStreak.github.io',
-        featured: false,
+        featured: true,
         createdAt: '2022-12-25',
-        status: 'completed'
+        status: 'in-progress',
     },
     {
         title: 'harmonia',
