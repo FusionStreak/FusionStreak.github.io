@@ -26,7 +26,7 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ta
 
 ## 📁 Project Structure
 
-```
+```txt
 ├── app/                    # Next.js app directory
 │   ├── blog/              # Blog pages
 │   ├── experience/        # Experience page
