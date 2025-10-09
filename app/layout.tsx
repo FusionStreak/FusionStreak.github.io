@@ -98,9 +98,6 @@ export default function RootLayout({
                       pillColor="#ff6900"
                       hoveredPillTextColor="#ffffff"
                       pillTextColor="#ffffff"
-                      mobileAccessory={
-                        <ThemeSwitcher className="h-10 w-10 border-border/30 bg-background/80 shadow" />
-                      }
                       mobileMenuAccessory={
                         <div className="rounded-[22px] bg-[var(--base,#000)]/10 p-2">
                           <ThemeSwitcher className="h-12 w-full border-border/20 bg-background/90" />
@@ -113,8 +110,8 @@ export default function RootLayout({
                   {children}
                 </main>
                 <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center px-4 py-6">
-                  <div className="flex flex-col items-center gap-2 text-xs text-muted-foreground">
-                    <p>
+                  <div className="flex flex-col items-center gap-3 text-xs text-muted-foreground max-w-2xl">
+                    <p className="text-center">
                       &copy; {new Date().getFullYear()} Created by{" "}
                       <Link
                         target="_blank"
@@ -125,8 +122,8 @@ export default function RootLayout({
                         Sayfullah Eid
                       </Link>
                     </p>
-                    <p className="flex items-center gap-1">
-                      Built with{" "}
+                    <p className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center leading-relaxed">
+                      <span>Built with</span>
                       <Link
                         target="_blank"
                         rel="noreferrer"
@@ -135,7 +132,7 @@ export default function RootLayout({
                       >
                         Next.js
                       </Link>
-                      {", "}
+                      <span>,</span>
                       <Link
                         target="_blank"
                         rel="noreferrer"
@@ -144,7 +141,7 @@ export default function RootLayout({
                       >
                         ShadCN UI
                       </Link>
-                      {", "}
+                      <span>,</span>
                       <Link
                         target="_blank"
                         rel="noreferrer"
@@ -153,7 +150,7 @@ export default function RootLayout({
                       >
                         React Bits
                       </Link>
-                      {", "}
+                      <span>,</span>
                       <Link
                         target="_blank"
                         rel="noreferrer"
@@ -162,7 +159,7 @@ export default function RootLayout({
                       >
                         Font Awesome Icons
                       </Link>
-                      {", and "}
+                      <span>, and</span>
                       <Link
                         target="_blank"
                         rel="noreferrer"
