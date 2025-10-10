@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
-import PillNav, { PillNavItem } from "@/components/PillNav";
+import SimpleNav, { NavItem } from "@/components/SimpleNav";
 import Link from "next/link";
 import "highlight.js/styles/github-dark.css";
 import "lenis/dist/lenis.css";
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description: "A personal Blog",
 };
 
-const NAV_ITEMS: PillNavItem[] = [
+const NAV_ITEMS: NavItem[] = [
   {
     label: "Home",
     href: "/",
@@ -65,22 +65,18 @@ export default function RootLayout({
               {/* Simple gradient background */}
               <div className="fixed inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-primary/20" />
 
-              <div className="relative z-10 flex min-h-dvh flex-col space-y-6">
-                <header className="relative z-40 h-24 px-2">
-                  <div className="container relative mx-auto flex h-full max-w-screen-7xl items-center">
-                    <PillNav
+              <div className="relative z-10 flex min-h-dvh flex-col">
+                <header className="sticky top-0 z-40 px-2 pt-4 pb-2">
+                  <div className="container relative mx-auto max-w-6xl">
+                    <SimpleNav
                       logo="/logo.svg"
                       logoAlt="Sayfullah Eid logo"
                       items={NAV_ITEMS}
-                      className="backdrop-blur-xl bg-background/70 border border-border/20 shadow-md shadow-primary/5 rounded-full"
-                      baseColor="#000000"
-                      pillColor="#ff6900"
-                      hoveredPillTextColor="#ffffff"
-                      pillTextColor="#ffffff"
+                      className="backdrop-blur-xl bg-background/70 border border-border/20 shadow-lg shadow-primary/5 rounded-2xl"
                     />
                   </div>
                 </header>
-                <main className="container flex-1 flex-col items-center justify-center gap-6 px-2 pt-8 md:pt-12 lg:py-32 mx-auto max-w-screen-7xl">
+                <main className="container flex-1 flex-col items-center justify-center gap-6 px-2 pt-8 md:pt-12 lg:py-32 mx-auto max-w-6xl">
                   {children}
                 </main>
                 <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center px-4 py-6">
