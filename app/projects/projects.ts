@@ -140,7 +140,7 @@ export const projects: Project[] = [
             'Designed with accessibility and performance optimization in mind'
         ],
         technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-        githubUrl: 'https://github.com/FusionStreak.github.io',
+        githubUrl: 'https://github.com/FusionStreak/FusionStreak.github.io',
         featured: true,
         createdAt: '2022-12-25',
         status: 'in-progress',
