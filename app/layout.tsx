@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import PillNav, { PillNavItem } from "@/components/PillNav";
-import PixelBlast from "@/components/PixelBlast";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 import Link from "next/link";
 import "highlight.js/styles/github-dark.css";
 import "lenis/dist/lenis.css";
@@ -51,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -59,33 +57,14 @@ export default function RootLayout({
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
+            enableSystem={false}
+            forcedTheme="dark"
             disableTransitionOnChange
           >
-            <div className="relative min-h-dvh overflow-hidden">
-              <div className="pointer-events-auto absolute inset-0 -z-10">
-                <PixelBlast
-                  variant="circle"
-                  pixelSize={5}
-                  patternScale={1.6}
-                  patternDensity={1.45}
-                  pixelSizeJitter={0.35}
-                  edgeFade={0.2}
-                  color="#ff7b19"
-                  darkColor="#ff7b19"
-                  lightColor="#0e0e0f"
-                  rippleIntensityScale={0.9}
-                  rippleThickness={0.15}
-                  liquid
-                  liquidStrength={0.2}
-                  liquidRadius={1.2}
-                  noiseAmount={0.08}
-                  className="h-full w-full opacity-30"
-                />
-              </div>
-              <div className="pointer-events-none fixed bottom-6 right-6 z-50 hidden md:block">
-                <ThemeSwitcher className="pointer-events-auto h-12 w-12 border-border/40 bg-background/80 shadow-xl backdrop-blur-lg" />
-              </div>
+            <div className="relative min-h-dvh">
+              {/* Simple gradient background */}
+              <div className="fixed inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-primary/20" />
+
               <div className="relative z-10 flex min-h-dvh flex-col space-y-6">
                 <header className="relative z-40 h-24 px-2">
                   <div className="container relative mx-auto flex h-full max-w-screen-7xl items-center">
@@ -98,11 +77,6 @@ export default function RootLayout({
                       pillColor="#ff6900"
                       hoveredPillTextColor="#ffffff"
                       pillTextColor="#ffffff"
-                      mobileMenuAccessory={
-                        <div className="rounded-[22px] bg-[var(--base,#000)]/10 p-2">
-                          <ThemeSwitcher className="h-12 w-full border-border/20 bg-background/90" />
-                        </div>
-                      }
                     />
                   </div>
                 </header>
