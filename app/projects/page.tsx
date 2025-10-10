@@ -101,11 +101,11 @@ export default function ProjectsPage() {
 
   return (
     <div className="space-y-12">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+      <div className="text-center space-y-2">
+        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
           My Projects
         </h1>
-        <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+        <p className="mx-auto max-w-[700px] text-muted-foreground">
           A collection of projects I&apos;ve worked on, showcasing my skills and
           passion for development.
         </p>
