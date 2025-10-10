@@ -12,15 +12,15 @@ export interface Experience {
 
 export const experiences: Experience[] = [
     {
-        title: 'Rust Developer',
+        title: 'Software Developer',
         company: 'Sphyrna Security Inc.',
         location: 'Ottawa, ON',
         startDate: '2024-05',
         description: 'Developing various internal tools and applications. As well as rewriting existing products in Rust to improve performance and security.',
         achievements: [
-            "Developed a robust Rust-based testing tool stress testing of network security appliance products, measuring bandwidth and reliability under various loads.",
-            "Created a full-stack internal web application for managing customer support tickets, IT alerts, product deployments, and inventory. Integrating with GitLab, Teams, and Outlook.",
-            "Expanded the team's expertise in Rust development, supporting the company-wide transition to more memory-safe technologies and modernizing legacy systems."
+            "Rewrote and expanded the company's primary hardware testing suite from Bash to Rust, enabling reliable high-speed validation of network appliance throughput and data integrity. Eliminating memory safety issues and improving performance, stability, and scalability of internal QA processes.",
+            "Designed and built a full-stack internal CRM application using Next.js, TypeScript, and Rust (Axum) to manage support tickets, IT alerts, deployments, and inventory. Led requirement-gathering sessions with management, defined database schemas, and delivered a production-ready system tailored to company-specific workflows.",
+            "Expanded the team's expertise in Rust development through various demos and documentations, supporting the company-wide transition to modern technologies and modernizing legacy systems"
         ],
         technologies: [
             "Rust",
@@ -57,8 +57,9 @@ export const experiences: Experience[] = [
         endDate: '2022-12',
         description: 'Web Development Internship at Sphyrna Security Inc. focusing on Verity, a compliance management platform.',
         achievements: [
-            "Designed and implemented a comprehensive authentication system for a web application, incorporating Multi-Factor Authentication (MFA)",
-            "Engineered a versatile email notification system within the web application, allowing seamless customization for each customer based on their specific needs.",
+            "Designed and implemented a complete authentication system for a SaaS product, allowing for deployments in various customer environments",
+            "Developed a versatile email notification system within the SaaS product, allowing for multi-language email templates for our multilingual clients",
+            "Effectively managed and worked on customer-reported bugs and feature requests by prioritizing them based on impact and urgency."
 
         ],
         technologies: [
