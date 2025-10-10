@@ -270,8 +270,8 @@ export default function ProjectsPage() {
             <CarouselNext className="hidden md:flex" />
           </Carousel>
 
-          {/* Pagination dots for mobile */}
-          <div className="flex justify-center gap-2 pt-4 md:hidden">
+          {/* Pagination dots */}
+          <div className="flex justify-center gap-2 pt-4">
             {Array.from({ length: featuredCount }).map((_, index) => (
               <button
                 key={index}
