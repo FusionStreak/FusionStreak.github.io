@@ -5,7 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSquareLinkedin as LinkedIn,
+  faGithubSquare as GitHub,
+} from "@fortawesome/free-brands-svg-icons";
+import { Button } from "@/components/ui/button";
 
 export type NavItem = {
   label: string;
@@ -210,6 +216,39 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
               </span>
             </Link>
           ))}
+
+          {/* Social Links */}
+          <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-border/40">
+            <Button variant="ghost" size="icon" asChild>
+              <Link
+                href="https://github.com/FusionStreak"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit GitHub profile"
+              >
+                <FontAwesomeIcon icon={GitHub} className="w-5 h-5" />
+              </Link>
+            </Button>
+            <Button variant="ghost" size="icon" asChild>
+              <Link
+                href="https://linkedin.com/in/sayfullah-eid"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit LinkedIn profile"
+              >
+                <FontAwesomeIcon icon={LinkedIn} className="w-5 h-5" />
+              </Link>
+            </Button>
+            <Button variant="ghost" size="icon" asChild>
+              <Link
+                href="mailto:mail@sayfullaheid.me"
+                rel="noopener noreferrer"
+                aria-label="Send email"
+              >
+                <Mail className="w-5 h-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -254,6 +293,39 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                 </Link>
               );
             })}
+
+            {/* Social Links - Mobile */}
+            <div className="flex justify-center space-x-2 mt-4 pt-4 border-t border-border/40">
+              <Button variant="ghost" size="icon" asChild>
+                <Link
+                  href="https://github.com/FusionStreak"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit GitHub profile"
+                >
+                  <FontAwesomeIcon icon={GitHub} className="w-5 h-5" />
+                </Link>
+              </Button>
+              <Button variant="ghost" size="icon" asChild>
+                <Link
+                  href="https://linkedin.com/in/sayfullah-eid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit LinkedIn profile"
+                >
+                  <FontAwesomeIcon icon={LinkedIn} className="w-5 h-5" />
+                </Link>
+              </Button>
+              <Button variant="ghost" size="icon" asChild>
+                <Link
+                  href="mailto:mail@sayfullaheid.me"
+                  rel="noopener noreferrer"
+                  aria-label="Send email"
+                >
+                  <Mail className="w-5 h-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       )}
