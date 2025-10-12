@@ -76,7 +76,7 @@ export default function RootLayout({
                     />
                   </div>
                 </header>
-                <main className="container flex-1 flex-col items-center justify-center gap-6 px-2 pt-8 md:pt-12 lg:py-32 mx-auto max-w-6xl">
+                <main className="container flex-1 flex-col items-center justify-center gap-6 px-2 pt-4 md:pt-6 lg:pt-8 pb-12 mx-auto max-w-6xl">
                   {children}
                 </main>
                 <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center px-4 py-6">
@@ -90,6 +90,24 @@ export default function RootLayout({
                         className="text-primary hover:underline"
                       >
                         Sayfullah Eid
+                      </Link>{" "}
+                      · Code under{" "}
+                      <Link
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://github.com/FusionStreak/FusionStreak.github.io/blob/main/LICENSE"
+                        className="text-primary hover:underline"
+                      >
+                        MIT
+                      </Link>
+                      {", Content under "}
+                      <Link
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://github.com/FusionStreak/FusionStreak.github.io/blob/main/CONTENT_LICENSE"
+                        className="text-primary hover:underline"
+                      >
+                        CC BY-NC 4.0
                       </Link>
                     </p>
                     <p className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center leading-relaxed">
