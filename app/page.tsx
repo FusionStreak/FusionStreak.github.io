@@ -10,12 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Mail } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSquareLinkedin as LinkedIn,
-  faGithubSquare as GitHub,
-} from "@fortawesome/free-brands-svg-icons";
 import SplitText from "@/components/SplitText";
 
 export default function HomePage() {
@@ -46,33 +40,6 @@ export default function HomePage() {
           </Button>
           <Button variant="secondary" asChild>
             <Link href="/blog">Read My Blog</Link>
-          </Button>
-        </div>
-
-        {/* Social Links */}
-        <div className="flex justify-center space-x-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link
-              href="https://github.com/FusionStreak"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={GitHub} />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link
-              href="https://linkedin.com/in/sayfullah-eid"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={LinkedIn} />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="mailto:mail@sayfullaheid.me" rel="noopener noreferrer">
-              <Mail />
-            </Link>
           </Button>
         </div>
       </div>
