@@ -100,30 +100,20 @@ export default function ProjectsPage() {
   }, [otherApi]);
 
   return (
-    <div className="space-y-12">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-          My Projects
-        </h1>
-        <p className="mx-auto max-w-[700px] text-muted-foreground">
-          A collection of projects I&apos;ve worked on, showcasing my skills and
-          passion for development.
-        </p>
-
-        {/* Status Legend */}
-        <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground pt-2">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-            <span>Completed</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <span>In Progress</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-blue-500" />
-            <span>Planning</span>
-          </div>
+    <div className="space-y-8">
+      {/* Status Legend */}
+      <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <span>Completed</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-yellow-500" />
+          <span>In Progress</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-blue-500" />
+          <span>Planning</span>
         </div>
       </div>
 
