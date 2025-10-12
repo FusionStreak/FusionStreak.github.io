@@ -18,17 +18,7 @@ export default function BlogPage() {
   const recentPosts = allPosts.filter((post) => !post.featured).slice(0, 6);
 
   return (
-    <div className="space-y-12">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-          Blog
-        </h1>
-        <p className="mx-auto max-w-[700px] text-muted-foreground">
-          Thoughts, tutorials, and insights about web development, technology,
-          and programming.
-        </p>
-      </div>
-
+    <div className="space-y-8">
       {featuredPosts.length > 0 && (
         <div className="space-y-6">
           <h2 className="text-2xl font-bold">Featured Posts</h2>
