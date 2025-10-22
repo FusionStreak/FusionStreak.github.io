@@ -63,7 +63,7 @@ export default function RootLayout({
           >
             <div className="relative min-h-dvh">
               {/* Simple gradient background */}
-              <div className="fixed inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-primary/20" />
+              <div className="fixed inset-0 -z-10 bg-gradient-to-br from-background via-complementary/5 to-complementary/15" />
 
               <div className="relative z-10 flex min-h-dvh flex-col">
                 <header className="sticky top-0 z-40 px-2 pt-4 pb-2">
