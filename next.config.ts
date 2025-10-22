@@ -1,9 +1,5 @@
 import type { NextConfig } from "next";
 import createMDX from '@next/mdx';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const nextConfig: NextConfig = {
   output: 'export',
@@ -15,23 +11,13 @@ const nextConfig: NextConfig = {
   experimental: {
     mdxRs: false,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
 };
 
 const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeHighlight,
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-    ],
-  },
+  extension: /\.mdx?$/,
 });
 
 export default withMDX(nextConfig);
