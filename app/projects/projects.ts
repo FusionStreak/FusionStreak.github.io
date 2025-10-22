@@ -131,6 +131,23 @@ export const projects: Project[] = [
         role: 'Lead Developer'
     },
     {
+        title: 'FusionSnake',
+        description: 'A competitive bot snake that plays in the Battlesnake programming game, featuring intelligent pathfinding and survival strategies.',
+        longDescription: [
+            'Built a bot agent for the Battlesnake competitive programming challenge',
+            'Implemented advanced pathfinding algorithms to navigate complex game boards',
+            'Developed survival strategies including food acquisition and collision avoidance',
+            'Deployed as a live web service with real-time game statistics tracking',
+            'Competes in Standard and Duels game modes on the Battlesnake platform'
+        ],
+        technologies: ['Rust', 'Rocket', 'Pathfinding Algorithms', 'Docker'],
+        liveUrl: 'https://fusionsnake.sayfullaheid.me',
+        githubUrl: 'https://github.com/FusionStreak/FusionSnake',
+        featured: false,
+        createdAt: '2024-06-01',
+        status: 'in-progress',
+    },
+    {
         title: 'Personal Portfolio Website',
         description: 'A personal portfolio website showcasing my projects, experiences, and blog posts.',
         longDescription: [
