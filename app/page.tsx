@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,8 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 import SplitText from "@/components/SplitText";
+import { BattlesnakeStats } from "@/components/battlesnake-stats";
 
 export default function HomePage() {
   return (
@@ -33,15 +32,11 @@ export default function HomePage() {
             solutions and sharing knowledge through code.
           </p>
         </div>
+      </div>
 
-        <div className="flex justify-center space-x-4">
-          <Button asChild>
-            <Link href="/projects">View My Work</Link>
-          </Button>
-          <Button variant="secondary" asChild>
-            <Link href="/blog">Read My Blog</Link>
-          </Button>
-        </div>
+      {/* Battlesnake Stats Widget */}
+      <div className="w-full max-w-4xl">
+        <BattlesnakeStats />
       </div>
 
       {/* Skills Section */}
@@ -55,27 +50,49 @@ export default function HomePage() {
             <div className="space-y-3">
               <h4 className="font-semibold">Frontend</h4>
               <div className="flex flex-wrap gap-2">
-                <Badge className="font-mono">React</Badge>
-                <Badge className="font-mono">Next.js</Badge>
-                <Badge className="font-mono">TypeScript</Badge>
-                <Badge className="font-mono">Tailwind CSS</Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  React
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Next.js
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  TypeScript
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Tailwind CSS
+                </Badge>
               </div>
             </div>
             <div className="space-y-3">
               <h4 className="font-semibold">Backend</h4>
               <div className="flex flex-wrap gap-2">
-                <Badge className="font-mono">Node.js</Badge>
-                <Badge className="font-mono">Axum</Badge>
-                <Badge className="font-mono">Tokio</Badge>
-                <Badge className="font-mono">Rust</Badge>
-                <Badge className="font-mono">PostgreSQL</Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Node.js
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Axum
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Tokio
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Rust
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  PostgreSQL
+                </Badge>
               </div>
             </div>
             <div className="space-y-3">
               <h4 className="font-semibold">Tools & DevOps</h4>
               <div className="flex flex-wrap gap-2">
-                <Badge className="font-mono">Git</Badge>
-                <Badge className="font-mono">Docker</Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Git
+                </Badge>
+                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                  Docker
+                </Badge>
               </div>
             </div>
           </div>
