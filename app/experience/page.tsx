@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Card,
@@ -6,93 +6,93 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { CalendarDays, MapPin, ExternalLink, ChevronDown } from "lucide-react";
-import Link from "next/link";
-import { experiences } from "./experiences";
-import { useState } from "react";
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+import { CalendarDays, MapPin, ExternalLink, ChevronDown } from 'lucide-react'
+import Link from 'next/link'
+import { experiences } from './experiences'
+import { useState } from 'react'
 
 export default function ExperiencePage() {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   // Parse date string in format 'YYYY-MM' safely to avoid timezone issues
   const parseDate = (dateString: string) => {
-    const [year, month] = dateString.split("-").map(Number);
+    const [year, month] = dateString.split('-').map(Number)
     // Create date at noon on the 15th to avoid timezone edge cases
-    return new Date(year, month - 1, 15);
-  };
+    return new Date(year, month - 1, 15)
+  }
 
   const formatDateRange = (startDate: string, endDate?: string) => {
-    const start = parseDate(startDate).toLocaleDateString("en-US", {
-      month: "short",
-      year: "numeric",
-    });
+    const start = parseDate(startDate).toLocaleDateString('en-US', {
+      month: 'short',
+      year: 'numeric',
+    })
     const end = endDate
-      ? parseDate(endDate).toLocaleDateString("en-US", {
-          month: "short",
-          year: "numeric",
+      ? parseDate(endDate).toLocaleDateString('en-US', {
+          month: 'short',
+          year: 'numeric',
         })
-      : "Present";
-    return `${start} - ${end}`;
-  };
+      : 'Present'
+    return `${start} - ${end}`
+  }
 
   const getDuration = (startDate: string, endDate?: string) => {
-    const start = parseDate(startDate);
-    const end = endDate ? parseDate(endDate) : new Date();
+    const start = parseDate(startDate)
+    const end = endDate ? parseDate(endDate) : new Date()
     const months =
       (end.getFullYear() - start.getFullYear()) * 12 +
       (end.getMonth() - start.getMonth()) +
-      1; // +1 to include both start and end months
-    const years = Math.floor(months / 12);
-    const remainingMonths = months % 12;
+      1 // +1 to include both start and end months
+    const years = Math.floor(months / 12)
+    const remainingMonths = months % 12
 
     if (years > 0 && remainingMonths > 0) {
-      return `${years}y ${remainingMonths}m`;
+      return `${years}y ${remainingMonths}m`
     } else if (years > 0) {
-      return `${years}y`;
+      return `${years}y`
     } else {
-      return `${remainingMonths}m`;
+      return `${remainingMonths}m`
     }
-  };
+  }
 
   return (
-    <div className="space-y-4 max-w-6xl mx-auto">
+    <div className="mx-auto max-w-6xl space-y-4">
       {/* Desktop: Two-column layout, Mobile: Single column */}
       <div className="lg:grid lg:grid-cols-2 lg:gap-8">
         {/* Left Column: Timeline (all roles) */}
         <div className="relative">
           {/* Timeline line - vertical connecting all dots */}
-          <div className="absolute top-0 left-8 lg:left-8 w-0.5 h-full bg-border" />
+          <div className="bg-border absolute top-0 left-8 h-full w-0.5 lg:left-8" />
 
           {/* Timeline items */}
-          <div className="space-y-6 relative">
+          <div className="relative space-y-6">
             {experiences.map((experience, index) => {
-              const isSelected = selectedIndex === index;
+              const isSelected = selectedIndex === index
               const experienceYear = parseDate(
-                experience.startDate
-              ).getFullYear();
+                experience.startDate,
+              ).getFullYear()
               const showYearMarker =
                 index === 0 ||
                 parseDate(experiences[index - 1].startDate).getFullYear() !==
-                  experienceYear;
+                  experienceYear
 
               return (
                 <div key={index} className="relative">
                   {/* Year marker above experience when year changes */}
                   {showYearMarker && (
-                    <div className="mb-2 text-sm font-bold text-primary">
+                    <div className="text-primary mb-2 text-sm font-bold">
                       {experienceYear}
                     </div>
                   )}
 
                   {/* Timeline dot */}
                   <div
-                    className={`absolute left-8 -translate-x-1/2 w-6 h-6 rounded-full border-4 border-background z-10 transition-all cursor-pointer hover:scale-125 ${
+                    className={`border-background absolute left-8 z-10 h-6 w-6 -translate-x-1/2 cursor-pointer rounded-full border-4 transition-all hover:scale-125 ${
                       isSelected
-                        ? "bg-primary scale-125"
-                        : "bg-muted hover:bg-primary/50"
+                        ? 'bg-primary scale-125'
+                        : 'bg-muted hover:bg-primary/50'
                     } top-6`}
                     onClick={() => setSelectedIndex(isSelected ? null : index)}
                   />
@@ -100,19 +100,19 @@ export default function ExperiencePage() {
                   {/* Compact role card */}
                   <div className="ml-20">
                     <Card
-                      className={`transition-all cursor-pointer hover:shadow-lg ${
-                        isSelected ? "ring-2 ring-primary shadow-lg" : ""
+                      className={`cursor-pointer transition-all hover:shadow-lg ${
+                        isSelected ? 'ring-primary shadow-lg ring-2' : ''
                       }`}
                       onClick={() =>
                         setSelectedIndex(isSelected ? null : index)
                       }
                     >
-                      <CardHeader className="pb-3 space-y-2">
+                      <CardHeader className="space-y-2 pb-3">
                         <CardTitle className="text-lg leading-tight">
                           {experience.title}
                         </CardTitle>
                         <CardDescription className="space-y-1">
-                          <div className="flex items-center gap-2 font-medium text-primary">
+                          <div className="text-primary flex items-center gap-2 font-medium">
                             {experience.company}
                             {experience.website && (
                               <Link
@@ -120,7 +120,7 @@ export default function ExperiencePage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-block hover:text-primary/80"
+                                className="hover:text-primary/80 inline-block"
                               >
                                 <ExternalLink className="h-3 w-3" />
                               </Link>
@@ -135,12 +135,12 @@ export default function ExperiencePage() {
                               <CalendarDays className="h-3 w-3" />
                               {formatDateRange(
                                 experience.startDate,
-                                experience.endDate
-                              )}{" "}
-                              •{" "}
+                                experience.endDate,
+                              )}{' '}
+                              •{' '}
                               {getDuration(
                                 experience.startDate,
-                                experience.endDate
+                                experience.endDate,
                               )}
                             </span>
                           </div>
@@ -149,8 +149,8 @@ export default function ExperiencePage() {
 
                       {/* Mobile: Expanded content inline */}
                       {isSelected && (
-                        <CardContent className="space-y-4 lg:hidden animate-in fade-in slide-in-from-top-2">
-                          <p className="text-sm text-muted-foreground">
+                        <CardContent className="animate-in fade-in slide-in-from-top-2 space-y-4 lg:hidden">
+                          <p className="text-muted-foreground text-sm">
                             {experience.description}
                           </p>
 
@@ -161,13 +161,13 @@ export default function ExperiencePage() {
                                 <h4 className="text-sm font-semibold">
                                   Key Achievements:
                                 </h4>
-                                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                                <ul className="text-muted-foreground list-inside list-disc space-y-1 text-sm">
                                   {experience.achievements.map(
                                     (achievement, idx) => (
                                       <li key={idx} className="leading-relaxed">
                                         {achievement}
                                       </li>
-                                    )
+                                    ),
                                   )}
                                 </ul>
                               </div>
@@ -185,7 +185,7 @@ export default function ExperiencePage() {
                                 <Badge
                                   key={idx}
                                   variant="secondary"
-                                  className="text-xs font-mono"
+                                  className="font-mono text-xs"
                                 >
                                   {tech}
                                 </Badge>
@@ -197,7 +197,7 @@ export default function ExperiencePage() {
                     </Card>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
@@ -206,20 +206,20 @@ export default function ExperiencePage() {
         <div className="hidden lg:block">
           <div className="sticky top-8">
             {selectedIndex !== null ? (
-              <Card className="shadow-lg animate-in fade-in slide-in-from-right-4">
+              <Card className="animate-in fade-in slide-in-from-right-4 shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-xl">
                     {experiences[selectedIndex].title}
                   </CardTitle>
                   <CardDescription className="space-y-2">
-                    <div className="flex items-center gap-2 font-medium text-primary text-base">
+                    <div className="text-primary flex items-center gap-2 text-base font-medium">
                       {experiences[selectedIndex].company}
                       {experiences[selectedIndex].website && (
                         <Link
                           href={experiences[selectedIndex].website!}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-block hover:text-primary/80"
+                          className="hover:text-primary/80 inline-block"
                         >
                           <ExternalLink className="h-3 w-3" />
                         </Link>
@@ -235,14 +235,14 @@ export default function ExperiencePage() {
                         <CalendarDays className="h-3 w-3" />
                         {formatDateRange(
                           experiences[selectedIndex].startDate,
-                          experiences[selectedIndex].endDate
+                          experiences[selectedIndex].endDate,
                         )}
                       </span>
                       <span>•</span>
                       <span>
                         {getDuration(
                           experiences[selectedIndex].startDate,
-                          experiences[selectedIndex].endDate
+                          experiences[selectedIndex].endDate,
                         )}
                       </span>
                     </div>
@@ -258,13 +258,13 @@ export default function ExperiencePage() {
                       <Separator />
                       <div className="space-y-2">
                         <h4 className="font-semibold">Key Achievements:</h4>
-                        <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                        <ul className="text-muted-foreground list-inside list-disc space-y-2 text-sm">
                           {experiences[selectedIndex].achievements.map(
                             (achievement, idx) => (
                               <li key={idx} className="leading-relaxed">
                                 {achievement}
                               </li>
-                            )
+                            ),
                           )}
                         </ul>
                       </div>
@@ -281,24 +281,24 @@ export default function ExperiencePage() {
                           <Badge
                             key={idx}
                             variant="secondary"
-                            className="text-xs font-mono"
+                            className="font-mono text-xs"
                           >
                             {tech}
                           </Badge>
-                        )
+                        ),
                       )}
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ) : (
-              <Card className="shadow-lg border-dashed">
-                <CardContent className="flex items-center justify-center h-64 text-center p-6">
+              <Card className="border-dashed shadow-lg">
+                <CardContent className="flex h-64 items-center justify-center p-6 text-center">
                   <div className="space-y-2">
                     <p className="text-muted-foreground">
                       Click on any experience to view details
                     </p>
-                    <ChevronDown className="h-8 w-8 mx-auto text-muted-foreground animate-bounce" />
+                    <ChevronDown className="text-muted-foreground mx-auto h-8 w-8 animate-bounce" />
                   </div>
                 </CardContent>
               </Card>
@@ -307,5 +307,5 @@ export default function ExperiencePage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

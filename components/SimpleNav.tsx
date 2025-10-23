@@ -1,86 +1,86 @@
-"use client";
+'use client'
 
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { gsap } from "gsap";
-import { Menu, X, Mail } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { gsap } from 'gsap'
+import { Menu, X, Mail } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faSquareLinkedin as LinkedIn,
   faGithubSquare as GitHub,
-} from "@fortawesome/free-brands-svg-icons";
-import { Button } from "@/components/ui/button";
+} from '@fortawesome/free-brands-svg-icons'
+import { Button } from '@/components/ui/button'
 
 export type NavItem = {
-  label: string;
-  href: string;
-  ariaLabel?: string;
-};
+  label: string
+  href: string
+  ariaLabel?: string
+}
 
 export interface SimpleNavProps {
-  logo: string;
-  logoAlt?: string;
-  items: NavItem[];
-  className?: string;
+  logo: string
+  logoAlt?: string
+  items: NavItem[]
+  className?: string
 }
 
 const normalizeHref = (href?: string) => {
-  if (!href) return href;
-  if (href === "/") return "/";
-  return href.replace(/\/$/, "");
-};
+  if (!href) return href
+  if (href === '/') return '/'
+  return href.replace(/\/$/, '')
+}
 
 const SimpleNav: React.FC<SimpleNavProps> = ({
   logo,
-  logoAlt = "Logo",
+  logoAlt = 'Logo',
   items,
-  className = "",
+  className = '',
 }) => {
-  const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const underlineRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+  const pathname = usePathname()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const underlineRefs = useRef<Array<HTMLSpanElement | null>>([])
+  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
 
   // Close mobile menu when pathname changes
   useEffect(() => {
     if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
+      setIsMobileMenuOpen(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname])
 
   // Initial load animation
   useEffect(() => {
-    if (!navRef.current) return;
+    if (!navRef.current) return
 
     const ctx = gsap.context(() => {
       gsap.from(navRef.current, {
         y: -20,
         opacity: 0,
         duration: 0.8,
-        ease: "power3.out",
-      });
+        ease: 'power3.out',
+      })
 
       gsap.from(linkRefs.current, {
         y: -10,
         opacity: 0,
         duration: 0.6,
         stagger: 0.1,
-        ease: "power2.out",
+        ease: 'power2.out',
         delay: 0.2,
-      });
-    }, navRef);
+      })
+    }, navRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   // Mobile menu animation
   useEffect(() => {
-    if (!mobileMenuRef.current) return;
+    if (!mobileMenuRef.current) return
 
     const ctx = gsap.context(() => {
       if (isMobileMenuOpen) {
@@ -88,86 +88,84 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
           opacity: 1,
           y: 0,
           duration: 0.3,
-          ease: "power2.out",
-        });
+          ease: 'power2.out',
+        })
       } else {
         gsap.to(mobileMenuRef.current, {
           opacity: 0,
           y: -10,
           duration: 0.2,
-          ease: "power2.in",
-        });
+          ease: 'power2.in',
+        })
       }
-    }, mobileMenuRef);
+    }, mobileMenuRef)
 
-    return () => ctx.revert();
-  }, [isMobileMenuOpen]);
+    return () => ctx.revert()
+  }, [isMobileMenuOpen])
 
   // Handle active state underline
   useEffect(() => {
     linkRefs.current.forEach((link, index) => {
-      if (!link) return;
-      const underline = underlineRefs.current[index];
-      if (!underline) return;
+      if (!link) return
+      const underline = underlineRefs.current[index]
+      if (!underline) return
 
       const isActive =
-        normalizeHref(link.getAttribute("href") || "") ===
-        normalizeHref(pathname);
+        normalizeHref(link.getAttribute('href') || '') ===
+        normalizeHref(pathname)
 
       gsap.to(underline, {
         scaleX: isActive ? 1 : 0,
         duration: 0.3,
-        ease: "power2.out",
-      });
-    });
-  }, [pathname]);
+        ease: 'power2.out',
+      })
+    })
+  }, [pathname])
 
   // Hover animations
   const handleMouseEnter = (index: number) => {
-    const underline = underlineRefs.current[index];
-    const link = linkRefs.current[index];
-    if (!underline || !link) return;
+    const underline = underlineRefs.current[index]
+    const link = linkRefs.current[index]
+    if (!underline || !link) return
 
     const isActive =
-      normalizeHref(link.getAttribute("href") || "") ===
-      normalizeHref(pathname);
-    if (isActive) return; // Don't animate if already active
+      normalizeHref(link.getAttribute('href') || '') === normalizeHref(pathname)
+    if (isActive) return // Don't animate if already active
 
     gsap.to(underline, {
       scaleX: 1,
       duration: 0.3,
-      ease: "power2.out",
-    });
+      ease: 'power2.out',
+    })
 
     gsap.to(link, {
       y: -2,
       duration: 0.3,
-      ease: "power2.out",
-    });
-  };
+      ease: 'power2.out',
+    })
+  }
 
   const handleMouseLeave = (index: number) => {
-    const underline = underlineRefs.current[index];
-    const link = linkRefs.current[index];
-    if (!underline || !link) return;
+    const underline = underlineRefs.current[index]
+    const link = linkRefs.current[index]
+    if (!underline || !link) return
 
     const isActive =
-      normalizeHref(link.getAttribute("href") || "") ===
-      normalizeHref(pathname);
-    if (isActive) return; // Keep active state
+      normalizeHref(link.getAttribute('href') || '') === normalizeHref(pathname)
+    if (isActive) return // Keep active state
 
     gsap.to(underline, {
       scaleX: 0,
       duration: 0.3,
-      ease: "power2.out",
-    });
+      ease: 'power2.out',
+    })
 
     gsap.to(link, {
       y: 0,
       duration: 0.3,
-      ease: "power2.out",
-    });
-  };
+      ease: 'power2.out',
+    })
+  }
 
   return (
     <nav
@@ -177,8 +175,8 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
     >
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2 group z-50">
-          <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110">
+        <Link href="/" className="group z-50 flex items-center space-x-2">
+          <div className="relative h-10 w-10 transition-transform duration-300 group-hover:scale-110">
             <Image
               src={logo}
               alt={logoAlt}
@@ -191,26 +189,26 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden items-center space-x-8 md:flex">
           {items.map((item, index) => (
             <Link
               key={item.href}
               href={item.href}
               ref={(el) => {
-                linkRefs.current[index] = el;
+                linkRefs.current[index] = el
               }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => handleMouseLeave(index)}
               aria-label={item.ariaLabel || `Navigate to ${item.label}`}
-              className="relative font-medium text-foreground/80 hover:text-foreground transition-colors duration-300"
+              className="text-foreground/80 hover:text-foreground relative font-medium transition-colors duration-300"
             >
               <span className="relative inline-block">
                 {item.label}
                 <span
                   ref={(el) => {
-                    underlineRefs.current[index] = el;
+                    underlineRefs.current[index] = el
                   }}
-                  className="absolute left-0 bottom-0 w-full h-0.5 bg-primary origin-left scale-x-0"
+                  className="bg-primary absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0"
                   aria-hidden="true"
                 />
               </span>
@@ -218,7 +216,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
           ))}
 
           {/* Social Links */}
-          <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-border/40">
+          <div className="border-border/40 ml-4 flex items-center space-x-2 border-l pl-4">
             <Button variant="ghost" size="icon" asChild>
               <Link
                 href="https://github.com/FusionStreak"
@@ -226,7 +224,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                 rel="noopener noreferrer"
                 aria-label="Visit GitHub profile"
               >
-                <FontAwesomeIcon icon={GitHub} className="w-5 h-5" />
+                <FontAwesomeIcon icon={GitHub} className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon" asChild>
@@ -236,7 +234,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                 rel="noopener noreferrer"
                 aria-label="Visit LinkedIn profile"
               >
-                <FontAwesomeIcon icon={LinkedIn} className="w-5 h-5" />
+                <FontAwesomeIcon icon={LinkedIn} className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon" asChild>
@@ -245,7 +243,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                 rel="noopener noreferrer"
                 aria-label="Send email"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="h-5 w-5" />
               </Link>
             </Button>
           </div>
@@ -254,14 +252,14 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden z-50 p-2 rounded-lg hover:bg-muted/50 transition-colors"
-          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          className="hover:bg-muted/50 z-50 rounded-lg p-2 transition-colors md:hidden"
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? (
-            <X className="w-6 h-6 text-foreground" />
+            <X className="text-foreground h-6 w-6" />
           ) : (
-            <Menu className="w-6 h-6 text-foreground" />
+            <Menu className="text-foreground h-6 w-6" />
           )}
         </button>
       </div>
@@ -270,13 +268,13 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
       {isMobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="md:hidden absolute top-full left-0 right-0 mt-2 mx-2 backdrop-blur-xl bg-background/95 border border-border/40 shadow-2xl shadow-black/20 rounded-2xl overflow-hidden"
-          style={{ opacity: 0, transform: "translateY(-10px)" }}
+          className="bg-background/95 border-border/40 absolute top-full right-0 left-0 mx-2 mt-2 overflow-hidden rounded-2xl border shadow-2xl shadow-black/20 backdrop-blur-xl md:hidden"
+          style={{ opacity: 0, transform: 'translateY(-10px)' }}
         >
           <div className="flex flex-col py-4">
             {items.map((item) => {
               const isActive =
-                normalizeHref(item.href) === normalizeHref(pathname);
+                normalizeHref(item.href) === normalizeHref(pathname)
               return (
                 <Link
                   key={item.href}
@@ -284,18 +282,18 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`px-6 py-3 font-medium transition-colors ${
                     isActive
-                      ? "text-primary bg-primary/10 border-l-4 border-primary"
-                      : "text-foreground/80 hover:text-foreground hover:bg-muted/30"
+                      ? 'text-primary bg-primary/10 border-primary border-l-4'
+                      : 'text-foreground/80 hover:text-foreground hover:bg-muted/30'
                   }`}
                   aria-label={item.ariaLabel || `Navigate to ${item.label}`}
                 >
                   {item.label}
                 </Link>
-              );
+              )
             })}
 
             {/* Social Links - Mobile */}
-            <div className="flex justify-center space-x-2 mt-4 pt-4 border-t border-border/40">
+            <div className="border-border/40 mt-4 flex justify-center space-x-2 border-t pt-4">
               <Button variant="ghost" size="icon" asChild>
                 <Link
                   href="https://github.com/FusionStreak"
@@ -303,7 +301,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                   rel="noopener noreferrer"
                   aria-label="Visit GitHub profile"
                 >
-                  <FontAwesomeIcon icon={GitHub} className="w-5 h-5" />
+                  <FontAwesomeIcon icon={GitHub} className="h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="ghost" size="icon" asChild>
@@ -313,7 +311,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                   rel="noopener noreferrer"
                   aria-label="Visit LinkedIn profile"
                 >
-                  <FontAwesomeIcon icon={LinkedIn} className="w-5 h-5" />
+                  <FontAwesomeIcon icon={LinkedIn} className="h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="ghost" size="icon" asChild>
@@ -322,7 +320,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
                   rel="noopener noreferrer"
                   aria-label="Send email"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="h-5 w-5" />
                 </Link>
               </Button>
             </div>
@@ -330,7 +328,7 @@ const SimpleNav: React.FC<SimpleNavProps> = ({
         </div>
       )}
     </nav>
-  );
-};
+  )
+}
 
-export default SimpleNav;
+export default SimpleNav

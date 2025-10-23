@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Card,
@@ -6,16 +6,16 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import SplitText from "@/components/SplitText";
-import { skillCategories } from "@/app/skills/skills";
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import SplitText from '@/components/SplitText'
+import { skillCategories } from '@/app/skills/skills'
 
 export default function HomePage() {
   return (
     <div className="flex flex-col items-center space-y-12">
       {/* Hero Section */}
-      <div className="text-center space-y-6 max-w-4xl">
+      <div className="max-w-4xl space-y-6 text-center">
         <div className="space-y-2">
           <SplitText
             text="Hello, I'm <primary>Sayfullah Eid</primary>"
@@ -36,9 +36,9 @@ export default function HomePage() {
 
       {/* Skills Section - More Prominent */}
       <div className="w-full max-w-5xl">
-        <Card className="bg-gradient-to-br from-background via-primary/5 to-primary/10 border-primary/20">
-          <CardHeader className="text-center pb-8">
-            <CardTitle className="text-3xl md:text-4xl font-bold">
+        <Card className="from-background via-primary/5 to-primary/10 border-primary/20 bg-gradient-to-br">
+          <CardHeader className="pb-8 text-center">
+            <CardTitle className="text-3xl font-bold md:text-4xl">
               Technical Expertise
             </CardTitle>
             <CardDescription className="text-base md:text-lg">
@@ -46,18 +46,18 @@ export default function HomePage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {skillCategories.map((category) => {
-                const IconComponent = category.icon;
+                const IconComponent = category.icon
                 return (
                   <Card
                     key={category.title}
-                    className="bg-background/50 backdrop-blur border-border/50"
+                    className="bg-background/50 border-border/50 backdrop-blur"
                   >
                     <CardHeader>
                       <div className="flex items-center gap-2">
-                        <div className="p-2 rounded-lg bg-primary/10">
-                          <IconComponent className="h-5 w-5 text-primary" />
+                        <div className="bg-primary/10 rounded-lg p-2">
+                          <IconComponent className="text-primary h-5 w-5" />
                         </div>
                         <CardTitle className="text-xl">
                           {category.title}
@@ -69,7 +69,7 @@ export default function HomePage() {
                         {category.skills.map((skill) => (
                           <Badge
                             key={skill}
-                            className="font-mono bg-complementary/20 text-foreground border-primary/30"
+                            className="bg-complementary/20 text-foreground border-primary/30 font-mono"
                           >
                             {skill}
                           </Badge>
@@ -77,12 +77,12 @@ export default function HomePage() {
                       </div>
                     </CardContent>
                   </Card>
-                );
+                )
               })}
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
-  );
+  )
 }

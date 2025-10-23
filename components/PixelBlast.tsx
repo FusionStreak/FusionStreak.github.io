@@ -1,148 +1,148 @@
-"use client";
+'use client'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
-import { EffectComposer, EffectPass, RenderPass, Effect } from "postprocessing";
-import { useTheme } from "next-themes";
+import React, { useEffect, useRef, useState } from 'react'
+import * as THREE from 'three'
+import { EffectComposer, EffectPass, RenderPass, Effect } from 'postprocessing'
+import { useTheme } from 'next-themes'
 
-type PixelBlastVariant = "square" | "circle" | "triangle" | "diamond";
+type PixelBlastVariant = 'square' | 'circle' | 'triangle' | 'diamond'
 
 type PixelBlastProps = {
-  variant?: PixelBlastVariant;
-  pixelSize?: number;
-  color?: string;
-  lightColor?: string;
-  darkColor?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  antialias?: boolean;
-  patternScale?: number;
-  patternDensity?: number;
-  liquid?: boolean;
-  liquidStrength?: number;
-  liquidRadius?: number;
-  pixelSizeJitter?: number;
-  enableRipples?: boolean;
-  rippleIntensityScale?: number;
-  rippleThickness?: number;
-  rippleSpeed?: number;
-  liquidWobbleSpeed?: number;
-  autoPauseOffscreen?: boolean;
-  speed?: number;
-  transparent?: boolean;
-  edgeFade?: number;
-  noiseAmount?: number;
-  forceNoWebGL?: boolean; // For testing the fallback
-};
+  variant?: PixelBlastVariant
+  pixelSize?: number
+  color?: string
+  lightColor?: string
+  darkColor?: string
+  className?: string
+  style?: React.CSSProperties
+  antialias?: boolean
+  patternScale?: number
+  patternDensity?: number
+  liquid?: boolean
+  liquidStrength?: number
+  liquidRadius?: number
+  pixelSizeJitter?: number
+  enableRipples?: boolean
+  rippleIntensityScale?: number
+  rippleThickness?: number
+  rippleSpeed?: number
+  liquidWobbleSpeed?: number
+  autoPauseOffscreen?: boolean
+  speed?: number
+  transparent?: boolean
+  edgeFade?: number
+  noiseAmount?: number
+  forceNoWebGL?: boolean // For testing the fallback
+}
 
 const createTouchTexture = () => {
-  const size = 64;
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("2D context not available");
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  const texture = new THREE.Texture(canvas);
-  texture.minFilter = THREE.LinearFilter;
-  texture.magFilter = THREE.LinearFilter;
-  texture.generateMipmaps = false;
+  const size = 64
+  const canvas = document.createElement('canvas')
+  canvas.width = size
+  canvas.height = size
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('2D context not available')
+  ctx.fillStyle = 'black'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  const texture = new THREE.Texture(canvas)
+  texture.minFilter = THREE.LinearFilter
+  texture.magFilter = THREE.LinearFilter
+  texture.generateMipmaps = false
   const trail: {
-    x: number;
-    y: number;
-    vx: number;
-    vy: number;
-    force: number;
-    age: number;
-  }[] = [];
-  let last: { x: number; y: number } | null = null;
-  const maxAge = 64;
-  let radius = 0.1 * size;
-  const speed = 1 / maxAge;
+    x: number
+    y: number
+    vx: number
+    vy: number
+    force: number
+    age: number
+  }[] = []
+  let last: { x: number; y: number } | null = null
+  const maxAge = 64
+  let radius = 0.1 * size
+  const speed = 1 / maxAge
   const clear = () => {
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  };
+    ctx.fillStyle = 'black'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+  }
   const drawPoint = (p: {
-    x: number;
-    y: number;
-    vx: number;
-    vy: number;
-    force: number;
-    age: number;
+    x: number
+    y: number
+    vx: number
+    vy: number
+    force: number
+    age: number
   }) => {
-    const pos = { x: p.x * size, y: (1 - p.y) * size };
-    let intensity = 1;
-    const easeOutSine = (t: number) => Math.sin((t * Math.PI) / 2);
-    const easeOutQuad = (t: number) => -t * (t - 2);
-    if (p.age < maxAge * 0.3) intensity = easeOutSine(p.age / (maxAge * 0.3));
+    const pos = { x: p.x * size, y: (1 - p.y) * size }
+    let intensity = 1
+    const easeOutSine = (t: number) => Math.sin((t * Math.PI) / 2)
+    const easeOutQuad = (t: number) => -t * (t - 2)
+    if (p.age < maxAge * 0.3) intensity = easeOutSine(p.age / (maxAge * 0.3))
     else
-      intensity = easeOutQuad(1 - (p.age - maxAge * 0.3) / (maxAge * 0.7)) || 0;
-    intensity *= p.force;
+      intensity = easeOutQuad(1 - (p.age - maxAge * 0.3) / (maxAge * 0.7)) || 0
+    intensity *= p.force
     const color = `${((p.vx + 1) / 2) * 255}, ${((p.vy + 1) / 2) * 255}, ${
       intensity * 255
-    }`;
-    const offset = size * 5;
-    ctx.shadowOffsetX = offset;
-    ctx.shadowOffsetY = offset;
-    ctx.shadowBlur = radius;
-    ctx.shadowColor = `rgba(${color},${0.22 * intensity})`;
-    ctx.beginPath();
-    ctx.fillStyle = "rgba(255,0,0,1)";
-    ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
-    ctx.fill();
-  };
+    }`
+    const offset = size * 5
+    ctx.shadowOffsetX = offset
+    ctx.shadowOffsetY = offset
+    ctx.shadowBlur = radius
+    ctx.shadowColor = `rgba(${color},${0.22 * intensity})`
+    ctx.beginPath()
+    ctx.fillStyle = 'rgba(255,0,0,1)'
+    ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2)
+    ctx.fill()
+  }
   const addTouch = (norm: { x: number; y: number }) => {
-    let force = 0;
-    let vx = 0;
-    let vy = 0;
+    let force = 0
+    let vx = 0
+    let vy = 0
     if (last) {
-      const dx = norm.x - last.x;
-      const dy = norm.y - last.y;
-      if (dx === 0 && dy === 0) return;
-      const dd = dx * dx + dy * dy;
-      const d = Math.sqrt(dd);
-      vx = dx / (d || 1);
-      vy = dy / (d || 1);
-      force = Math.min(dd * 10000, 1);
+      const dx = norm.x - last.x
+      const dy = norm.y - last.y
+      if (dx === 0 && dy === 0) return
+      const dd = dx * dx + dy * dy
+      const d = Math.sqrt(dd)
+      vx = dx / (d || 1)
+      vy = dy / (d || 1)
+      force = Math.min(dd * 10000, 1)
     }
-    last = { x: norm.x, y: norm.y };
-    trail.push({ x: norm.x, y: norm.y, age: 0, force, vx, vy });
-  };
+    last = { x: norm.x, y: norm.y }
+    trail.push({ x: norm.x, y: norm.y, age: 0, force, vx, vy })
+  }
   const update = () => {
-    clear();
+    clear()
     for (let i = trail.length - 1; i >= 0; i--) {
-      const point = trail[i];
-      const f = point.force * speed * (1 - point.age / maxAge);
-      point.x += point.vx * f;
-      point.y += point.vy * f;
-      point.age++;
-      if (point.age > maxAge) trail.splice(i, 1);
+      const point = trail[i]
+      const f = point.force * speed * (1 - point.age / maxAge)
+      point.x += point.vx * f
+      point.y += point.vy * f
+      point.age++
+      if (point.age > maxAge) trail.splice(i, 1)
     }
-    for (let i = 0; i < trail.length; i++) drawPoint(trail[i]);
-    texture.needsUpdate = true;
-  };
+    for (let i = 0; i < trail.length; i++) drawPoint(trail[i])
+    texture.needsUpdate = true
+  }
   return {
     canvas,
     texture,
     addTouch,
     update,
     set radiusScale(v: number) {
-      radius = 0.1 * size * v;
+      radius = 0.1 * size * v
     },
     get radiusScale() {
-      return radius / (0.1 * size);
+      return radius / (0.1 * size)
     },
     size,
-  };
-};
+  }
+}
 
 const createLiquidEffect = (
   texture: THREE.Texture,
-  opts?: { strength?: number; freq?: number }
+  opts?: { strength?: number; freq?: number },
 ) => {
   const fragment = `
     uniform sampler2D uTexture;
@@ -162,29 +162,29 @@ const createLiquidEffect = (
 
       uv += vec2(vx, vy) * amt;
     }
-    `;
-  return new Effect("LiquidEffect", fragment, {
+    `
+  return new Effect('LiquidEffect', fragment, {
     uniforms: new Map<string, THREE.Uniform>([
-      ["uTexture", new THREE.Uniform(texture)],
-      ["uStrength", new THREE.Uniform(opts?.strength ?? 0.025)],
-      ["uTime", new THREE.Uniform(0)],
-      ["uFreq", new THREE.Uniform(opts?.freq ?? 4.5)],
+      ['uTexture', new THREE.Uniform(texture)],
+      ['uStrength', new THREE.Uniform(opts?.strength ?? 0.025)],
+      ['uTime', new THREE.Uniform(0)],
+      ['uFreq', new THREE.Uniform(opts?.freq ?? 4.5)],
     ]),
-  });
-};
+  })
+}
 
 const SHAPE_MAP: Record<PixelBlastVariant, number> = {
   square: 0,
   circle: 1,
   triangle: 2,
   diamond: 3,
-};
+}
 
 const VERTEX_SRC = `
 void main() {
   gl_Position = vec4(position, 1.0);
 }
-`;
+`
 
 const FRAGMENT_SRC = `
 precision highp float;
@@ -343,14 +343,14 @@ void main(){
   vec3 color = uColor;
   fragColor = vec4(color, M);
 }
-`;
+`
 
-const MAX_CLICKS = 10;
+const MAX_CLICKS = 10
 
 const PixelBlast: React.FC<PixelBlastProps> = ({
-  variant = "square",
+  variant = 'square',
   pixelSize = 3,
-  color = "#B19EEF",
+  color = '#B19EEF',
   lightColor,
   darkColor,
   className,
@@ -374,185 +374,185 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
   noiseAmount = 0,
   forceNoWebGL = false,
 }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const visibilityRef = useRef({ visible: true });
-  const speedRef = useRef(speed);
-  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [supportsWebGL, setSupportsWebGL] = useState(true);
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const visibilityRef = useRef({ visible: true })
+  const speedRef = useRef(speed)
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [supportsWebGL, setSupportsWebGL] = useState(true)
 
   useEffect(() => {
-    setMounted(true);
+    setMounted(true)
 
     // Log environment info for debugging
-    if (typeof window !== "undefined") {
-      console.log("[PixelBlast] Initialization:", {
+    if (typeof window !== 'undefined') {
+      console.log('[PixelBlast] Initialization:', {
         domain: window.location.hostname,
         protocol: window.location.protocol,
         pixelRatio: window.devicePixelRatio,
-        userAgent: navigator.userAgent.substring(0, 50) + "...",
-      });
+        userAgent: navigator.userAgent.substring(0, 50) + '...',
+      })
     }
 
     // Allow forcing fallback for testing
     if (forceNoWebGL) {
-      setSupportsWebGL(false);
-      console.info("[PixelBlast] WebGL disabled (forceNoWebGL=true)");
-      return;
+      setSupportsWebGL(false)
+      console.info('[PixelBlast] WebGL disabled (forceNoWebGL=true)')
+      return
     }
 
     // Check WebGL support
-    const canvas = document.createElement("canvas");
-    const gl2 = canvas.getContext("webgl2");
-    const gl1 = canvas.getContext("webgl");
+    const canvas = document.createElement('canvas')
+    const gl2 = canvas.getContext('webgl2')
+    const gl1 = canvas.getContext('webgl')
 
     if (!gl2 && !gl1) {
-      setSupportsWebGL(false);
-      console.warn("[PixelBlast] WebGL not supported on this device");
+      setSupportsWebGL(false)
+      console.warn('[PixelBlast] WebGL not supported on this device')
     } else {
-      console.log("[PixelBlast] WebGL support detected:", {
+      console.log('[PixelBlast] WebGL support detected:', {
         webgl2: !!gl2,
         webgl1: !!gl1,
-      });
+      })
     }
-  }, [forceNoWebGL]);
+  }, [forceNoWebGL])
 
   const resolvedColor = React.useMemo(() => {
-    const fallback = color ?? "#B19EEF";
-    if (!lightColor && !darkColor) return fallback;
-    if (!mounted) return fallback;
-    const theme = resolvedTheme ?? "light";
-    if (theme === "dark") return darkColor ?? fallback;
-    return lightColor ?? fallback;
-  }, [color, darkColor, lightColor, mounted, resolvedTheme]);
+    const fallback = color ?? '#B19EEF'
+    if (!lightColor && !darkColor) return fallback
+    if (!mounted) return fallback
+    const theme = resolvedTheme ?? 'light'
+    if (theme === 'dark') return darkColor ?? fallback
+    return lightColor ?? fallback
+  }, [color, darkColor, lightColor, mounted, resolvedTheme])
 
   const threeRef = useRef<{
-    renderer: THREE.WebGLRenderer;
-    scene: THREE.Scene;
-    camera: THREE.OrthographicCamera;
-    material: THREE.ShaderMaterial;
-    clock: THREE.Clock;
-    clickIx: number;
+    renderer: THREE.WebGLRenderer
+    scene: THREE.Scene
+    camera: THREE.OrthographicCamera
+    material: THREE.ShaderMaterial
+    clock: THREE.Clock
+    clickIx: number
     uniforms: {
-      uResolution: { value: THREE.Vector2 };
-      uTime: { value: number };
-      uColor: { value: THREE.Color };
-      uClickPos: { value: THREE.Vector2[] };
-      uClickTimes: { value: Float32Array };
-      uShapeType: { value: number };
-      uPixelSize: { value: number };
-      uScale: { value: number };
-      uDensity: { value: number };
-      uPixelJitter: { value: number };
-      uEnableRipples: { value: number };
-      uRippleSpeed: { value: number };
-      uRippleThickness: { value: number };
-      uRippleIntensity: { value: number };
-      uEdgeFade: { value: number };
-    };
-    resizeObserver?: ResizeObserver;
-    raf?: number;
-    quad?: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
-    timeOffset?: number;
-    composer?: EffectComposer;
-    touch?: ReturnType<typeof createTouchTexture>;
-    liquidEffect?: Effect;
-  } | null>(null);
-  const prevConfigRef = useRef<any>(null);
+      uResolution: { value: THREE.Vector2 }
+      uTime: { value: number }
+      uColor: { value: THREE.Color }
+      uClickPos: { value: THREE.Vector2[] }
+      uClickTimes: { value: Float32Array }
+      uShapeType: { value: number }
+      uPixelSize: { value: number }
+      uScale: { value: number }
+      uDensity: { value: number }
+      uPixelJitter: { value: number }
+      uEnableRipples: { value: number }
+      uRippleSpeed: { value: number }
+      uRippleThickness: { value: number }
+      uRippleIntensity: { value: number }
+      uEdgeFade: { value: number }
+    }
+    resizeObserver?: ResizeObserver
+    raf?: number
+    quad?: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>
+    timeOffset?: number
+    composer?: EffectComposer
+    touch?: ReturnType<typeof createTouchTexture>
+    liquidEffect?: Effect
+  } | null>(null)
+  const prevConfigRef = useRef<any>(null)
   // Setup IntersectionObserver for visibility detection
   useEffect(() => {
-    if (!autoPauseOffscreen || !containerRef.current) return;
+    if (!autoPauseOffscreen || !containerRef.current) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          visibilityRef.current.visible = entry.isIntersecting;
-        });
+          visibilityRef.current.visible = entry.isIntersecting
+        })
       },
-      { threshold: 0 }
-    );
+      { threshold: 0 },
+    )
 
-    observer.observe(containerRef.current);
+    observer.observe(containerRef.current)
 
     return () => {
-      observer.disconnect();
-    };
-  }, [autoPauseOffscreen]);
+      observer.disconnect()
+    }
+  }, [autoPauseOffscreen])
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container || !mounted || !supportsWebGL) return;
-    speedRef.current = speed;
-    const needsReinitKeys = ["antialias", "liquid", "noiseAmount"];
-    const cfg = { antialias, liquid, noiseAmount };
-    let mustReinit = false;
-    if (!threeRef.current) mustReinit = true;
+    const container = containerRef.current
+    if (!container || !mounted || !supportsWebGL) return
+    speedRef.current = speed
+    const needsReinitKeys = ['antialias', 'liquid', 'noiseAmount']
+    const cfg = { antialias, liquid, noiseAmount }
+    let mustReinit = false
+    if (!threeRef.current) mustReinit = true
     else if (prevConfigRef.current) {
       for (const k of needsReinitKeys)
         if (prevConfigRef.current[k] !== (cfg as any)[k]) {
-          mustReinit = true;
-          break;
+          mustReinit = true
+          break
         }
     }
     if (mustReinit) {
       if (threeRef.current) {
-        const t = threeRef.current;
-        t.resizeObserver?.disconnect();
-        cancelAnimationFrame(t.raf!);
-        t.quad?.geometry.dispose();
-        t.material.dispose();
-        t.composer?.dispose();
-        t.renderer.dispose();
+        const t = threeRef.current
+        t.resizeObserver?.disconnect()
+        cancelAnimationFrame(t.raf!)
+        t.quad?.geometry.dispose()
+        t.material.dispose()
+        t.composer?.dispose()
+        t.renderer.dispose()
         if (t.renderer.domElement.parentElement === container)
-          container.removeChild(t.renderer.domElement);
-        threeRef.current = null;
+          container.removeChild(t.renderer.domElement)
+        threeRef.current = null
       }
-      const canvas = document.createElement("canvas");
+      const canvas = document.createElement('canvas')
 
       // Try WebGL2 first, fallback to WebGL1
-      let gl: WebGL2RenderingContext | WebGLRenderingContext | null = null;
-      let useWebGL2 = true;
+      let gl: WebGL2RenderingContext | WebGLRenderingContext | null = null
+      let useWebGL2 = true
 
       try {
-        gl = canvas.getContext("webgl2", {
+        gl = canvas.getContext('webgl2', {
           antialias,
           alpha: true,
           premultipliedAlpha: false,
           preserveDrawingBuffer: false,
-          powerPreference: "high-performance",
-        });
+          powerPreference: 'high-performance',
+        })
         if (gl) {
-          console.log("[PixelBlast] Using WebGL2");
+          console.log('[PixelBlast] Using WebGL2')
         }
       } catch (e) {
-        console.warn("[PixelBlast] WebGL2 context creation failed:", e);
+        console.warn('[PixelBlast] WebGL2 context creation failed:', e)
       }
 
       // Fallback to WebGL1 if WebGL2 is not available
       if (!gl) {
         try {
-          gl = canvas.getContext("webgl", {
+          gl = canvas.getContext('webgl', {
             antialias,
             alpha: true,
             premultipliedAlpha: false,
             preserveDrawingBuffer: false,
-            powerPreference: "high-performance",
-          }) as WebGLRenderingContext;
-          useWebGL2 = false;
+            powerPreference: 'high-performance',
+          }) as WebGLRenderingContext
+          useWebGL2 = false
           if (gl) {
-            console.log("[PixelBlast] Using WebGL1 fallback");
+            console.log('[PixelBlast] Using WebGL1 fallback')
           }
         } catch (e) {
-          console.error("[PixelBlast] WebGL context creation failed:", e);
-          return;
+          console.error('[PixelBlast] WebGL context creation failed:', e)
+          return
         }
       }
 
       if (!gl) {
-        console.error("[PixelBlast] No WebGL support available");
-        setSupportsWebGL(false);
-        return;
+        console.error('[PixelBlast] No WebGL support available')
+        setSupportsWebGL(false)
+        return
       }
 
       const renderer = new THREE.WebGLRenderer({
@@ -562,20 +562,20 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         alpha: true,
         premultipliedAlpha: false,
         preserveDrawingBuffer: false,
-        powerPreference: "high-performance",
-      });
+        powerPreference: 'high-performance',
+      })
 
-      renderer.domElement.style.width = "100%";
-      renderer.domElement.style.height = "100%";
-      renderer.domElement.style.display = "block";
+      renderer.domElement.style.width = '100%'
+      renderer.domElement.style.height = '100%'
+      renderer.domElement.style.display = 'block'
 
       // Clamp pixel ratio for better performance and consistency
       const pixelRatio =
-        typeof window !== "undefined"
+        typeof window !== 'undefined'
           ? Math.min(window.devicePixelRatio || 1, 2)
-          : 1;
-      renderer.setPixelRatio(pixelRatio);
-      container.appendChild(renderer.domElement);
+          : 1
+      renderer.setPixelRatio(pixelRatio)
+      container.appendChild(renderer.domElement)
       const uniforms = {
         uResolution: { value: new THREE.Vector2(0, 0) },
         uTime: { value: 0 },
@@ -583,7 +583,7 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         uClickPos: {
           value: Array.from(
             { length: MAX_CLICKS },
-            () => new THREE.Vector2(-1, -1)
+            () => new THREE.Vector2(-1, -1),
           ),
         },
         uClickTimes: { value: new Float32Array(MAX_CLICKS) },
@@ -597,9 +597,9 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         uRippleThickness: { value: rippleThickness },
         uRippleIntensity: { value: rippleIntensityScale },
         uEdgeFade: { value: edgeFade },
-      };
-      const scene = new THREE.Scene();
-      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      }
+      const scene = new THREE.Scene()
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
       const material = new THREE.ShaderMaterial({
         vertexShader: VERTEX_SRC,
         fragmentShader: FRAGMENT_SRC,
@@ -608,163 +608,163 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         glslVersion: useWebGL2 ? THREE.GLSL3 : undefined,
         depthTest: false,
         depthWrite: false,
-      });
-      const quadGeom = new THREE.PlaneGeometry(2, 2);
-      const quad = new THREE.Mesh(quadGeom, material);
-      scene.add(quad);
-      const clock = new THREE.Clock();
+      })
+      const quadGeom = new THREE.PlaneGeometry(2, 2)
+      const quad = new THREE.Mesh(quadGeom, material)
+      scene.add(quad)
+      const clock = new THREE.Clock()
       const setSize = () => {
-        const w = container.clientWidth || 1;
-        const h = container.clientHeight || 1;
-        renderer.setSize(w, h, false);
+        const w = container.clientWidth || 1
+        const h = container.clientHeight || 1
+        renderer.setSize(w, h, false)
         uniforms.uResolution.value.set(
           renderer.domElement.width,
-          renderer.domElement.height
-        );
+          renderer.domElement.height,
+        )
         if (threeRef.current?.composer)
           threeRef.current.composer.setSize(
             renderer.domElement.width,
-            renderer.domElement.height
-          );
-        uniforms.uPixelSize.value = pixelSize * pixelRatio;
-      };
-      setSize();
+            renderer.domElement.height,
+          )
+        uniforms.uPixelSize.value = pixelSize * pixelRatio
+      }
+      setSize()
 
       // Use ResizeObserver with error handling
-      let ro: ResizeObserver | undefined;
+      let ro: ResizeObserver | undefined
       try {
         ro = new ResizeObserver(() => {
           // Debounce resize for better performance
           if (resizeTimeoutRef.current) {
-            clearTimeout(resizeTimeoutRef.current);
+            clearTimeout(resizeTimeoutRef.current)
           }
-          resizeTimeoutRef.current = setTimeout(setSize, 100);
-        });
-        ro.observe(container);
+          resizeTimeoutRef.current = setTimeout(setSize, 100)
+        })
+        ro.observe(container)
       } catch (e) {
         console.warn(
-          "PixelBlast: ResizeObserver not supported, using window resize",
-          e
-        );
+          'PixelBlast: ResizeObserver not supported, using window resize',
+          e,
+        )
         // Fallback to window resize event
         const handleResize = () => {
           if (resizeTimeoutRef.current) {
-            clearTimeout(resizeTimeoutRef.current);
+            clearTimeout(resizeTimeoutRef.current)
           }
-          resizeTimeoutRef.current = setTimeout(setSize, 100);
-        };
-        window.addEventListener("resize", handleResize);
+          resizeTimeoutRef.current = setTimeout(setSize, 100)
+        }
+        window.addEventListener('resize', handleResize)
       }
 
       const randomFloat = () => {
         if (
-          typeof window !== "undefined" &&
+          typeof window !== 'undefined' &&
           (window as any).crypto?.getRandomValues
         ) {
-          const u32 = new Uint32Array(1);
-          window.crypto.getRandomValues(u32);
-          return u32[0] / 0xffffffff;
+          const u32 = new Uint32Array(1)
+          window.crypto.getRandomValues(u32)
+          return u32[0] / 0xffffffff
         }
-        return Math.random();
-      };
-      const timeOffset = randomFloat() * 1000;
-      let composer: EffectComposer | undefined;
-      let touch: ReturnType<typeof createTouchTexture> | undefined;
-      let liquidEffect: Effect | undefined;
+        return Math.random()
+      }
+      const timeOffset = randomFloat() * 1000
+      let composer: EffectComposer | undefined
+      let touch: ReturnType<typeof createTouchTexture> | undefined
+      let liquidEffect: Effect | undefined
       if (liquid) {
-        touch = createTouchTexture();
-        touch.radiusScale = liquidRadius;
-        composer = new EffectComposer(renderer);
-        const renderPass = new RenderPass(scene, camera);
+        touch = createTouchTexture()
+        touch.radiusScale = liquidRadius
+        composer = new EffectComposer(renderer)
+        const renderPass = new RenderPass(scene, camera)
         liquidEffect = createLiquidEffect(touch.texture, {
           strength: liquidStrength,
           freq: liquidWobbleSpeed,
-        });
-        const effectPass = new EffectPass(camera, liquidEffect);
-        effectPass.renderToScreen = true;
-        composer.addPass(renderPass);
-        composer.addPass(effectPass);
+        })
+        const effectPass = new EffectPass(camera, liquidEffect)
+        effectPass.renderToScreen = true
+        composer.addPass(renderPass)
+        composer.addPass(effectPass)
       }
       if (noiseAmount > 0) {
         if (!composer) {
-          composer = new EffectComposer(renderer);
-          composer.addPass(new RenderPass(scene, camera));
+          composer = new EffectComposer(renderer)
+          composer.addPass(new RenderPass(scene, camera))
         }
         const noiseEffect = new Effect(
-          "NoiseEffect",
+          'NoiseEffect',
           `uniform float uTime; uniform float uAmount; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} void mainUv(inout vec2 uv){} void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){ float n=hash(floor(uv*vec2(1920.0,1080.0))+floor(uTime*60.0)); float g=(n-0.5)*uAmount; outputColor=inputColor+vec4(vec3(g),0.0);} `,
           {
             uniforms: new Map<string, THREE.Uniform>([
-              ["uTime", new THREE.Uniform(0)],
-              ["uAmount", new THREE.Uniform(noiseAmount)],
+              ['uTime', new THREE.Uniform(0)],
+              ['uAmount', new THREE.Uniform(noiseAmount)],
             ]),
-          }
-        );
-        const noisePass = new EffectPass(camera, noiseEffect);
-        noisePass.renderToScreen = true;
+          },
+        )
+        const noisePass = new EffectPass(camera, noiseEffect)
+        noisePass.renderToScreen = true
         if (composer && composer.passes.length > 0)
-          composer.passes.forEach((p) => ((p as any).renderToScreen = false));
-        composer.addPass(noisePass);
+          composer.passes.forEach((p) => ((p as any).renderToScreen = false))
+        composer.addPass(noisePass)
       }
       if (composer)
-        composer.setSize(renderer.domElement.width, renderer.domElement.height);
+        composer.setSize(renderer.domElement.width, renderer.domElement.height)
       const mapToPixels = (e: PointerEvent) => {
-        const rect = renderer.domElement.getBoundingClientRect();
-        const scaleX = renderer.domElement.width / rect.width;
-        const scaleY = renderer.domElement.height / rect.height;
-        const fx = (e.clientX - rect.left) * scaleX;
-        const fy = (rect.height - (e.clientY - rect.top)) * scaleY;
+        const rect = renderer.domElement.getBoundingClientRect()
+        const scaleX = renderer.domElement.width / rect.width
+        const scaleY = renderer.domElement.height / rect.height
+        const fx = (e.clientX - rect.left) * scaleX
+        const fy = (rect.height - (e.clientY - rect.top)) * scaleY
         return {
           fx,
           fy,
           w: renderer.domElement.width,
           h: renderer.domElement.height,
-        };
-      };
+        }
+      }
       const onPointerDown = (e: PointerEvent) => {
-        const { fx, fy } = mapToPixels(e);
-        const ix = threeRef.current?.clickIx ?? 0;
-        uniforms.uClickPos.value[ix].set(fx, fy);
-        uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
-        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
-      };
+        const { fx, fy } = mapToPixels(e)
+        const ix = threeRef.current?.clickIx ?? 0
+        uniforms.uClickPos.value[ix].set(fx, fy)
+        uniforms.uClickTimes.value[ix] = uniforms.uTime.value
+        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS
+      }
       const onPointerMove = (e: PointerEvent) => {
-        if (!touch) return;
-        const { fx, fy, w, h } = mapToPixels(e);
-        touch.addTouch({ x: fx / w, y: fy / h });
-      };
-      renderer.domElement.addEventListener("pointerdown", onPointerDown, {
+        if (!touch) return
+        const { fx, fy, w, h } = mapToPixels(e)
+        touch.addTouch({ x: fx / w, y: fy / h })
+      }
+      renderer.domElement.addEventListener('pointerdown', onPointerDown, {
         passive: true,
-      });
-      renderer.domElement.addEventListener("pointermove", onPointerMove, {
+      })
+      renderer.domElement.addEventListener('pointermove', onPointerMove, {
         passive: true,
-      });
-      let raf = 0;
+      })
+      let raf = 0
       const animate = () => {
         if (autoPauseOffscreen && !visibilityRef.current.visible) {
-          raf = requestAnimationFrame(animate);
-          return;
+          raf = requestAnimationFrame(animate)
+          return
         }
         uniforms.uTime.value =
-          timeOffset + clock.getElapsedTime() * speedRef.current;
+          timeOffset + clock.getElapsedTime() * speedRef.current
         if (liquidEffect)
-          (liquidEffect as any).uniforms.get("uTime").value =
-            uniforms.uTime.value;
+          (liquidEffect as any).uniforms.get('uTime').value =
+            uniforms.uTime.value
         if (composer) {
-          if (touch) touch.update();
+          if (touch) touch.update()
           composer.passes.forEach((p) => {
-            const effs = (p as any).effects;
+            const effs = (p as any).effects
             if (effs)
               effs.forEach((eff: any) => {
-                const u = eff.uniforms?.get("uTime");
-                if (u) u.value = uniforms.uTime.value;
-              });
-          });
-          composer.render();
-        } else renderer.render(scene, camera);
-        raf = requestAnimationFrame(animate);
-      };
-      raf = requestAnimationFrame(animate);
+                const u = eff.uniforms?.get('uTime')
+                if (u) u.value = uniforms.uTime.value
+              })
+          })
+          composer.render()
+        } else renderer.render(scene, camera)
+        raf = requestAnimationFrame(animate)
+      }
+      raf = requestAnimationFrame(animate)
       threeRef.current = {
         renderer,
         scene,
@@ -780,51 +780,51 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         composer,
         touch,
         liquidEffect,
-      };
-    } else {
-      const t = threeRef.current!;
-      t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0;
-      t.uniforms.uPixelSize.value = pixelSize * t.renderer.getPixelRatio();
-      t.uniforms.uColor.value.set(resolvedColor);
-      t.uniforms.uScale.value = patternScale;
-      t.uniforms.uDensity.value = patternDensity;
-      t.uniforms.uPixelJitter.value = pixelSizeJitter;
-      t.uniforms.uEnableRipples.value = enableRipples ? 1 : 0;
-      t.uniforms.uRippleIntensity.value = rippleIntensityScale;
-      t.uniforms.uRippleThickness.value = rippleThickness;
-      t.uniforms.uRippleSpeed.value = rippleSpeed;
-      t.uniforms.uEdgeFade.value = edgeFade;
-      if (transparent) t.renderer.setClearAlpha(0);
-      else t.renderer.setClearColor(0x000000, 1);
-      if (t.liquidEffect) {
-        const uStrength = (t.liquidEffect as any).uniforms.get("uStrength");
-        if (uStrength) uStrength.value = liquidStrength;
-        const uFreq = (t.liquidEffect as any).uniforms.get("uFreq");
-        if (uFreq) uFreq.value = liquidWobbleSpeed;
       }
-      if (t.touch) t.touch.radiusScale = liquidRadius;
+    } else {
+      const t = threeRef.current!
+      t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0
+      t.uniforms.uPixelSize.value = pixelSize * t.renderer.getPixelRatio()
+      t.uniforms.uColor.value.set(resolvedColor)
+      t.uniforms.uScale.value = patternScale
+      t.uniforms.uDensity.value = patternDensity
+      t.uniforms.uPixelJitter.value = pixelSizeJitter
+      t.uniforms.uEnableRipples.value = enableRipples ? 1 : 0
+      t.uniforms.uRippleIntensity.value = rippleIntensityScale
+      t.uniforms.uRippleThickness.value = rippleThickness
+      t.uniforms.uRippleSpeed.value = rippleSpeed
+      t.uniforms.uEdgeFade.value = edgeFade
+      if (transparent) t.renderer.setClearAlpha(0)
+      else t.renderer.setClearColor(0x000000, 1)
+      if (t.liquidEffect) {
+        const uStrength = (t.liquidEffect as any).uniforms.get('uStrength')
+        if (uStrength) uStrength.value = liquidStrength
+        const uFreq = (t.liquidEffect as any).uniforms.get('uFreq')
+        if (uFreq) uFreq.value = liquidWobbleSpeed
+      }
+      if (t.touch) t.touch.radiusScale = liquidRadius
     }
-    prevConfigRef.current = cfg;
+    prevConfigRef.current = cfg
     return () => {
       // Clear resize timeout
       if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-        resizeTimeoutRef.current = null;
+        clearTimeout(resizeTimeoutRef.current)
+        resizeTimeoutRef.current = null
       }
 
-      if (threeRef.current && mustReinit) return;
-      if (!threeRef.current) return;
-      const t = threeRef.current;
-      t.resizeObserver?.disconnect();
-      cancelAnimationFrame(t.raf!);
-      t.quad?.geometry.dispose();
-      t.material.dispose();
-      t.composer?.dispose();
-      t.renderer.dispose();
+      if (threeRef.current && mustReinit) return
+      if (!threeRef.current) return
+      const t = threeRef.current
+      t.resizeObserver?.disconnect()
+      cancelAnimationFrame(t.raf!)
+      t.quad?.geometry.dispose()
+      t.material.dispose()
+      t.composer?.dispose()
+      t.renderer.dispose()
       if (t.renderer.domElement.parentElement === container)
-        container.removeChild(t.renderer.domElement);
-      threeRef.current = null;
-    };
+        container.removeChild(t.renderer.domElement)
+      threeRef.current = null
+    }
   }, [
     mounted,
     supportsWebGL,
@@ -848,43 +848,43 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
     variant,
     resolvedColor,
     speed,
-  ]);
+  ])
 
   // Fallback for devices without WebGL support
   if (!supportsWebGL) {
     // Convert hex color to RGB for CSS custom property
     const hexToRgb = (hex: string) => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
       return result
         ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(
             result[3],
-            16
+            16,
           )}`
-        : "255, 121, 25";
-    };
+        : '255, 121, 25'
+    }
 
-    const rgbColor = hexToRgb(resolvedColor);
+    const rgbColor = hexToRgb(resolvedColor)
 
     return (
       <div
-        className={`w-full h-full relative overflow-hidden ${className ?? ""}`}
+        className={`relative h-full w-full overflow-hidden ${className ?? ''}`}
         style={{
           ...style,
           background: `radial-gradient(ellipse at 30% 50%, rgba(${rgbColor}, 0.15) 0%, rgba(${rgbColor}, 0.05) 40%, transparent 70%)`,
         }}
         aria-label="Background gradient (WebGL not supported)"
       />
-    );
+    )
   }
 
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full relative overflow-hidden ${className ?? ""}`}
+      className={`relative h-full w-full overflow-hidden ${className ?? ''}`}
       style={style}
       aria-label="PixelBlast interactive background"
     />
-  );
-};
+  )
+}
 
-export default PixelBlast;
+export default PixelBlast

@@ -1,5 +1,5 @@
-import type { NextConfig } from "next";
-import createMDX from '@next/mdx';
+import type { NextConfig } from 'next'
+import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
   output: 'export',
@@ -14,10 +14,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-};
+}
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
-});
+})
 
-export default withMDX(nextConfig);
+export default withMDX(nextConfig)

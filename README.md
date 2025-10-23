@@ -85,13 +85,13 @@ Create new MDX files in the `content/blog/` directory:
 
 ```markdown
 ---
-title: "Your Post Title"
-date: "2024-01-15"
-excerpt: "A brief description of your post"
-author: "Your Name"
-tags: ["tag1", "tag2", "tag3"]
+title: 'Your Post Title'
+date: '2024-01-15'
+excerpt: 'A brief description of your post'
+author: 'Your Name'
+tags: ['tag1', 'tag2', 'tag3']
 featured: true
-readTime: "5 min read"
+readTime: '5 min read'
 ---
 
 # Your Post Title
@@ -106,19 +106,19 @@ Edit the `experiences` array in `app/experience/page.tsx`:
 ```typescript
 const experiences: Experience[] = [
   {
-    id: "new-id",
-    title: "Your Job Title",
-    company: "Company Name",
-    location: "Location",
-    startDate: "2024-01",
+    id: 'new-id',
+    title: 'Your Job Title',
+    company: 'Company Name',
+    location: 'Location',
+    startDate: '2024-01',
     endDate: undefined, // or "2024-12" for past roles
-    description: "Job description...",
-    achievements: ["Achievement 1", "Achievement 2"],
-    technologies: ["React", "TypeScript", "Node.js"],
-    website: "https://company.com"
+    description: 'Job description...',
+    achievements: ['Achievement 1', 'Achievement 2'],
+    technologies: ['React', 'TypeScript', 'Node.js'],
+    website: 'https://company.com',
   },
   // ... existing experiences
-];
+]
 ```
 
 ### Adding Projects
@@ -128,19 +128,19 @@ Edit the `projects` array in `app/projects/page.tsx`:
 ```typescript
 const projects: Project[] = [
   {
-    id: "new-project",
-    title: "Project Name",
-    description: "Short description",
-    longDescription: "Detailed description...",
-    technologies: ["Next.js", "TypeScript"],
-    githubUrl: "https://github.com/username/repo",
-    liveUrl: "https://project-demo.com",
+    id: 'new-project',
+    title: 'Project Name',
+    description: 'Short description',
+    longDescription: 'Detailed description...',
+    technologies: ['Next.js', 'TypeScript'],
+    githubUrl: 'https://github.com/username/repo',
+    liveUrl: 'https://project-demo.com',
     featured: true,
-    createdAt: "2024-01-15",
-    status: "completed"
+    createdAt: '2024-01-15',
+    status: 'completed',
   },
   // ... existing projects
-];
+]
 ```
 
 ## 🎨 Customization

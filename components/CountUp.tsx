@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react';
-import { useInView, useMotionValue, useSpring } from 'motion/react';
+import { useEffect, useRef } from 'react'
+import { useInView, useMotionValue, useSpring } from 'motion/react'
 
 interface CountUpProps {
-  to: number;
-  from?: number;
-  direction?: 'up' | 'down';
-  delay?: number;
-  duration?: number;
-  className?: string;
-  startWhen?: boolean;
-  separator?: string;
-  onStart?: () => void;
-  onEnd?: () => void;
+  to: number
+  from?: number
+  direction?: 'up' | 'down'
+  delay?: number
+  duration?: number
+  className?: string
+  startWhen?: boolean
+  separator?: string
+  onStart?: () => void
+  onEnd?: () => void
 }
 
 export default function CountUp({
@@ -24,85 +24,100 @@ export default function CountUp({
   startWhen = true,
   separator = '',
   onStart,
-  onEnd
+  onEnd,
 }: CountUpProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(direction === 'down' ? to : from);
+  const ref = useRef<HTMLSpanElement>(null)
+  const motionValue = useMotionValue(direction === 'down' ? to : from)
 
-  const damping = 20 + 40 * (1 / duration);
-  const stiffness = 100 * (1 / duration);
+  const damping = 20 + 40 * (1 / duration)
+  const stiffness = 100 * (1 / duration)
 
   const springValue = useSpring(motionValue, {
     damping,
-    stiffness
-  });
+    stiffness,
+  })
 
-  const isInView = useInView(ref, { once: true, margin: '0px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' })
 
   const getDecimalPlaces = (num: number): number => {
-    const str = num.toString();
+    const str = num.toString()
     if (str.includes('.')) {
-      const decimals = str.split('.')[1];
+      const decimals = str.split('.')[1]
       if (parseInt(decimals) !== 0) {
-        return decimals.length;
+        return decimals.length
       }
     }
-    return 0;
-  };
+    return 0
+  }
 
-  const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to));
+  const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to))
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.textContent = String(direction === 'down' ? to : from);
+      ref.current.textContent = String(direction === 'down' ? to : from)
     }
-  }, [from, to, direction]);
+  }, [from, to, direction])
 
   useEffect(() => {
     if (isInView && startWhen) {
       if (typeof onStart === 'function') {
-        onStart();
+        onStart()
       }
 
       const timeoutId = setTimeout(() => {
-        motionValue.set(direction === 'down' ? from : to);
-      }, delay * 1000);
+        motionValue.set(direction === 'down' ? from : to)
+      }, delay * 1000)
 
       const durationTimeoutId = setTimeout(
         () => {
           if (typeof onEnd === 'function') {
-            onEnd();
+            onEnd()
           }
         },
-        delay * 1000 + duration * 1000
-      );
+        delay * 1000 + duration * 1000,
+      )
 
       return () => {
-        clearTimeout(timeoutId);
-        clearTimeout(durationTimeoutId);
-      };
+        clearTimeout(timeoutId)
+        clearTimeout(durationTimeoutId)
+      }
     }
-  }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
+  }, [
+    isInView,
+    startWhen,
+    motionValue,
+    direction,
+    from,
+    to,
+    delay,
+    onStart,
+    onEnd,
+    duration,
+  ])
 
   useEffect(() => {
-    const unsubscribe = springValue.on('change', latest => {
+    const unsubscribe = springValue.on('change', (latest) => {
       if (ref.current) {
-        const hasDecimals = maxDecimals > 0;
+        const hasDecimals = maxDecimals > 0
 
         const options: Intl.NumberFormatOptions = {
           useGrouping: !!separator,
           minimumFractionDigits: hasDecimals ? maxDecimals : 0,
-          maximumFractionDigits: hasDecimals ? maxDecimals : 0
-        };
+          maximumFractionDigits: hasDecimals ? maxDecimals : 0,
+        }
 
-        const formattedNumber = Intl.NumberFormat('en-US', options).format(latest);
+        const formattedNumber = Intl.NumberFormat('en-US', options).format(
+          latest,
+        )
 
-        ref.current.textContent = separator ? formattedNumber.replace(/,/g, separator) : formattedNumber;
+        ref.current.textContent = separator
+          ? formattedNumber.replace(/,/g, separator)
+          : formattedNumber
       }
-    });
+    })
 
-    return () => unsubscribe();
-  }, [springValue, separator, maxDecimals]);
+    return () => unsubscribe()
+  }, [springValue, separator, maxDecimals])
 
-  return <span className={className} ref={ref} />;
+  return <span className={className} ref={ref} />
 }

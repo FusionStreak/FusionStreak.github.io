@@ -19,10 +19,10 @@ export const lenisConfig = {
   easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 
   // Scroll direction
-  orientation: "vertical" as const,
+  orientation: 'vertical' as const,
 
   // Touch gesture direction
-  gestureOrientation: "vertical" as const,
+  gestureOrientation: 'vertical' as const,
 
   // Enable smooth scrolling for mouse wheel
   smoothWheel: true,
@@ -43,7 +43,7 @@ export const lenisConfig = {
   // Auto request animation frame
   // Set to false when using custom RAF (e.g., GSAP ticker)
   autoRaf: false,
-};
+}
 
 /**
  * Mobile-specific configuration
@@ -53,7 +53,7 @@ export const mobileConfig = {
   lerp: 0.15, // Slightly more responsive on mobile
   wheelMultiplier: 1.5,
   touchMultiplier: 2.5,
-};
+}
 
 /**
  * Desktop-specific configuration
@@ -63,4 +63,4 @@ export const desktopConfig = {
   lerp: 0.1, // Smoother scrolling on desktop
   wheelMultiplier: 1,
   touchMultiplier: 2,
-};
+}

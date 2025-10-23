@@ -60,13 +60,13 @@ pnpm start        # Serves the ./out/ directory
 1. Create `content/blog/new-post.mdx` with frontmatter:
    ```yaml
    ---
-   title: "Post Title"
-   date: "2024-01-15"
-   excerpt: "Brief description"
-   author: "Author Name"
-   tags: ["tag1", "tag2"]
+   title: 'Post Title'
+   date: '2024-01-15'
+   excerpt: 'Brief description'
+   author: 'Author Name'
+   tags: ['tag1', 'tag2']
    featured: true
-   readTime: "5 min read"
+   readTime: '5 min read'
    ---
    ```
 2. Rebuild site - no hot reload for MDX files in content directory

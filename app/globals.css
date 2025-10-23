@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -129,11 +129,11 @@
 
 /* Syntax highlighting for code blocks */
 .prose pre {
-  @apply bg-muted border rounded-lg p-4 overflow-x-auto;
+  @apply bg-muted overflow-x-auto rounded-lg border p-4;
 }
 
 .prose code {
-  @apply bg-muted px-1 py-0.5 rounded text-sm;
+  @apply bg-muted rounded px-1 py-0.5 text-sm;
 }
 
 .prose pre code {
@@ -142,15 +142,15 @@
 
 /* Better spacing for prose content */
 .prose h1 {
-  @apply text-3xl font-bold mb-4 mt-8 first:mt-0;
+  @apply mt-8 mb-4 text-3xl font-bold first:mt-0;
 }
 
 .prose h2 {
-  @apply text-2xl font-semibold mb-3 mt-6 border-b border-border pb-2;
+  @apply border-border mt-6 mb-3 border-b pb-2 text-2xl font-semibold;
 }
 
 .prose h3 {
-  @apply text-xl font-semibold mb-2 mt-4;
+  @apply mt-4 mb-2 text-xl font-semibold;
 }
 
 .prose p {
@@ -167,7 +167,7 @@
 }
 
 .prose blockquote {
-  @apply border-l-4 border-primary pl-4 italic my-4;
+  @apply border-primary my-4 border-l-4 pl-4 italic;
 }
 
 .prose a {
@@ -175,16 +175,16 @@
 }
 
 .prose img {
-  @apply rounded-lg my-4;
+  @apply my-4 rounded-lg;
 }
 
 .prose table {
-  @apply w-full border-collapse border border-border my-4;
+  @apply border-border my-4 w-full border-collapse border;
 }
 
 .prose th,
 .prose td {
-  @apply border border-border p-2 text-left;
+  @apply border-border border p-2 text-left;
 }
 
 .prose th {

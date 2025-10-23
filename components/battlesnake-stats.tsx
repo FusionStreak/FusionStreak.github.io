@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Card,
@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import {
   ExternalLink,
   Activity,
@@ -21,46 +21,46 @@ import {
   Swords,
   Apple,
   Cherry,
-} from "lucide-react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import CountUp from "./CountUp";
+} from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import CountUp from './CountUp'
 
 interface BattlesnakeStats {
-  average_food_eaten: string;
-  average_turns: string;
-  draws: number;
-  last_played: string | null;
-  longest_game: number;
-  losses: number;
-  shortest_game: number;
-  total_food_eaten: number;
-  total_games: number;
-  total_turns: number;
-  win_rate: string;
-  wins: number;
+  average_food_eaten: string
+  average_turns: string
+  draws: number
+  last_played: string | null
+  longest_game: number
+  losses: number
+  shortest_game: number
+  total_food_eaten: number
+  total_games: number
+  total_turns: number
+  win_rate: string
+  wins: number
 }
 
 export function BattlesnakeStats() {
-  const [stats, setStats] = useState<BattlesnakeStats | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [stats, setStats] = useState<BattlesnakeStats | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch("https://fusionsnake.sayfullaheid.me/stats")
+    fetch('https://fusionsnake.sayfullaheid.me/stats')
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch stats");
-        return res.json();
+        if (!res.ok) throw new Error('Failed to fetch stats')
+        return res.json()
       })
       .then((data) => {
-        setStats(data);
-        setIsLoading(false);
+        setStats(data)
+        setIsLoading(false)
       })
       .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
-  }, []);
+        setError(err.message)
+        setIsLoading(false)
+      })
+  }, [])
 
   if (isLoading) {
     return (
@@ -73,14 +73,14 @@ export function BattlesnakeStats() {
           <CardDescription>Loading live statistics...</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex justify-center items-center h-32">
-            <div className="animate-pulse text-muted-foreground">
+          <div className="flex h-32 items-center justify-center">
+            <div className="text-muted-foreground animate-pulse">
               Fetching data...
             </div>
           </div>
         </CardContent>
       </Card>
-    );
+    )
   }
 
   if (error || !stats) {
@@ -96,7 +96,7 @@ export function BattlesnakeStats() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Stats temporarily unavailable. Check out my Battlesnake profiles:
           </p>
           <div className="flex flex-wrap gap-2">
@@ -106,7 +106,7 @@ export function BattlesnakeStats() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <ExternalLink className="h-4 w-4 mr-2" />
+                <ExternalLink className="mr-2 h-4 w-4" />
                 Profile
               </Link>
             </Button>
@@ -116,7 +116,7 @@ export function BattlesnakeStats() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Trophy className="h-4 w-4 mr-2" />
+                <Trophy className="mr-2 h-4 w-4" />
                 Standard Stats
               </Link>
             </Button>
@@ -126,42 +126,42 @@ export function BattlesnakeStats() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Target className="h-4 w-4 mr-2" />
+                <Target className="mr-2 h-4 w-4" />
                 Duels Stats
               </Link>
             </Button>
           </div>
         </CardContent>
       </Card>
-    );
+    )
   }
 
-  const winRate = parseFloat(stats.win_rate);
-  const hasPlayed = stats.total_games > 0;
+  const winRate = parseFloat(stats.win_rate)
+  const hasPlayed = stats.total_games > 0
 
   return (
-    <Card className="w-full bg-gradient-to-br from-background to-muted/20">
+    <Card className="from-background to-muted/20 w-full bg-gradient-to-br">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">
-              <Activity className="h-5 w-5 text-primary" />
+              <Activity className="text-primary h-5 w-5" />
               Battlesnake Stats
             </CardTitle>
             <CardDescription>
               Live stats from my competitive bot snake, since October 2025.
             </CardDescription>
           </div>
-          <Badge variant={hasPlayed ? "default" : "secondary"}>
-            {hasPlayed ? "Active" : "No Games Yet"}
+          <Badge variant={hasPlayed ? 'default' : 'secondary'}>
+            {hasPlayed ? 'Active' : 'No Games Yet'}
           </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Primary Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1 text-xs">
               <Crown className="h-3 w-3" />
               <span>Win Rate</span>
             </div>
@@ -174,21 +174,21 @@ export function BattlesnakeStats() {
               />
               %
             </div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-muted-foreground text-xs">
               <CountUp
                 from={0}
                 to={stats.wins}
                 duration={1}
                 className="inline"
               />
-              W /{" "}
+              W /{' '}
               <CountUp
                 from={0}
                 to={stats.losses}
                 duration={1}
                 className="inline"
               />
-              L /{" "}
+              L /{' '}
               <CountUp
                 from={0}
                 to={stats.draws}
@@ -200,7 +200,7 @@ export function BattlesnakeStats() {
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1 text-xs">
               <Target className="h-3 w-3" />
               <span>Total Games</span>
             </div>
@@ -212,20 +212,20 @@ export function BattlesnakeStats() {
                 duration={1.5}
               />
             </div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-muted-foreground text-xs">
               <CountUp
                 from={0}
                 to={stats.total_turns}
                 separator=","
                 duration={1}
                 className="inline"
-              />{" "}
+              />{' '}
               turns
             </div>
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1 text-xs">
               <TrendingUp className="h-3 w-3" />
               <span>Avg Turns</span>
             </div>
@@ -236,11 +236,11 @@ export function BattlesnakeStats() {
                 duration={1.5}
               />
             </div>
-            <div className="text-xs text-muted-foreground">per game</div>
+            <div className="text-muted-foreground text-xs">per game</div>
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1 text-xs">
               <Clock className="h-3 w-3" />
               <span>Longest Game</span>
             </div>
@@ -250,11 +250,11 @@ export function BattlesnakeStats() {
                 to={stats.longest_game}
                 separator=","
                 duration={1.5}
-              />{" "}
-              <span className="text-sm text-muted-foreground">turns</span>
+              />{' '}
+              <span className="text-muted-foreground text-sm">turns</span>
             </div>
-            <div className="text-xs text-muted-foreground">
-              shortest:{" "}
+            <div className="text-muted-foreground text-xs">
+              shortest:{' '}
               <CountUp
                 from={0}
                 to={stats.shortest_game}
@@ -267,9 +267,9 @@ export function BattlesnakeStats() {
         </div>
 
         {/* Food Stats Grid */}
-        <div className="grid grid-cols-2 gap-4 pt-2 border-t">
+        <div className="grid grid-cols-2 gap-4 border-t pt-2">
           <div className="space-y-1">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1 text-xs">
               <Apple className="h-3 w-3" />
               <span>Total Food Eaten</span>
             </div>
@@ -281,11 +281,11 @@ export function BattlesnakeStats() {
                 duration={1.5}
               />
             </div>
-            <div className="text-xs text-muted-foreground">all time</div>
+            <div className="text-muted-foreground text-xs">all time</div>
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1 text-xs">
               <Cherry className="h-3 w-3" />
               <span>Avg Food Per Game</span>
             </div>
@@ -296,13 +296,13 @@ export function BattlesnakeStats() {
                 duration={1.5}
               />
             </div>
-            <div className="text-xs text-muted-foreground">per game</div>
+            <div className="text-muted-foreground text-xs">per game</div>
           </div>
         </div>
 
         {/* Last Played */}
         {stats.last_played && (
-          <div className="text-xs text-muted-foreground text-center pt-2 border-t">
+          <div className="text-muted-foreground border-t pt-2 text-center text-xs">
             Last played: {new Date(stats.last_played).toLocaleDateString()}
           </div>
         )}
@@ -315,7 +315,7 @@ export function BattlesnakeStats() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ExternalLink className="h-4 w-4 mr-2" />
+              <ExternalLink className="mr-2 h-4 w-4" />
               View Profile
             </Link>
           </Button>
@@ -325,7 +325,7 @@ export function BattlesnakeStats() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Trophy className="h-4 w-4 mr-2" />
+              <Trophy className="mr-2 h-4 w-4" />
               Standard
             </Link>
           </Button>
@@ -335,7 +335,7 @@ export function BattlesnakeStats() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Swords className="h-4 w-4 mr-2" />
+              <Swords className="mr-2 h-4 w-4" />
               Duels
             </Link>
           </Button>
@@ -345,12 +345,12 @@ export function BattlesnakeStats() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <BookText className="h-4 w-4 mr-2" />
+              <BookText className="mr-2 h-4 w-4" />
               Learn More
             </Link>
           </Button>
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }
