@@ -19,18 +19,22 @@ import {
   BookText,
   Crown,
   Swords,
+  Apple,
+  Cherry,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CountUp from "./CountUp";
 
 interface BattlesnakeStats {
+  average_food_eaten: string;
   average_turns: string;
   draws: number;
   last_played: string | null;
   longest_game: number;
   losses: number;
   shortest_game: number;
+  total_food_eaten: number;
   total_games: number;
   total_turns: number;
   win_rate: string;
@@ -259,6 +263,40 @@ export function BattlesnakeStats() {
                 className="inline"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Food Stats Grid */}
+        <div className="grid grid-cols-2 gap-4 pt-2 border-t">
+          <div className="space-y-1">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <Apple className="h-3 w-3" />
+              <span>Total Food Eaten</span>
+            </div>
+            <div className="text-2xl font-bold">
+              <CountUp
+                from={0}
+                to={stats.total_food_eaten}
+                separator=","
+                duration={1.5}
+              />
+            </div>
+            <div className="text-xs text-muted-foreground">all time</div>
+          </div>
+
+          <div className="space-y-1">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <Cherry className="h-3 w-3" />
+              <span>Avg Food Per Game</span>
+            </div>
+            <div className="text-2xl font-bold">
+              <CountUp
+                from={0}
+                to={parseFloat(stats.average_food_eaten)}
+                duration={1.5}
+              />
+            </div>
+            <div className="text-xs text-muted-foreground">per game</div>
           </div>
         </div>
 
