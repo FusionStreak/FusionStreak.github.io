@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SplitText from "@/components/SplitText";
-import { BattlesnakeStats } from "@/components/battlesnake-stats";
+import { skillCategories } from "@/app/skills/skills";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center space-y-8">
+    <div className="flex flex-col items-center space-y-12">
       {/* Hero Section */}
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-6 max-w-4xl">
         <div className="space-y-2">
           <SplitText
             text="Hello, I'm <primary>Sayfullah Eid</primary>"
@@ -34,70 +34,55 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Battlesnake Stats Widget */}
-      <div className="w-full max-w-4xl">
-        <BattlesnakeStats />
+      {/* Skills Section - More Prominent */}
+      <div className="w-full max-w-5xl">
+        <Card className="bg-gradient-to-br from-background via-primary/5 to-primary/10 border-primary/20">
+          <CardHeader className="text-center pb-8">
+            <CardTitle className="text-3xl md:text-4xl font-bold">
+              Technical Expertise
+            </CardTitle>
+            <CardDescription className="text-base md:text-lg">
+              Technologies and tools I use to build modern applications
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {skillCategories.map((category) => {
+                const IconComponent = category.icon;
+                return (
+                  <Card
+                    key={category.title}
+                    className="bg-background/50 backdrop-blur border-border/50"
+                  >
+                    <CardHeader>
+                      <div className="flex items-center gap-2">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                          <IconComponent className="h-5 w-5 text-primary" />
+                        </div>
+                        <CardTitle className="text-xl">
+                          {category.title}
+                        </CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill) => (
+                          <Badge
+                            key={skill}
+                            className="font-mono bg-complementary/20 text-foreground border-primary/30"
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
       </div>
-
-      {/* Skills Section */}
-      <Card className="w-full max-w-4xl">
-        <CardHeader className="text-center">
-          <CardTitle>Technical Skills</CardTitle>
-          <CardDescription>Technologies and tools I work with</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="space-y-3">
-              <h4 className="font-semibold">Frontend</h4>
-              <div className="flex flex-wrap gap-2">
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  React
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Next.js
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  TypeScript
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Tailwind CSS
-                </Badge>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <h4 className="font-semibold">Backend</h4>
-              <div className="flex flex-wrap gap-2">
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Node.js
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Axum
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Tokio
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Rust
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  PostgreSQL
-                </Badge>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <h4 className="font-semibold">Tools & DevOps</h4>
-              <div className="flex flex-wrap gap-2">
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Git
-                </Badge>
-                <Badge className="font-mono bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  Docker
-                </Badge>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
