@@ -140,7 +140,7 @@ export const projects: Project[] = [
             'Deployed as a live web service with real-time game statistics tracking',
             'Competes in Standard and Duels game modes on the Battlesnake platform'
         ],
-        technologies: ['Rust', 'Rocket', 'Pathfinding Algorithms', 'Docker'],
+        technologies: ['Rust', 'Actix Web', 'Pathfinding Algorithms', 'Docker'],
         liveUrl: 'https://fusionsnake.sayfullaheid.me',
         githubUrl: 'https://github.com/FusionStreak/FusionSnake',
         featured: false,
