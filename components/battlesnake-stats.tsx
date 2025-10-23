@@ -17,9 +17,12 @@ import {
   Clock,
   TrendingUp,
   BookText,
+  Crown,
+  Swords,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import CountUp from "./CountUp";
 
 interface BattlesnakeStats {
   average_turns: string;
@@ -155,12 +158,40 @@ export function BattlesnakeStats() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Trophy className="h-3 w-3" />
+              <Crown className="h-3 w-3" />
               <span>Win Rate</span>
             </div>
-            <div className="text-2xl font-bold">{winRate.toFixed(1)}%</div>
+            <div className="text-2xl font-bold">
+              <CountUp
+                from={0}
+                to={winRate}
+                duration={1.5}
+                className="inline"
+              />
+              %
+            </div>
             <div className="text-xs text-muted-foreground">
-              {stats.wins}W / {stats.losses}L / {stats.draws}D
+              <CountUp
+                from={0}
+                to={stats.wins}
+                duration={1}
+                className="inline"
+              />
+              W /{" "}
+              <CountUp
+                from={0}
+                to={stats.losses}
+                duration={1}
+                className="inline"
+              />
+              L /{" "}
+              <CountUp
+                from={0}
+                to={stats.draws}
+                duration={1}
+                className="inline"
+              />
+              D
             </div>
           </div>
 
@@ -169,9 +200,23 @@ export function BattlesnakeStats() {
               <Target className="h-3 w-3" />
               <span>Total Games</span>
             </div>
-            <div className="text-2xl font-bold">{stats.total_games}</div>
+            <div className="text-2xl font-bold">
+              <CountUp
+                from={0}
+                to={stats.total_games}
+                separator=","
+                duration={1.5}
+              />
+            </div>
             <div className="text-xs text-muted-foreground">
-              {stats.total_turns} turns
+              <CountUp
+                from={0}
+                to={stats.total_turns}
+                separator=","
+                duration={1}
+                className="inline"
+              />{" "}
+              turns
             </div>
           </div>
 
@@ -181,7 +226,11 @@ export function BattlesnakeStats() {
               <span>Avg Turns</span>
             </div>
             <div className="text-2xl font-bold">
-              {parseFloat(stats.average_turns).toFixed(1)}
+              <CountUp
+                from={0}
+                to={parseFloat(stats.average_turns)}
+                duration={1.5}
+              />
             </div>
             <div className="text-xs text-muted-foreground">per game</div>
           </div>
@@ -189,13 +238,26 @@ export function BattlesnakeStats() {
           <div className="space-y-1">
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <Clock className="h-3 w-3" />
-              <span>Game Length</span>
+              <span>Longest Game</span>
             </div>
-            <div className="text-2xl font-bold">{stats.longest_game}</div>
+            <div className="text-2xl font-bold">
+              <CountUp
+                from={0}
+                to={stats.longest_game}
+                separator=","
+                duration={1.5}
+              />{" "}
+              <span className="text-sm text-muted-foreground">turns</span>
+            </div>
             <div className="text-xs text-muted-foreground">
-              {stats.shortest_game > 0
-                ? `${stats.shortest_game} min`
-                : "longest"}
+              shortest:{" "}
+              <CountUp
+                from={0}
+                to={stats.shortest_game}
+                separator=","
+                duration={1}
+                className="inline"
+              />
             </div>
           </div>
         </div>
@@ -235,7 +297,7 @@ export function BattlesnakeStats() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Target className="h-4 w-4 mr-2" />
+              <Swords className="h-4 w-4 mr-2" />
               Duels
             </Link>
           </Button>
