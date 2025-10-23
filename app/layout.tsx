@@ -38,6 +38,10 @@ const NAV_ITEMS: NavItem[] = [
     href: "/projects",
   },
   {
+    label: "Battlesnake",
+    href: "/battlesnake",
+  },
+  {
     label: "Blog",
     href: "/blog",
   },
