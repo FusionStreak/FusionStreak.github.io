@@ -209,7 +209,6 @@ export const projects: Project[] = [
       'Developed a cognitive memory game using JavaScript that integrated with a Slack app, to perform daily check-ins on employee mental health',
     ],
     technologies: ['JavaScript'],
-    githubUrl: 'https://github.com/banaru4/Harmonia',
     devpostUrl: 'https://devpost.com/software/harmonia',
     imageUrl:
       'https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/000/919/431/datas/medium.png',
