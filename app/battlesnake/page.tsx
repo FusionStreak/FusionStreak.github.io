@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Code2, Brain, Zap, Shield } from 'lucide-react'
+import BattlesnakeEasterEgg from '@/components/battlesnake-easter-egg'
 
 export const metadata: Metadata = {
   title: 'Battlesnake Stats - Sayfullah Eid',
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
 export default function BattlesnakePage() {
   return (
     <div className="flex flex-col items-center space-y-8">
+      {/* Hidden Easter Egg listener: Konami code opens a dialog with a Pixel Snake mini-game */}
+      <BattlesnakeEasterEgg />
       {/* Header Section */}
       <div className="max-w-3xl space-y-4 text-center">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
