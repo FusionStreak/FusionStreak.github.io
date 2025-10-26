@@ -121,6 +121,7 @@ export const projects: Project[] = [
     createdAt: '2023-04-01',
     status: 'completed',
     role: 'Lead & Backend Developer',
+    imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg'
   },
   {
     title: 'Vehichle Sensor Simulator',
@@ -133,6 +134,7 @@ export const projects: Project[] = [
     createdAt: '2023-04-01',
     status: 'completed',
     role: 'Developer',
+    imageUrl: 'https://cdn.jsdelivr.net/gh/selfhst/icons/webp/arduino.webp'
   },
   {
     title: 'Orion',
@@ -151,6 +153,7 @@ export const projects: Project[] = [
     featured: false,
     createdAt: '2019-05-01',
     status: 'completed',
+    imageUrl: 'https://avatars.githubusercontent.com/u/50467269'
   },
   {
     title: 'PlagueSim',
@@ -166,6 +169,7 @@ export const projects: Project[] = [
     createdAt: '2021-10-26',
     status: 'completed',
     role: 'Lead Developer',
+    imageUrl: 'https://cdn.jsdelivr.net/gh/selfhst/icons/webp/java.webp'
   },
   {
     title: 'FusionSnake',
@@ -178,12 +182,13 @@ export const projects: Project[] = [
       'Deployed as a live web service with real-time game statistics tracking',
       'Competes in Standard and Duels game modes on the Battlesnake platform',
     ],
-    technologies: ['Rust', 'Actix Web', 'Pathfinding Algorithms', 'Docker'],
+    technologies: ['Rust', 'Actix-web', 'Pathfinding Algorithms', 'Docker'],
     liveUrl: 'https://fusionsnake.sayfullaheid.me',
     githubUrl: 'https://github.com/FusionStreak/FusionSnake',
     featured: false,
     createdAt: '2024-06-01',
     status: 'in-progress',
+    imageUrl: 'https://github.com/FusionStreak/FusionSnake/blob/main/.github/logo.png?raw=true',
   },
   {
     title: 'Personal Portfolio Website',
@@ -195,11 +200,13 @@ export const projects: Project[] = [
       'Created an integrated blog system for sharing technical insights and tutorials',
       'Designed with accessibility and performance optimization in mind',
     ],
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    technologies: ['Next.js', 'ReactJS', 'TypeScript', 'Tailwind CSS'],
     githubUrl: 'https://github.com/FusionStreak/FusionStreak.github.io',
     featured: true,
     createdAt: '2022-12-25',
     status: 'in-progress',
+    imageUrl:
+      '/logo.svg',
   },
   {
     title: 'harmonia',
