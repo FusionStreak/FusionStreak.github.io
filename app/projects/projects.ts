@@ -45,12 +45,7 @@ export const projects: Project[] = [
       'Offline-first design to ensure accessibility without internet connection',
       'Cross device sharing via a custom LAN sync protocol',
     ],
-    technologies: [
-      'ReactJS',
-      'TypeScript',
-      'Rust',
-      'Tauri',
-    ],
+    technologies: ['ReactJS', 'TypeScript', 'Rust', 'Tauri'],
     status: 'planning',
     createdAt: '2025-09-01',
     featured: true,
@@ -116,7 +111,8 @@ export const projects: Project[] = [
     createdAt: '2023-04-01',
     status: 'completed',
     role: 'Lead & Backend Developer',
-    imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg'
+    imageUrl:
+      'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
   },
   {
     title: 'Vehichle Sensor Simulator',
@@ -129,7 +125,7 @@ export const projects: Project[] = [
     createdAt: '2023-04-01',
     status: 'completed',
     role: 'Developer',
-    imageUrl: 'https://cdn.jsdelivr.net/gh/selfhst/icons/webp/arduino.webp'
+    imageUrl: 'https://cdn.jsdelivr.net/gh/selfhst/icons/webp/arduino.webp',
   },
   {
     title: 'Orion',
@@ -148,7 +144,7 @@ export const projects: Project[] = [
     featured: false,
     createdAt: '2019-05-01',
     status: 'completed',
-    imageUrl: 'https://avatars.githubusercontent.com/u/50467269'
+    imageUrl: 'https://avatars.githubusercontent.com/u/50467269',
   },
   {
     title: 'PlagueSim',
@@ -164,7 +160,7 @@ export const projects: Project[] = [
     createdAt: '2021-10-26',
     status: 'completed',
     role: 'Lead Developer',
-    imageUrl: 'https://cdn.jsdelivr.net/gh/selfhst/icons/webp/java.webp'
+    imageUrl: 'https://cdn.jsdelivr.net/gh/selfhst/icons/webp/java.webp',
   },
   {
     title: 'FusionSnake',
@@ -183,7 +179,8 @@ export const projects: Project[] = [
     featured: false,
     createdAt: '2024-06-01',
     status: 'in-progress',
-    imageUrl: 'https://github.com/FusionStreak/FusionSnake/blob/main/.github/logo.png?raw=true',
+    imageUrl:
+      'https://github.com/FusionStreak/FusionSnake/blob/main/.github/logo.png?raw=true',
   },
   {
     title: 'Personal Portfolio Website',
@@ -200,8 +197,7 @@ export const projects: Project[] = [
     featured: true,
     createdAt: '2022-12-25',
     status: 'in-progress',
-    imageUrl:
-      '/logo.svg',
+    imageUrl: '/logo.svg',
   },
   {
     title: 'harmonia',
