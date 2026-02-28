@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { BattlesnakeStats } from '@/components/battlesnake-stats'
+import { BattlesnakeHistoryChart } from '@/components/battlesnake-history-chart'
 import {
   Card,
   CardContent,
@@ -34,6 +35,11 @@ export default function BattlesnakePage() {
       {/* Live Stats */}
       <div className="w-full max-w-4xl">
         <BattlesnakeStats />
+      </div>
+
+      {/* Game History Chart */}
+      <div className="w-full max-w-4xl">
+        <BattlesnakeHistoryChart />
       </div>
 
       {/* About Battlesnake */}
