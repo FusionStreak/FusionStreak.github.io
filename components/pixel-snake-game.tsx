@@ -97,6 +97,7 @@ export function PixelSnakeGame({
   const scoreRef = useRef(0)
   const highRef = useRef(high)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const prevSnakeRef = useRef<Vec[]>([])
 
   // Keep refs in sync with state
   useEffect(() => {
@@ -156,6 +157,7 @@ export function PixelSnakeGame({
     nextDirRef.current = { x: 1, y: 0 }
     const start = { x: Math.floor(gridSize / 2), y: Math.floor(gridSize / 2) }
     snakeRef.current = [start, { x: start.x - 1, y: start.y }]
+    prevSnakeRef.current = [...snakeRef.current]
     placeFood()
     accRef.current = 0
     lastTimeRef.current = performance.now()
@@ -314,7 +316,9 @@ export function PixelSnakeGame({
       if (pausedRef.current || !aliveRef.current) return
       accRef.current += dt
       if (accRef.current < tickMs) return
-      accRef.current = 0
+      accRef.current -= tickMs
+      // Save previous positions for interpolation
+      prevSnakeRef.current = snakeRef.current.map((s) => ({ ...s }))
       dirRef.current = nextDirRef.current
       const head = snakeRef.current[0]
       const nx = head.x + dirRef.current.x
@@ -347,11 +351,34 @@ export function PixelSnakeGame({
       time = t
       const w = canvas.width
       const h = canvas.height
-      const cell = Math.floor(Math.min(w, h) / (gridSize + 1))
+      const cell = Math.floor(Math.min(w, h) / (gridSize + 2))
       const gridW = cell * gridSize
+      const hudH = Math.floor(cell * 1.4)
+      const totalH = gridW + hudH
       const padX = Math.floor((w - gridW) / 2)
-      const padY = Math.floor((h - gridW) / 2)
-      const inset = Math.max(1, Math.floor(cell * 0.08))
+      const padY = Math.floor((h - totalH) / 2) + hudH
+      const bodyW = cell
+
+      // Interpolation factor (0 = prev positions, 1 = current positions)
+      const lerp =
+        pausedRef.current || !aliveRef.current
+          ? 1
+          : clamp(accRef.current / tickMs, 0, 1)
+
+      // Compute interpolated positions
+      const snake = snakeRef.current
+      const prev = prevSnakeRef.current
+      const pos: { x: number; y: number }[] = []
+      for (let i = 0; i < snake.length; i++) {
+        if (i < prev.length) {
+          pos.push({
+            x: prev[i].x + (snake[i].x - prev[i].x) * lerp,
+            y: prev[i].y + (snake[i].y - prev[i].y) * lerp,
+          })
+        } else {
+          pos.push({ x: snake[i].x, y: snake[i].y })
+        }
+      }
 
       // Background fill
       ctx.fillStyle = BG
@@ -374,7 +401,7 @@ export function PixelSnakeGame({
       {
         const fx = padX + foodRef.current.x * cell + cell / 2
         const fy = padY + foodRef.current.y * cell + cell / 2
-        const r = (cell - inset * 2) * 0.4
+        const r = bodyW * 0.45
         const pulse = 0.7 + 0.3 * Math.sin(time * 0.004)
 
         // Outer glow
@@ -410,64 +437,56 @@ export function PixelSnakeGame({
         ctx.restore()
       }
 
-      // --- Snake body (middle segments) ---
-      const snake = snakeRef.current
-      ctx.fillStyle = snakeColor
-      for (let i = 1; i < snake.length - 1; i++) {
-        const s = snake[i]
-        roundedRect(
-          ctx,
-          padX + s.x * cell + inset,
-          padY + s.y * cell + inset,
-          cell - inset * 2,
-          cell - inset * 2,
-          Math.floor(cell / 5),
-        )
-        ctx.fill()
-      }
+      // --- Snake body as thick polyline (body only, excludes head & tail) ---
+      if (pos.length > 2) {
+        // Draw from index 0 to length-1 but clip out head/tail cells so the
+        // polyline only *visually* covers middle segments. We extend the
+        // stroke half a cell into the head/tail cells to avoid a gap at the
+        // junction, but then the head/tail SVGs are drawn on top.
+        const first = 0
+        const last = pos.length - 1
+        ctx.save()
+        ctx.strokeStyle = snakeColor
+        ctx.lineWidth = bodyW
+        ctx.lineCap = 'butt'
+        ctx.lineJoin = 'round'
 
-      // Connector fills between adjacent body segments to remove gaps
-      ctx.fillStyle = snakeColor
-      for (let i = 0; i < snake.length - 1; i++) {
-        const a = snake[i]
-        const b = snake[i + 1]
-        // Skip head→first-body and lastBody→tail connectors when SVGs are present
-        if (i === 0 && headImgRef.current) continue
-        if (i === snake.length - 2 && tailImgRef.current) continue
-        const dx = b.x - a.x
-        const dy = b.y - a.y
-        if (Math.abs(dx) + Math.abs(dy) === 1) {
-          if (dx !== 0) {
-            const startX =
-              dx > 0
-                ? padX + a.x * cell + cell - inset
-                : padX + b.x * cell + cell - inset
-            ctx.fillRect(
-              startX,
-              padY + a.y * cell + inset,
-              inset * 2,
-              cell - inset * 2,
-            )
-          } else {
-            const startY =
-              dy > 0
-                ? padY + a.y * cell + cell - inset
-                : padY + b.y * cell + cell - inset
-            ctx.fillRect(
-              padX + a.x * cell + inset,
-              startY,
-              cell - inset * 2,
-              inset * 2,
-            )
-          }
+        // Segment from neck (index 1) extended halfway toward head center
+        const hx0 = padX + pos[first].x * cell + cell / 2
+        const hy0 = padY + pos[first].y * cell + cell / 2
+        const nx = padX + pos[1].x * cell + cell / 2
+        const ny = padY + pos[1].y * cell + cell / 2
+        // Midpoint between head and neck
+        const startX = (hx0 + nx) / 2
+        const startY = (hy0 + ny) / 2
+
+        // Segment from pre-tail extended halfway toward tail center
+        const tx0 = padX + pos[last].x * cell + cell / 2
+        const ty0 = padY + pos[last].y * cell + cell / 2
+        const ptx = padX + pos[last - 1].x * cell + cell / 2
+        const pty = padY + pos[last - 1].y * cell + cell / 2
+        const endX = (tx0 + ptx) / 2
+        const endY = (ty0 + pty) / 2
+
+        ctx.beginPath()
+        ctx.moveTo(startX, startY)
+        for (let i = 1; i < last; i++) {
+          ctx.lineTo(
+            padX + pos[i].x * cell + cell / 2,
+            padY + pos[i].y * cell + cell / 2,
+          )
         }
+        ctx.lineTo(endX, endY)
+        ctx.stroke()
+        ctx.restore()
+      } else if (pos.length === 2) {
+        // Only head + tail, no visible body needed (SVGs cover both cells)
       }
 
       // --- Snake head ---
-      if (snake.length > 0) {
-        const head = snake[0]
-        const hx = padX + head.x * cell
-        const hy = padY + head.y * cell
+      if (pos.length > 0) {
+        const hx = padX + pos[0].x * cell
+        const hy = padY + pos[0].y * cell
         if (headImgRef.current) {
           drawSvgPart(
             ctx,
@@ -482,35 +501,38 @@ export function PixelSnakeGame({
           ctx.fillStyle = snakeColor
           roundedRect(
             ctx,
-            hx + inset,
-            hy + inset,
-            cell - inset * 2,
-            cell - inset * 2,
-            Math.floor(cell / 3),
+            hx + (cell - bodyW) / 2,
+            hy + (cell - bodyW) / 2,
+            bodyW,
+            bodyW,
+            Math.floor(bodyW / 3),
           )
           ctx.fill()
         }
       }
 
       // --- Snake tail ---
-      if (snake.length > 1) {
-        const tail = snake[snake.length - 1]
-        const preTail = snake[snake.length - 2]
+      if (pos.length > 1) {
+        const tailI = pos.length - 1
+        const preI = pos.length - 2
         // Tail direction = from tail toward body (matches official board transform logic)
-        const td: Vec = { x: preTail.x - tail.x, y: preTail.y - tail.y }
-        const tx = padX + tail.x * cell
-        const ty = padY + tail.y * cell
+        const td: Vec = {
+          x: snake[preI].x - snake[tailI].x,
+          y: snake[preI].y - snake[tailI].y,
+        }
+        const tx = padX + pos[tailI].x * cell
+        const ty = padY + pos[tailI].y * cell
         if (tailImgRef.current) {
           drawSvgPart(ctx, tailImgRef.current, tx, ty, cell, td, true)
         } else {
           ctx.fillStyle = snakeColor
           roundedRect(
             ctx,
-            tx + inset,
-            ty + inset,
-            cell - inset * 2,
-            cell - inset * 2,
-            Math.floor(cell / 5),
+            tx + (cell - bodyW) / 2,
+            ty + (cell - bodyW) / 2,
+            bodyW,
+            bodyW,
+            Math.floor(bodyW / 5),
           )
           ctx.fill()
         }
@@ -518,12 +540,12 @@ export function PixelSnakeGame({
 
       // --- Score HUD ---
       {
-        const fontSize = Math.max(10, Math.floor(cell * 0.55))
+        const fontSize = Math.max(10, Math.floor(cell * 0.6))
         ctx.save()
         ctx.font = `600 ${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`
         ctx.fillStyle = 'rgba(229,231,235,0.85)'
-        ctx.textBaseline = 'middle'
-        const hudY = padY - bord - fontSize * 0.7
+        ctx.textBaseline = 'bottom'
+        const hudY = padY - bord - Math.floor(cell * 0.2)
         ctx.textAlign = 'left'
         ctx.fillText(`Score ${scoreRef.current}`, padX, hudY)
         ctx.textAlign = 'right'
