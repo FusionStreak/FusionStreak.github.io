@@ -11,7 +11,6 @@ import {
 import PixelSnakeGame from '@/components/pixel-snake-game'
 
 // A small wrapper that listens for a secret sequence and opens a dialog with the snake game.
-// New code: s n a k e Enter
 const SECRET = ['s', 'n', 'a', 'k', 'e', 'Enter']
 
 export default function BattlesnakeEasterEgg() {
@@ -31,17 +30,14 @@ export default function BattlesnakeEasterEgg() {
       if (key === expected) {
         const next = ix + 1
         if (next >= SECRET.length) {
-          // Prevent the Enter key (final step) from interacting with the dialog immediately.
           e.preventDefault()
           e.stopPropagation()
-          // Open on next frame to let the key event fully resolve first.
           requestAnimationFrame(() => setOpen(true))
           setIx(0)
           return
         }
         setIx(next)
       } else {
-        // If mismatch but current key could restart the sequence
         if (key === normalize(SECRET[0])) setIx(1)
         else setIx(0)
       }
@@ -51,48 +47,49 @@ export default function BattlesnakeEasterEgg() {
     return () => window.removeEventListener('keydown', onKey, opts)
   }, [ix])
 
-  // One-time console hints to tease the easter egg (non-intrusive, styled).
+  // Console hint
   useEffect(() => {
     try {
-      const title = '🕹 Hidden Fun'
       const sTitle =
-        'background:#111;color:#B19EEF;padding:2px 8px;border-radius:6px;font-weight:700;'
+        'background:#111;color:#f54a00;padding:2px 8px;border-radius:6px;font-weight:700;'
       const sLine = 'color:#9ca3af'
       const sHot =
         'background:#1f2937;color:#e5e7eb;padding:1px 6px;border-radius:4px'
-      // Grouped to keep console tidy; collapsed so it doesn’t spam.
-      // Shown in both dev and prod—this is intentional for the easter egg.
-      // Feel free to gate via NODE_ENV if you want it dev-only.
-      console.groupCollapsed('%c' + title, sTitle)
-      console.log('%cThere’s a tiny easter egg on this page.', sLine)
-      console.log('Hint: type: %cS N A K E Enter', sHot)
-      console.log('%cPsst: share the fun, not the secret 😉', sLine)
+      console.groupCollapsed('%c\uD83D\uDC0D Hidden Fun', sTitle)
+      console.log('%cThere\u2019s a tiny easter egg on this page.', sLine)
+      console.log('Hint: type %cS N A K E Enter', sHot)
+      console.log('%cPsst: share the fun, not the secret \uD83D\uDE09', sLine)
       console.groupEnd()
     } catch {
-      // Ignore if console is unavailable
+      /* noop */
     }
   }, [])
 
   return (
     <>
-      {/* Accessible-only hint for screen readers; visually hidden to keep it an easter egg */}
       <p className="sr-only" aria-live="polite">
         {instructions}
       </p>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
-          className="max-w-xl p-4 sm:p-6"
+          className="max-h-[95dvh] w-[calc(100%-1rem)] max-w-2xl overflow-hidden p-3 sm:p-5"
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
-          <DialogHeader>
-            <DialogTitle>Pixel Snake</DialogTitle>
-            <DialogDescription>
-              Use arrow keys or WASD to move. Press Space to pause.
+          <DialogHeader className="gap-0.5">
+            <DialogTitle className="flex items-center gap-2 text-base">
+              <span
+                className="inline-block size-3 rounded-sm"
+                style={{ background: '#f54a00' }}
+                aria-hidden
+              />
+              FusionSnake
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              Arrow keys / WASD to move &middot; Space to pause &middot; Swipe
+              on mobile
             </DialogDescription>
           </DialogHeader>
-          <div className="mt-2">
-            <PixelSnakeGame className="relative mx-auto aspect-square w-full max-w-[520px]" />
-          </div>
+          <PixelSnakeGame className="relative mx-auto aspect-square w-full max-w-[min(65dvh,560px)]" />
         </DialogContent>
       </Dialog>
     </>
