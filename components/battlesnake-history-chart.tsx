@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Area,
   CartesianGrid,
@@ -24,10 +24,16 @@ import {
   ChartTooltip,
 } from '@/components/ui/chart'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Percent } from 'lucide-react'
+import { ExternalLink, Percent } from 'lucide-react'
 
 const LIMIT_OPTIONS = [25, 50, 75, 100] as const
 type Limit = (typeof LIMIT_OPTIONS)[number]
+
+const SOURCE_OPTIONS = [
+  { value: 'all', label: 'All' },
+  { value: 'official', label: 'Official' },
+] as const
+type SourceFilter = (typeof SOURCE_OPTIONS)[number]['value']
 
 // ── Types matching the API schema ──────────────────────────────────────
 
@@ -80,10 +86,21 @@ const chartConfig = {
 function HistoryTooltipContent({
   active,
   payload,
+  onPointActive,
 }: {
   active?: boolean
   payload?: Array<{ payload: ChartDataPoint }>
+  onPointActive?: (point: ChartDataPoint) => void
 }) {
+  // Use a ref so the effect doesn't re-register when the callback identity changes
+  const onPointActiveRef = useRef(onPointActive)
+  onPointActiveRef.current = onPointActive
+
+  const point = active && payload?.length ? payload[0].payload : null
+  useEffect(() => {
+    if (point) onPointActiveRef.current?.(point)
+  }, [point])
+
   if (!active || !payload?.length) return null
 
   const data = payload[0].payload
@@ -142,8 +159,17 @@ function HistoryTooltipContent({
 export function BattlesnakeHistoryChart() {
   const [limit, setLimit] = useState<Limit>(25)
   const [chartData, setChartData] = useState<ChartDataPoint[]>([])
+  const [sourceFilter, setSourceFilter] = useState<SourceFilter>('all')
+  const [selectedPoint, setSelectedPoint] = useState<ChartDataPoint | null>(
+    null,
+  )
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const filteredData = useMemo(() => {
+    if (sourceFilter === 'all') return chartData
+    return chartData.filter((d) => d.source === sourceFilter)
+  }, [chartData, sourceFilter])
 
   useEffect(() => {
     setIsLoading(true)
@@ -174,6 +200,7 @@ export function BattlesnakeHistoryChart() {
         }))
 
         setChartData(points)
+        setSelectedPoint(null)
         setIsLoading(false)
       })
       .catch((err) => {
@@ -182,22 +209,38 @@ export function BattlesnakeHistoryChart() {
       })
   }, [limit])
 
-  // ── Limit selector (shown in all states) ─────────────────────────────
+  // ── Header controls (shown in all states) ───────────────────────────
 
-  const limitSelector = (
-    <Tabs
-      value={String(limit)}
-      onValueChange={(v) => setLimit(Number(v) as Limit)}
-      className="hidden sm:block"
-    >
-      <TabsList className="h-8">
-        {LIMIT_OPTIONS.map((n) => (
-          <TabsTrigger key={n} value={String(n)} className="px-2.5 text-xs">
-            {n}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-    </Tabs>
+  const headerControls = (
+    <div className="hidden items-center gap-2 sm:flex">
+      <Tabs
+        value={sourceFilter}
+        onValueChange={(v) => {
+          setSourceFilter(v as SourceFilter)
+          setSelectedPoint(null)
+        }}
+      >
+        <TabsList className="h-8">
+          {SOURCE_OPTIONS.map(({ value, label }) => (
+            <TabsTrigger key={value} value={value} className="px-2.5 text-xs">
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+      <Tabs
+        value={String(limit)}
+        onValueChange={(v) => setLimit(Number(v) as Limit)}
+      >
+        <TabsList className="h-8">
+          {LIMIT_OPTIONS.map((n) => (
+            <TabsTrigger key={n} value={String(n)} className="px-2.5 text-xs">
+              {n}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+    </div>
   )
 
   // ── Loading state ────────────────────────────────────────────────────
@@ -214,7 +257,7 @@ export function BattlesnakeHistoryChart() {
               </CardTitle>
               <CardDescription>Loading game history...</CardDescription>
             </div>
-            {limitSelector}
+            {headerControls}
           </div>
         </CardHeader>
         <CardContent>
@@ -246,7 +289,7 @@ export function BattlesnakeHistoryChart() {
                   : 'No game history recorded yet.'}
               </CardDescription>
             </div>
-            {limitSelector}
+            {headerControls}
           </div>
         </CardHeader>
       </Card>
@@ -255,7 +298,7 @@ export function BattlesnakeHistoryChart() {
 
   // ── Chart ────────────────────────────────────────────────────────────
 
-  const maxTurns = Math.max(...chartData.map((d) => d.turns))
+  const maxTurns = Math.max(...filteredData.map((d) => d.turns))
 
   return (
     <Card className="w-full">
@@ -267,17 +310,18 @@ export function BattlesnakeHistoryChart() {
               Recent Games
             </CardTitle>
             <CardDescription>
-              Last {chartData.length} games — cumulative win rate &amp; turns
-              played
+              {filteredData.length} game{filteredData.length !== 1 ? 's' : ''}
+              {sourceFilter !== 'all' ? ` (${sourceFilter} only)` : ''} —
+              cumulative win rate &amp; turns played
             </CardDescription>
           </div>
-          {limitSelector}
+          {headerControls}
         </div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="h-[300px] w-full">
           <ComposedChart
-            data={chartData}
+            data={filteredData}
             margin={{ top: 8, right: 8, bottom: 0, left: -16 }}
           >
             <defs>
@@ -326,7 +370,9 @@ export function BattlesnakeHistoryChart() {
             />
 
             <ChartTooltip
-              content={<HistoryTooltipContent />}
+              content={
+                <HistoryTooltipContent onPointActive={setSelectedPoint} />
+              }
               cursor={{ strokeDasharray: '4 4' }}
             />
 
@@ -355,6 +401,48 @@ export function BattlesnakeHistoryChart() {
             <ChartLegend content={<ChartLegendContent />} />
           </ComposedChart>
         </ChartContainer>
+
+        {/* Selected game panel */}
+        {selectedPoint ? (
+          <div className="border-border bg-muted/30 mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border px-4 py-3">
+            <div className="text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+              <span>Game #{selectedPoint.index}</span>
+              <span
+                className={
+                  selectedPoint.outcome === 'Win'
+                    ? 'font-semibold text-green-500'
+                    : selectedPoint.outcome === 'Loss'
+                      ? 'font-semibold text-red-500'
+                      : 'font-semibold text-yellow-500'
+                }
+              >
+                {selectedPoint.outcome}
+              </span>
+              <span>{selectedPoint.date}</span>
+              <span>{selectedPoint.turns} turns</span>
+              <span>{selectedPoint.winRate.toFixed(1)}% win rate</span>
+            </div>
+            {selectedPoint.source === 'official' ? (
+              <a
+                href={`https://play.battlesnake.com/game/${selectedPoint.gameId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+              >
+                Watch Replay
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            ) : (
+              <span className="text-muted-foreground text-xs">
+                Custom game — no replay available
+              </span>
+            )}
+          </div>
+        ) : (
+          <p className="text-muted-foreground mt-3 text-center text-xs">
+            Click any point to see game details
+          </p>
+        )}
       </CardContent>
     </Card>
   )
