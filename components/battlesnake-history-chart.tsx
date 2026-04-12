@@ -41,6 +41,7 @@ interface StatsHistoryRecord {
   cumulative_wins: number
   cumulative_games: number
   cumulative_win_rate: string
+  source: 'official' | 'custom' | 'unknown'
 }
 
 interface PaginatedStatsHistory {
@@ -58,6 +59,7 @@ interface ChartDataPoint {
   date: string
   foodEaten: number
   gameId: string
+  source: 'official' | 'custom' | 'unknown'
 }
 
 // ── Chart config ───────────────────────────────────────────────────────
@@ -168,6 +170,7 @@ export function BattlesnakeHistoryChart() {
           }),
           foodEaten: record.total_food_eaten,
           gameId: record.game_id,
+          source: record.source ?? 'unknown',
         }))
 
         setChartData(points)
