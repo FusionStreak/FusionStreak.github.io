@@ -55,5 +55,5 @@ export const quotes: Quote[] = [
   {
     text: 'So, surely with hardship comes ease.',
     author: 'Quran',
-  }
+  },
 ]
