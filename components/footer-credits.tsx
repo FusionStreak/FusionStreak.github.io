@@ -54,7 +54,7 @@ export function FooterCredits() {
                 >
                   Next.js
                 </Link>
-                <span>\u00b7</span>
+                <span>{'\u00b7'}</span>
                 <Link
                   target="_blank"
                   rel="noreferrer"
@@ -63,7 +63,7 @@ export function FooterCredits() {
                 >
                   ShadCN UI
                 </Link>
-                <span>\u00b7</span>
+                <span>{'\u00b7'}</span>
                 <Link
                   target="_blank"
                   rel="noreferrer"
@@ -72,7 +72,7 @@ export function FooterCredits() {
                 >
                   React Bits
                 </Link>
-                <span>\u00b7</span>
+                <span>{'\u00b7'}</span>
                 <Link
                   target="_blank"
                   rel="noreferrer"
@@ -81,7 +81,7 @@ export function FooterCredits() {
                 >
                   Font Awesome
                 </Link>
-                <span>\u00b7</span>
+                <span>{'\u00b7'}</span>
                 <Link
                   target="_blank"
                   rel="noreferrer"
