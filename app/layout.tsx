@@ -3,10 +3,10 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from './theme-provider'
 import SimpleNav, { NavItem } from '@/components/SimpleNav'
-import Link from 'next/link'
 import 'highlight.js/styles/github-dark.css'
 import 'lenis/dist/lenis.css'
 import { LenisProvider } from '@/components/lenis-provider'
+import { FooterCredits } from '@/components/footer-credits'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -83,86 +83,7 @@ export default function RootLayout({
                 <main className="container mx-auto max-w-6xl flex-1 flex-col items-center justify-center gap-6 px-2 pt-4 pb-12 md:pt-6 lg:pt-8">
                   {children}
                 </main>
-                <footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px] px-4 py-6">
-                  <div className="text-muted-foreground flex max-w-2xl flex-col items-center gap-3 text-xs">
-                    <p className="text-center">
-                      &copy; {new Date().getFullYear()} Created by{' '}
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://github.com/FusionStreak/FusionStreak.github.io"
-                        className="text-primary hover:underline"
-                      >
-                        Sayfullah Eid
-                      </Link>{' '}
-                      · Code under{' '}
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://github.com/FusionStreak/FusionStreak.github.io/blob/main/LICENSE"
-                        className="text-primary hover:underline"
-                      >
-                        MIT
-                      </Link>
-                      {', Content under '}
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://github.com/FusionStreak/FusionStreak.github.io/blob/main/CONTENT_LICENSE"
-                        className="text-primary hover:underline"
-                      >
-                        CC BY-NC 4.0
-                      </Link>
-                    </p>
-                    <p className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center leading-relaxed">
-                      <span>Built with</span>
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://nextjs.org"
-                        className="text-primary hover:underline"
-                      >
-                        Next.js
-                      </Link>
-                      <span>,</span>
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://ui.shadcn.com"
-                        className="text-primary hover:underline"
-                      >
-                        ShadCN UI
-                      </Link>
-                      <span>,</span>
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://reactbits.dev/"
-                        className="text-primary hover:underline"
-                      >
-                        React Bits
-                      </Link>
-                      <span>,</span>
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://fontawesome.com/"
-                        className="text-primary hover:underline"
-                      >
-                        Font Awesome Icons
-                      </Link>
-                      <span>, and</span>
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href="https://lucide.dev"
-                        className="text-primary hover:underline"
-                      >
-                        Lucide Icons
-                      </Link>
-                    </p>
-                  </div>
-                </footer>
+                <FooterCredits />
               </div>
             </div>
           </ThemeProvider>
