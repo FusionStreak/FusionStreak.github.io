@@ -10,17 +10,18 @@ import {
 import { Badge } from '@/components/ui/badge'
 import SplitText from '@/components/SplitText'
 import { skillCategories } from '@/app/skills/skills'
+import { RotatingQuotes } from '@/components/rotating-quotes'
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center space-y-12">
+    <div className="flex flex-col items-center space-y-4">
       {/* Hero Section */}
-      <div className="max-w-4xl space-y-6 text-center">
+      <div className="max-w-4xl space-y-2 text-center">
         <div className="space-y-2">
           <SplitText
             text="Hello, I'm <primary>Sayfullah Eid</primary>"
             tag="h1"
-            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl"
             splitType="chars"
             delay={50}
             duration={0.8}
@@ -83,6 +84,8 @@ export default function HomePage() {
           </CardContent>
         </Card>
       </div>
+
+      <RotatingQuotes />
     </div>
   )
 }
