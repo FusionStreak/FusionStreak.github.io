@@ -1,0 +1,47 @@
+version: 2
+updates:
+  # Keep npm (pnpm) dependencies up to date
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    groups:
+      # Group all non-major updates together
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+      # Group major React/Next.js updates separately
+      react-nextjs:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "next"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - "major"
+    labels:
+      - "dependencies"
+      - "javascript"
+
+  # Keep GitHub Actions up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns:
+          - "*"
+    labels:
+      - "dependencies"
+      - "github-actions"
