@@ -18,7 +18,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -31,14 +31,14 @@ jobs:
       - uses: pnpm/action-setup@v6
         name: Install pnpm
         with:
-          version: 10
+          version: 12
           run_install: false
 
       - name: Install Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 22
-          cache: 'pnpm'
+          node-version: 24
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install

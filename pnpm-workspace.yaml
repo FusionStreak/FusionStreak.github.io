@@ -2,6 +2,8 @@ packages:
   - '.'
 allowBuilds:
   unrs-resolver: true
+  "@pnpm/exe": true
+  pnpm: true
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - sharp
