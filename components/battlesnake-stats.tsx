@@ -99,37 +99,81 @@ export function BattlesnakeStats() {
           <p className="text-muted-foreground text-sm">
             Stats temporarily unavailable. Check out my Battlesnake profiles:
           </p>
-          <div className="flex flex-wrap gap-2">
-            <Button variant="outline" size="sm" asChild>
-              <Link
-                href="https://play.battlesnake.com/profile/fusionstreak"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Profile
-              </Link>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <Link
-                href="https://play.battlesnake.com/leaderboard/standard/fusionstreak/stats"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Trophy className="mr-2 h-4 w-4" />
-                Standard Stats
-              </Link>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <Link
-                href="https://play.battlesnake.com/leaderboard/standard-duels/fusionstreak/stats"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Target className="mr-2 h-4 w-4" />
-                Duels Stats
-              </Link>
-            </Button>
+          <div className="space-y-3">
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+                Classic Battlesnake (play.battlesnake.com)
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href="https://play.battlesnake.com/profile/fusionstreak"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <TrendingUp className="mr-2 h-4 w-4" />
+                    Profile
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href="https://play.battlesnake.com/leaderboard/standard/fusionstreak/stats"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Trophy className="mr-2 h-4 w-4" />
+                    Standard
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href="https://play.battlesnake.com/leaderboard/standard-duels/fusionstreak/stats"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Target className="mr-2 h-4 w-4" />
+                    Duels
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+                Arena Engine (arena.battlesnake.com)
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href="https://arena.battlesnake.com/battlesnakes/52bbc1d4-c9b2-47c8-8952-7e05339bbf9b/profile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <TrendingUp className="mr-2 h-4 w-4" />
+                    Profile
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href="https://arena.battlesnake.com/leaderboards/d692fd01-5376-4060-8c4c-91dc2ecfe3ba/entries/bbca3e0c-07bc-49bb-9efd-147e93bb29e5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Trophy className="mr-2 h-4 w-4" />
+                    Standard
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link
+                    href="https://arena.battlesnake.com/leaderboards/77212f22-20f5-4e0c-8db6-78844318a9bc/entries/cbf3b8a0-e99e-4e33-8db9-cfe6a9f78054"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Swords className="mr-2 h-4 w-4" />
+                    Duels
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -308,47 +352,98 @@ export function BattlesnakeStats() {
         )}
 
         {/* Links */}
-        <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" asChild>
-            <Link
-              href="https://play.battlesnake.com/profile/fusionstreak"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ExternalLink className="mr-2 h-4 w-4" />
-              View Profile
-            </Link>
-          </Button>
-          <Button variant="outline" size="sm" asChild>
-            <Link
-              href="https://play.battlesnake.com/leaderboard/standard/fusionstreak/stats"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Trophy className="mr-2 h-4 w-4" />
-              Standard
-            </Link>
-          </Button>
-          <Button variant="outline" size="sm" asChild>
-            <Link
-              href="https://play.battlesnake.com/leaderboard/standard-duels/fusionstreak/stats"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Swords className="mr-2 h-4 w-4" />
-              Duels
-            </Link>
-          </Button>
-          <Button variant="outline" size="sm" asChild>
-            <Link
-              href="https://docs.battlesnake.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BookText className="mr-2 h-4 w-4" />
-              Learn More
-            </Link>
-          </Button>
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+              Classic Battlesnake (play.battlesnake.com)
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://play.battlesnake.com/profile/fusionstreak"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TrendingUp className="mr-2 h-4 w-4" />
+                  Profile
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://play.battlesnake.com/leaderboard/standard/fusionstreak/stats"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Trophy className="mr-2 h-4 w-4" />
+                  Standard
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://play.battlesnake.com/leaderboard/standard-duels/fusionstreak/stats"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Swords className="mr-2 h-4 w-4" />
+                  Duels
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+              Arena Engine (arena.battlesnake.com)
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://arena.battlesnake.com/battlesnakes/52bbc1d4-c9b2-47c8-8952-7e05339bbf9b/profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TrendingUp className="mr-2 h-4 w-4" />
+                  Profile
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://arena.battlesnake.com/leaderboards/d692fd01-5376-4060-8c4c-91dc2ecfe3ba/entries/bbca3e0c-07bc-49bb-9efd-147e93bb29e5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Trophy className="mr-2 h-4 w-4" />
+                  Standard
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://arena.battlesnake.com/leaderboards/77212f22-20f5-4e0c-8db6-78844318a9bc/entries/cbf3b8a0-e99e-4e33-8db9-cfe6a9f78054"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Swords className="mr-2 h-4 w-4" />
+                  Duels
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+              Resources
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" asChild>
+                <Link
+                  href="https://docs.battlesnake.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BookText className="mr-2 h-4 w-4" />
+                  Learn More
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
