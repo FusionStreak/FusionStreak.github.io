@@ -7,11 +7,13 @@ const INTERVAL_MS = 6000
 const FADE_MS = 400
 
 export function RotatingQuotes() {
-  const [current, setCurrent] = useState(() =>
-    Math.floor(Math.random() * quotes.length),
-  )
+  const [current, setCurrent] = useState(0)
   const [visible, setVisible] = useState(true)
   const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    setCurrent(Math.floor(Math.random() * quotes.length))
+  }, [])
 
   useEffect(() => {
     if (paused) return
