@@ -31,7 +31,7 @@ type Limit = (typeof LIMIT_OPTIONS)[number]
 
 const SOURCE_OPTIONS = [
   { value: 'all', label: 'All' },
-  { value: 'official', label: 'Official' },
+  { value: 'official', label: 'Classic' },
   { value: 'official_arena', label: 'Arena' },
 ] as const
 type SourceFilter = (typeof SOURCE_OPTIONS)[number]['value']
@@ -167,7 +167,7 @@ function HistoryTooltipContent({
         {data.gameType ? (
           <div className="flex justify-between gap-4">
             <span>Game Type</span>
-            <span className="text-foreground font-mono font-medium tabular-nums capitalize">
+            <span className="text-foreground font-mono font-medium capitalize tabular-nums">
               {data.gameType}
             </span>
           </div>
@@ -463,7 +463,7 @@ export function BattlesnakeHistoryChart() {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
               >
-                Watch Replay
+                Watch Replay - Classic
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             ) : selectedPoint.source === 'official_arena' ? (
@@ -473,7 +473,7 @@ export function BattlesnakeHistoryChart() {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
               >
-                Watch Arena Game
+                Watch Replay - Arena
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             ) : (
