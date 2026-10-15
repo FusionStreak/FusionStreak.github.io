@@ -32,6 +32,7 @@ type Limit = (typeof LIMIT_OPTIONS)[number]
 const SOURCE_OPTIONS = [
   { value: 'all', label: 'All' },
   { value: 'official', label: 'Official' },
+  { value: 'official_arena', label: 'Arena' },
 ] as const
 type SourceFilter = (typeof SOURCE_OPTIONS)[number]['value']
 
@@ -43,11 +44,13 @@ interface StatsHistoryRecord {
   is_draw: boolean
   total_turns: number
   total_food_eaten: number
+  max_length_reached?: number
+  game_type?: 'standard' | 'duel' | string
   recorded_at: string
   cumulative_wins: number
   cumulative_games: number
   cumulative_win_rate: string
-  source: 'official' | 'custom' | 'unknown'
+  source?: 'official' | 'official_arena' | 'custom' | 'unknown' | string
 }
 
 interface PaginatedStatsHistory {
@@ -57,6 +60,8 @@ interface PaginatedStatsHistory {
 
 // ── Transformed data point for the chart ───────────────────────────────
 
+type SourceValue = 'official' | 'official_arena' | 'custom' | 'unknown'
+
 interface ChartDataPoint {
   index: number
   winRate: number
@@ -64,8 +69,10 @@ interface ChartDataPoint {
   outcome: 'Win' | 'Loss' | 'Draw'
   date: string
   foodEaten: number
+  maxLengthReached?: number
+  gameType?: 'standard' | 'duel' | string
   gameId: string
-  source: 'official' | 'custom' | 'unknown'
+  source: SourceValue
 }
 
 // ── Chart config ───────────────────────────────────────────────────────
@@ -149,6 +156,22 @@ function HistoryTooltipContent({
             {data.foodEaten}
           </span>
         </div>
+        {typeof data.maxLengthReached === 'number' ? (
+          <div className="flex justify-between gap-4">
+            <span>Max Length</span>
+            <span className="text-foreground font-mono font-medium tabular-nums">
+              {data.maxLengthReached}
+            </span>
+          </div>
+        ) : null}
+        {data.gameType ? (
+          <div className="flex justify-between gap-4">
+            <span>Game Type</span>
+            <span className="text-foreground font-mono font-medium tabular-nums capitalize">
+              {data.gameType}
+            </span>
+          </div>
+        ) : null}
       </div>
     </div>
   )
@@ -183,21 +206,32 @@ export function BattlesnakeHistoryChart() {
         // API returns newest first — reverse so the chart reads left-to-right chronologically
         const sorted = [...json.data].reverse()
 
-        const points: ChartDataPoint[] = sorted.map((record, i) => ({
-          index: i + 1,
-          winRate: parseFloat(record.cumulative_win_rate),
-          turns: record.total_turns,
-          outcome: record.is_draw ? 'Draw' : record.won ? 'Win' : 'Loss',
-          date: new Date(record.recorded_at).toLocaleDateString(undefined, {
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          foodEaten: record.total_food_eaten,
-          gameId: record.game_id,
-          source: record.source ?? 'unknown',
-        }))
+        const points: ChartDataPoint[] = sorted.map((record, i) => {
+          const source =
+            record.source === 'official_arena' || record.source === 'official'
+              ? record.source
+              : record.source === 'custom'
+                ? 'custom'
+                : 'unknown'
+
+          return {
+            index: i + 1,
+            winRate: parseFloat(record.cumulative_win_rate),
+            turns: record.total_turns,
+            outcome: record.is_draw ? 'Draw' : record.won ? 'Win' : 'Loss',
+            date: new Date(record.recorded_at).toLocaleDateString(undefined, {
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            foodEaten: record.total_food_eaten,
+            maxLengthReached: record.max_length_reached,
+            gameType: record.game_type,
+            gameId: record.game_id,
+            source,
+          }
+        })
 
         setChartData(points)
         setSelectedPoint(null)
@@ -430,6 +464,16 @@ export function BattlesnakeHistoryChart() {
                 className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
               >
                 Watch Replay
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            ) : selectedPoint.source === 'official_arena' ? (
+              <a
+                href={`https://arena.battlesnake.com/games/${selectedPoint.gameId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+              >
+                Watch Arena Game
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             ) : (
