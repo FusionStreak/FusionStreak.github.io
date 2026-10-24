@@ -17,17 +17,9 @@ export const experiences: Experience[] = [
     location: 'Kanata, ON',
     startDate: '2026-05',
     description:
-      'Working on the Firmware R&D team to develop and maintain software for the company\'s line of digitizers. This includes developing new features, improving performance, and ensuring the reliability of our products.',
-    achievements: [
-    ],
-    technologies: [
-      'Rust',
-      'Axum',
-      'Tokio',
-      'Svelte',
-      'TypeScript',
-      'Docker',
-    ],
+      "Working on the Firmware R&D team to develop and maintain software for the company's line of digitizers. This includes developing new features, improving performance, and ensuring the reliability of our products.",
+    achievements: [],
+    technologies: ['Rust', 'Axum', 'Tokio', 'Svelte', 'TypeScript', 'Docker'],
     website: 'https://nanometrics.ca',
   },
   {

@@ -19,7 +19,8 @@ export const projects: Project[] = [
     title: 'CueTimer',
     description:
       'A browser-based countdown timer for tracking named cues during film and theatre production. No server required — runs entirely client-side.',
-    imageUrl: 'https://github.com/FusionStreak/CueTimer/blob/5baef313fbd096c32833541c30106ca43c5eee31/public/icons/512.png?raw=true',
+    imageUrl:
+      'https://github.com/FusionStreak/CueTimer/blob/5baef313fbd096c32833541c30106ca43c5eee31/public/icons/512.png?raw=true',
     longDescription: [
       'Developed a browser-based countdown timer for tracking named cues during film and theatre production',
       'Implemented a user-friendly interface with customizable cue names and durations',

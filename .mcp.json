@@ -1,27 +1,16 @@
 {
-	"mcpServers": {
-		"nextjs": {
-			"type": "local",
-			"command": "pnpm",
-			"args": [
-				"dlx",
-				"next-devtools-mcp@latest"
-			],
-			"tools": [
-				"*"
-			]
-		},
-		"shadcn": {
-			"type": "local",
-			"command": "pnpm",
-			"args": [
-				"dlx",
-				"shadcn@latest",
-				"mcp"
-			],
-			"tools": [
-				"*"
-			]
-		}
-	}
+  "mcpServers": {
+    "nextjs": {
+      "type": "local",
+      "command": "pnpm",
+      "args": ["dlx", "next-devtools-mcp@latest"],
+      "tools": ["*"]
+    },
+    "shadcn": {
+      "type": "local",
+      "command": "pnpm",
+      "args": ["dlx", "shadcn@latest", "mcp"],
+      "tools": ["*"]
+    }
+  }
 }
