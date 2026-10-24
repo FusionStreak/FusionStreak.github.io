@@ -1,6 +1,11 @@
 import type { NextConfig } from 'next'
 import createMDX from '@next/mdx'
 
+const allowedDevOrigins = process.env.NEXT_ALLOWED_DEV_ORIGINS
+  ?.split(',')
+  .map(origin => origin.trim())
+  .filter(Boolean)
+
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
@@ -14,6 +19,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  ...(allowedDevOrigins?.length ? { allowedDevOrigins } : {}),
 }
 
 const withMDX = createMDX({
